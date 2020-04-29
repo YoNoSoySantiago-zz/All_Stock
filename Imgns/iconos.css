@@ -14,4 +14,27 @@
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
 	
 }
+/*Login CSS */
+.Hbox{
+	-fx-background-color: rgb(192,192,192);
+	-fx-background-radius: 15;	
+}
+
+.Button{
+	-fx-background-color: rgb(33,169,207);
+	-fx-background-radius: 15;
+}
+
+.HiperLink{
+	-fx-background-color: null;
+	-fx-text-fill: rgb(33,169,207);
+}
+
+.BorderPane{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+}
+
+.Fields{
+	-fx-background-color: null;
+}
 
