@@ -1,0 +1,17 @@
+/*disenio de los iconos botones a utilizar */
+
+.bt1{
+	-fx-background-image: url("reportesIcon.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+.bt2{
+	-fx-background-image: url("stock.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+
