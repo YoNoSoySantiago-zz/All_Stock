@@ -14,4 +14,31 @@
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
 	
 }
+.bt3{
+	-fx-background-image: url("graficos.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+.bt4{
+	-fx-background-image: url("productoF.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+.bt5{
+	-fx-background-image: url("configuracion.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+
+
+
+
+
+
 
