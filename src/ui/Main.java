@@ -10,7 +10,7 @@ public class Main extends Application{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-launch(args);
+		launch(args);
 	}
 	
 	
@@ -18,7 +18,7 @@ launch(args);
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("//.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
 		//fxmlLoader.setController(RsGUI);
 
