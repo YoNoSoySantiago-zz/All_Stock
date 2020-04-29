@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AllstockGUI">
    <bottom>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="You still don't have account?" />
-            <Button mnemonicParsing="false" onAction="#loadSignUp" styleClass="HiperLink" text="Register" textFill="#1605ae" />
+            <Button mnemonicParsing="false" styleClass="HiperLink" text="Register" textFill="#1605ae" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -92,7 +92,7 @@
             </Label>
          </top>
          <bottom>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadUserList" prefHeight="30.0" prefWidth="200.0" styleClass="Button" text="Login" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="Button" text="Login" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Cooper Black" size="15.0" />
                </font>

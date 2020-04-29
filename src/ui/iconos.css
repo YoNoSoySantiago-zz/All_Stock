@@ -1,14 +1,14 @@
 /*disenio de los iconos botones a utilizar */
 
 .bt1{
-	-fx-background-image: url("reportesIcon.png");
+	-fx-background-image: url("../../Imgns/reportesIcon.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
 	
 }
 .bt2{
-	-fx-background-image: url("stock.png");
+	-fx-background-image: url("../../Imgns/stock.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
@@ -16,21 +16,21 @@
 }
 
 .bt3{
-	-fx-background-image: url("graficos.png");
+	-fx-background-image: url("../../Imgns/graficos.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
 	
 }
 .bt4{
-	-fx-background-image: url("productoF.png");
+	-fx-background-image: url("../../Imgns/productoF.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
 	
 }
 .bt5{
-	-fx-background-image: url("configuracion.png");
+	-fx-background-image: url("../../Imgns/configuracion.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
