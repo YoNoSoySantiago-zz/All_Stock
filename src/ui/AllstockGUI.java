@@ -31,6 +31,8 @@ public class AllstockGUI {
 		mainPane.setCenter(pane);
 	}
 	
+	
+	
 //	@FXML
 //	public void loadSignIn(ActionEvent event) throws IOException {
 //		FXMLLoader fL = new FXMLLoader(getClass().getResource("SignIn.fxml"));

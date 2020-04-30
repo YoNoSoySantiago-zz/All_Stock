@@ -49,6 +49,7 @@
 }
 
 .Button{
+	-fx-text-fill: rgb(238,238,238);
 	-fx-background-color: rgb(0,173,181);
 	-fx-background-radius: 15;
 	-fx-border-radius: 15;
@@ -79,10 +80,22 @@
 	-fx-effect: dropshadow(three-pass-box,rgb(57,62,70), 10, 0, 0, 0);
 }
 
+.General{
+	-fx-font-family: "Cooper Black";
+}
+
 .Fields{
 	-fx-background-color: null;
 	-fx-prompt-text-fill: rgba(57,62,70,0.800000011920929);
 	-fx-text-fill: rgb(34,40,49);
 }
 
+.MenuButton{
+	-fx-text-fill: rgb(238,238,238);
+	-fx-background-color: rgb(0,173,181);
+	-fx-background-radius: 15;
+	-fx-border-radius: 15;
+	-fx-border-color: rgb(0,173,181);
+	-fx-fill: null;
+}
 

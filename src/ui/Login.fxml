@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -112,7 +112,10 @@
             </BorderPane>
             <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0" spacing="10.0">
                <children>
-                  <Label text="You still don't have an account?" textFill="#222831" />
+                  <Label text="You still don't have an account?" textFill="#222831">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
                   <Button mnemonicParsing="false" styleClass="HiperLink" text="Sign in" textFill="#1605ae">
                      <cursor>
                         <Cursor fx:constant="HAND" />
