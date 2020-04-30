@@ -44,26 +44,45 @@
 
 /*Login CSS */
 .Hbox{
-	-fx-background-color: rgb(192,192,192);
+	-fx-background-color: rgb(238,238,238);
 	-fx-background-radius: 15;	
 }
 
 .Button{
-	-fx-background-color: rgb(33,169,207);
+	-fx-background-color: rgb(0,173,181);
 	-fx-background-radius: 15;
+	-fx-border-radius: 15;
+	-fx-border-color: rgb(0,173,181);
+}
+
+.Button:hover{
+	-fx-background-color: rgb(238,238,238);
+	-fx-border-color: rgb(57,62,70);
+	-fx-text-fill: rgb(57,62,70);
+	-fx-background-radius: 15;
+	-fx-border-radius: 15;
 }
 
 .HiperLink{
 	-fx-background-color: null;
-	-fx-text-fill: rgb(33,169,207);
+	-fx-text-fill: rgb(0,173,181);
+	-fx-underline: true;
+}
+
+.HiperLink:hover{
+	-fx-text-fill: rgb(57,62,70);
 }
 
 .BorderPane{
-	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	-fx-background-color: white;
+	-fx-background-radius: 15;
+	-fx-effect: dropshadow(three-pass-box,rgb(57,62,70), 10, 0, 0, 0);
 }
 
 .Fields{
 	-fx-background-color: null;
+	-fx-prompt-text-fill: rgba(57,62,70,0.800000011920929);
+	-fx-text-fill: rgb(34,40,49);
 }
 
 
