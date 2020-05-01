@@ -33,13 +33,13 @@ public class AllstockGUI {
 	
 	
 	
-//	@FXML
-//	public void loadSignIn(ActionEvent event) throws IOException {
-//		FXMLLoader fL = new FXMLLoader(getClass().getResource("SignIn.fxml"));
-//		fL.setController(this);
-//		Parent pane;
-//		pane = fL.load();
-//		mainPane.getChildren().clear();
-//		mainPane.setCenter(pane);
-//	}
+	@FXML
+	public void loadSignIn(ActionEvent event) throws IOException {
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		mainPane.getChildren().clear();
+		mainPane.setCenter(pane);
+	}
 }
