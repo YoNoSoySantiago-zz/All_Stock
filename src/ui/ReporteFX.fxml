@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="btReportUser" layoutX="52.0" layoutY="89.0" mnemonicParsing="false" text="USUARIOS REGISTRADOS" />
       <Button fx:id="btReporProduct" layoutX="53.0" layoutY="141.0" mnemonicParsing="false" text="PRODUCTOS REGISTRADOS" />
@@ -17,6 +17,6 @@
          <image>
             <Image url="@../../Imgns/reporteColor.png" />
          </image></ImageView>
-      <Button layoutX="29.0" layoutY="331.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="47.0" styleClass="atras" />
+      <Button layoutX="29.0" layoutY="331.0" mnemonicParsing="false" onAction="#loadMenuOptions" prefHeight="42.0" prefWidth="47.0" styleClass="atras" />
    </children>
 </Pane>

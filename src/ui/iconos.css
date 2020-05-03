@@ -138,3 +138,11 @@
 	-fx-fill: null;
 }
 
+.RadioButton:hover{
+	-fx-text-fill: rgb(238,238,238);
+}
+
+.RadioButton:selected{
+	-fx-text-fill: rgb(57,62,70);
+}
+
