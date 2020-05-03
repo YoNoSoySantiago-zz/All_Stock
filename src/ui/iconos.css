@@ -50,8 +50,34 @@
         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
 	
 }
+.bt8{
+	-fx-background-image: url("../../Imgns/report.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+.bt9{
+	-fx-background-image: url("../../Imgns/reporteColor.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
+	
+}
+.atras{
+	-fx-background-image: url("../../Imgns/anterior.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
 
-
+	
+}
+.welcome{
+	-fx-background-image: url("../../Imgns/inicio.png");
+        -fx-background-color: null;
+        -fx-background-size: stretch;
+  
+	
+}
 
 
 

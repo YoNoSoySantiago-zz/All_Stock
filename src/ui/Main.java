@@ -25,8 +25,13 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 				
 //		FileInputStream fis = new FileInputStream("imgs/Icon.png");
+<<<<<<< HEAD
+		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
+		fxmlLoad.setController(allstockgui);
+=======
 		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("WelcomeFX.fxml"));
 		fxmlLoad.setController(allStockGUI);
+>>>>>>> 9ba950bbd2b0652338db49b37306b9a8f0502b97
 		Parent root = fxmlLoad.load();
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("iconos.css").toExternalForm());
