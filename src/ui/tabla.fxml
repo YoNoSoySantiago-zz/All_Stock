@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <DatePicker fx:id="txtCalendar" layoutX="442.0" layoutY="64.0" prefHeight="25.0" prefWidth="119.0" />
-      <Button fx:id="btAtrasTbale" layoutX="85.0" layoutY="64.0" mnemonicParsing="false" text="Atras" />
+      <Button layoutX="85.0" layoutY="64.0" mnemonicParsing="false" onAction="#btAtrasTable" text="Atras" />
       <Button fx:id="btDescargar" layoutX="94.0" layoutY="325.0" mnemonicParsing="false" text="Descargar" />
       <TextField fx:id="txtSearchTable" layoutX="241.0" layoutY="64.0" prefHeight="25.0" prefWidth="119.0" />
       <Label layoutX="283.0" layoutY="40.0" text="Buscar" />

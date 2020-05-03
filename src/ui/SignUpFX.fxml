@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="65.0" layoutY="42.0" text="Crear una cuenta">
@@ -27,7 +26,7 @@
       <TextField layoutX="35.0" layoutY="217.0" />
       <Label layoutX="36.0" layoutY="258.0" text="Confirmar contraseña" />
       <TextField layoutX="35.0" layoutY="275.0" />
-      <Button layoutX="65.0" layoutY="325.0" mnemonicParsing="false" text="REGISTRARSE" />
+      <Button layoutX="65.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnRegister" text="REGISTRARSE" />
       <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="218.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="338.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="474.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" />

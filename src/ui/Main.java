@@ -1,17 +1,21 @@
 package ui;
 
-import java.io.FileInputStream;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.AllStock;
 
 public class Main extends Application {
 	
-	private AllstockGUI allstockgui;
+	private AllstockGUI allStockGUI;
+	private AllStock allStock;
+	
+	public Main() {
+		allStock = new AllStock();
+		allStockGUI = new AllstockGUI(allStock);
+	}
 
 	public static void main(String[] args) {
 		launch(args);
@@ -19,19 +23,17 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		
-		allstockgui = new AllstockGUI();
-		
+				
 //		FileInputStream fis = new FileInputStream("imgs/Icon.png");
-		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("Login.fxml"));
-		fxmlLoad.setController(allstockgui);
+		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("WelcomeFX.fxml"));
+		fxmlLoad.setController(allStockGUI);
 		Parent root = fxmlLoad.load();
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("iconos.css").toExternalForm());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 		stage.setMinHeight(600);
-		stage.setMinWidth(900);
+		stage.setMinWidth(1000);
 //		stage.getIcons().add(new Image(fis));
 		stage.setTitle("All Stock");
 		stage.show();
