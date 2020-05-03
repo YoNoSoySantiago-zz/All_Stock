@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -8,15 +9,30 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="btReportUser" layoutX="52.0" layoutY="89.0" mnemonicParsing="false" text="USUARIOS REGISTRADOS" />
-      <Button fx:id="btReporProduct" layoutX="53.0" layoutY="141.0" mnemonicParsing="false" text="PRODUCTOS REGISTRADOS" />
-      <Button layoutX="55.0" layoutY="188.0" mnemonicParsing="false" text="ENTRADA Y SALIDA DE PRODUCTOS" />
-      <Button layoutX="55.0" layoutY="234.0" mnemonicParsing="false" text="AUMENTOS Y PERDIDAS" />
+      <Button fx:id="btReportUser" alignment="CENTER" layoutX="55.0" layoutY="101.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="USUARIOS REGISTRADOS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btReporProduct" alignment="CENTER" layoutX="55.0" layoutY="160.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="PRODUCTOS REGISTRADOS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button alignment="CENTER" layoutX="55.0" layoutY="219.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="ENTRADA Y SALIDA DE PRODUCTOS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button alignment="CENTER" layoutX="55.0" layoutY="276.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="AUMENTOS Y PERDIDAS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="257.0" layoutY="25.0" prefHeight="17.0" prefWidth="74.0" text="REPORTES" textAlignment="CENTER" />
       <ImageView fitHeight="150.0" fitWidth="177.0" layoutX="337.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: tomate;">
          <image>
             <Image url="@../../Imgns/reporteColor.png" />
          </image></ImageView>
-      <Button layoutX="29.0" layoutY="331.0" mnemonicParsing="false" onAction="#loadMenuOptions" prefHeight="42.0" prefWidth="47.0" styleClass="atras" />
+      <Button layoutX="34.0" layoutY="21.0" mnemonicParsing="false" onAction="#loadMenuOptions" prefHeight="42.0" prefWidth="42.0" styleClass="atras">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </Pane>
