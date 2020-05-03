@@ -23,7 +23,7 @@ public class Main extends Application {
 		allstockgui = new AllstockGUI();
 		
 //		FileInputStream fis = new FileInputStream("imgs/Icon.png");
-		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("Login.fxml"));
+		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
 		fxmlLoad.setController(allstockgui);
 		Parent root = fxmlLoad.load();
 		Scene scene = new Scene(root);
