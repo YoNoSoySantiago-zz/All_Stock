@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +18,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" styleClass="bt1">
+                        <Button mnemonicParsing="false" onAction="#btnReports" prefHeight="130.0" prefWidth="130.0" styleClass="bt1">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -28,7 +28,7 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" styleClass="bt2">
+                        <Button mnemonicParsing="false" onAction="#btnInventory" prefHeight="130.0" prefWidth="130.0" styleClass="bt2">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -42,7 +42,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" styleClass="bt5">
+                        <Button mnemonicParsing="false" onAction="#btnSettings" prefHeight="130.0" prefWidth="130.0" styleClass="bt5">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -52,7 +52,7 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" styleClass="bt4">
+                        <Button mnemonicParsing="false" onAction="#btnProducts" prefHeight="130.0" prefWidth="130.0" styleClass="bt4">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -62,7 +62,7 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="130.0" styleClass="bt3">
+                        <Button mnemonicParsing="false" onAction="#btnGraphics" prefHeight="130.0" prefWidth="130.0" styleClass="bt3">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -78,8 +78,8 @@
    <top>
       <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="31.0" prefWidth="45.0" styleClass="Button" text="." textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
         <items>
-          <MenuItem mnemonicParsing="false" styleClass="MenuButton" text="My Profile" />
-          <MenuItem mnemonicParsing="false" styleClass="MenuButton" text="Log out" />
+          <MenuItem mnemonicParsing="false" onAction="#btnMyProfile" styleClass="MenuButton" text="My Profile" />
+          <MenuItem mnemonicParsing="false" onAction="#btnLogOut" styleClass="MenuButton" text="Log out" />
         </items>
          <BorderPane.margin>
             <Insets bottom="15.0" left="40.0" right="40.0" top="15.0" />
