@@ -71,6 +71,11 @@
 
 	
 }
+
+.atras:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
 .welcome{
 	-fx-background-image: url("../../Imgns/inicio.png");
         -fx-background-color: null;
@@ -136,5 +141,13 @@
 	-fx-border-radius: 15;
 	-fx-border-color: rgb(0,173,181);
 	-fx-fill: null;
+}
+
+.RadioButton:hover{
+	-fx-text-fill: rgb(238,238,238);
+}
+
+.RadioButton:selected{
+	-fx-text-fill: rgb(57,62,70);
 }
 

@@ -22,7 +22,7 @@ public class AllstockGUI {
 	
 
     @FXML
-    private BorderPane mainPane;
+    private BorderPane mainPane,registerPane;
 	
 	private AllStock allStock;
 	
@@ -104,7 +104,7 @@ public class AllstockGUI {
 		mainPane.setCenter(pane);
     }
 	
-	private void loadMenuOptions() throws IOException {
+	public void loadMenuOptions() throws IOException {
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
 		fL.setController(this);
 		Parent pane;
@@ -125,8 +125,13 @@ public class AllstockGUI {
 	
 	//MenuOptions
 	@FXML
-    void btnGraphics(ActionEvent event) {
-		
+    void btnGraphics(ActionEvent event) throws IOException {
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("GraficasFX.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		mainPane.getChildren().clear();
+		mainPane.setCenter(pane);
     }
 
     @FXML
@@ -150,11 +155,6 @@ public class AllstockGUI {
     }
 
     @FXML
-    void btnMyProfile(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnProducts(ActionEvent event) throws IOException {
     	FXMLLoader fL = new FXMLLoader(getClass().getResource("ProductRegister.fxml"));
 		fL.setController(this);
@@ -165,13 +165,23 @@ public class AllstockGUI {
     }
 
     @FXML
-    void btnReports(ActionEvent event) {
-
+    void btnReports(ActionEvent event) throws IOException {
+    	FXMLLoader fL = new FXMLLoader(getClass().getResource("ReporteFX.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		mainPane.getChildren().clear();
+		mainPane.setCenter(pane);
     }
 
     @FXML
-    void btnSettings(ActionEvent event) {
-
+    void btnSettings(ActionEvent event) throws IOException {
+    	FXMLLoader fL = new FXMLLoader(getClass().getResource("Settings.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		mainPane.getChildren().clear();
+		mainPane.setCenter(pane);
     }
     
 	//Product Register
@@ -188,12 +198,32 @@ public class AllstockGUI {
 	//Register
 	@FXML
 	void btnRegister(ActionEvent event) throws IOException {
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("Login.fxml"));
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace.fxml"));
 		fL.setController(this);
 		Parent pane;
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+	}
+	
+	@FXML
+	void btnRegister2(ActionEvent event) throws IOException {
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace2.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		registerPane.getChildren().clear();
+		registerPane.setCenter(pane);
+	}
+	
+	@FXML
+	void btnRegister3(ActionEvent event) throws IOException {
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace3.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		registerPane.getChildren().clear();
+		registerPane.setCenter(pane);
 	}
 	
 	//Tabla
