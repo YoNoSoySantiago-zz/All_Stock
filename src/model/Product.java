@@ -1,5 +1,106 @@
 package model;
 
-public class Product {
+public abstract class Product {
+	
+	private Aliments aliments;
+	private Cleaning cleaning;
+	private Clothes  clothes;
+	private Medicines medicines;
+	private Others others;
+	
+	private String id;
+	private String name;
+	private String description;
+	private String brand;
+	private double price;
+	private int cant;
+	
+	public Product(String id, String name, String description, String brand, double price, int cant) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.brand = brand;
+		this.price = price;
+		this.cant = cant;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public int getCant() {
+		return cant;
+	}
+	public void setCant(int cant) {
+		this.cant = cant;
+	}
+
+
+	public Aliments getAliments() {
+		return aliments;
+	}
+
+	public void setAliments(Aliments aliments) {
+		this.aliments = aliments;
+	}
+
+	public Cleaning getCleaning() {
+		return cleaning;
+	}
+
+	public void setCleaning(Cleaning cleaning) {
+		this.cleaning = cleaning;
+	}
+
+	public Clothes getClothes() {
+		return clothes;
+	}
+
+	public void setClothes(Clothes clothes) {
+		this.clothes = clothes;
+	}
+
+	public Medicines getMedicines() {
+		return medicines;
+	}
+
+	public void setMedicines(Medicines medicines) {
+		this.medicines = medicines;
+	}
+
+	public Others getOthers() {
+		return others;
+	}
+
+	public void setOthers(Others others) {
+		this.others = others;
+	}
 
 }
