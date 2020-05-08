@@ -2,6 +2,7 @@ package model;
 
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
@@ -13,21 +14,36 @@ public class AllStock {
    
 	private SortedSet<User> users;
 	
+	
+LinkedList<User> usuarios;
+	
 // agregar usuario en orden	
 	public AllStock() {
 		
-		Comparator c = new comparatorUser();
+	
 		
-		users = new TreeSet<User>();
-		
-		
+		LinkedList<User> usuarios = new LinkedList<>();
 		
 		
 	}
 	
 	
-	public void addUser(String id, String name, String idType, String password, String userType){
+	
+	
+	
+	public void sortByName() {
 		
+		Comparator<User> namecomparator= new NameComparator();
+		
+		//List<User>list.sortByName();
+	}
+	
+	
+	public void addUser(String id, String name, String idType, String password, String userType){
+		  
+	
+		
+		  usuarios.addAll(new LinkedList<User>());
 	}
 	
 	
