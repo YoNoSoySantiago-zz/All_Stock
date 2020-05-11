@@ -9,7 +9,7 @@ public class NameComparator implements  Comparator <User>{
 		
 		int comparator;
 		
-		
+		// agregar el tpo de usuario
 		
 		String name1=user1.getName();
 		String name2=user2.getName();
