@@ -8,9 +8,9 @@ public abstract class User implements Comparable<User>,Permissions{
 	private String password;
 	private String UserType;
 	//CHICOS PORQUE LAS CONSTANTES SON ENTEROS (LOS DEMAS VALORES SON STRING) 
-	final static int ADMINISTRADOR=1;
-	final static int EMPLOYEE=2;
-	final static int CLIENT=3;
+	final static String ADMINISTRADOR="Admin";
+	final static String EMPLOYEE="Employee";
+	final static String CLIENT="Client";
 	
 	public User(String id, String name, String idType, String password, String userType) {
 	

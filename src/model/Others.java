@@ -2,9 +2,9 @@ package model;
 
 public class Others extends Product {
 	private String[][] characteristics;
-	public Others(String id, String name, String description, String brand, double price, int cant,String[][]characteristocs) {
+	public Others(String id, String name, String description, String brand, double price, int cant,String[][]characteristics) {
 		super(id, name, description, brand, price, cant);
-		this.setCharacteristics(characteristocs);
+		this.setCharacteristics(characteristics);
 	}
 	public String[][] getCharacteristics() {
 		return characteristics;
