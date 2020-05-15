@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Company{
 	
 	private String name; 
@@ -9,6 +11,8 @@ public class Company{
 	private String phone;
 	private String category;
 	
+	private ArrayList<Product>products;
+	
 	public Company(String name, String nit, String locate, String phone, String category) {
 		super();
 		this.name = name;
@@ -16,6 +20,7 @@ public class Company{
 		this.locate = locate;
 		this.phone = phone;
 		this.category = category;
+		this.setProducts(new ArrayList<Product>());
 	}
 	
 	public String getName() {
@@ -47,6 +52,14 @@ public class Company{
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public ArrayList<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(ArrayList<Product> products) {
+		this.products = products;
 	}
 	
 

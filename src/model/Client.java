@@ -7,4 +7,14 @@ public class Client extends User {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public boolean toAddDelate() {
+		return false;
+	}
+
+	@Override
+	public boolean totalAccess() {
+		return false;
+	}
+
 }

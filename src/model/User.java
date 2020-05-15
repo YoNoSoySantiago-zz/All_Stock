@@ -1,13 +1,13 @@
 package model;
 
-public class User implements Comparable<User> {
-	
+public abstract class User implements Comparable<User>,Permissions{
 
 	private String id;
 	private String name;
 	private String idType;
 	private String password;
 	private String UserType;
+	//CHICOS PORQUE LAS CONSTANTES SON ENTEROS (LOS DEMAS VALORES SON STRING) 
 	final static int ADMINISTRADOR=1;
 	final static int EMPLOYEE=2;
 	final static int CLIENT=3;
