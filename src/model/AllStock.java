@@ -12,17 +12,13 @@ public class AllStock {
 	
 	//RELACIONES
    
-	private SortedSet<User> users;
 	
-	
-LinkedList<User> usuarios;
 	
 // agregar usuario en orden	
 	public AllStock() {
 		
 	
 		
-		LinkedList<User> usuarios = new LinkedList<>();
 		
 		
 	}
@@ -39,12 +35,21 @@ LinkedList<User> usuarios;
 	}
 	
 	
-	public void addUser(String id, String name, String idType, String password, String userType){
-		  
 	
-		
-		  usuarios.addAll(new LinkedList<User>());
+public void addUser (NodeUser ns) {
+		NodeUser node = NodeUser((new User(getid, name, idType, password, UserType)));
+		if (getFirst()== null) {
+			first = node;
+		} else {
+			NodeUser aux = first;
+			while (aux.getNext() != null) {
+				aux = aux.getNext();
+			}
+			node.setPrevious(aux);
+			aux.setNext(node);
+		}
 	}
+
 	
 	
 	//metodo para agregar al diagrama

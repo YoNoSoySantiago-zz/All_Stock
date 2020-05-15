@@ -11,6 +11,7 @@ public class User implements Comparable<User> {
 	final static int ADMINISTRADOR=1;
 	final static int EMPLOYEE=2;
 	final static int CLIENT=3;
+	private NodeUser first;
 	
 	public User(String id, String name, String idType, String password, String userType) {
 	
@@ -54,11 +55,23 @@ public class User implements Comparable<User> {
 	}
 
 	
+	public NodeUser getFirst() {
+		return first;
+	}
+
+
+	public void setFirst(NodeUser first) {
+		this.first = first;
+	}
+
+
 	@Override
 	public String toString() {
 		return "USUARIO REGISTRADO [ID=" + id + ", Nombre=" + name + ", Tipo de identificacion=" + idType + ", Contraseña=" + password + ", TIPO DE USUARIO="
 				+ UserType + "]";
 	}
+	
+	
 
 
 	@Override
