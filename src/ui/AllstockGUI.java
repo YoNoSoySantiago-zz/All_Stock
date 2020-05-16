@@ -2,7 +2,6 @@ package ui;
 
 import java.io.IOException;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +29,7 @@ public class AllstockGUI {
 	private BorderPane mainPane, registerPane;
 
 	private AllStock allStock;
+	//private Exception exceptions;
 
 	public AllstockGUI(AllStock allStock) {
 		this.allStock = allStock;
@@ -148,15 +148,23 @@ public class AllstockGUI {
 			loadMenuOptions();
 
 		} else {
-
+			
+  // aqui llamo la excepcion que me manda la alerta no?
+			
+		// ValueIsEmptyException;
+			
+			
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("ERROR");
 			alert.setHeaderText("ALL STOCK");
 			alert.setContentText("INFORMACION INCORRECTA" + "INTENTE NUEVAMENTE");
 
 			alert.showAndWait();
+	
 
 		}
+		
+		
 
 	}
 
@@ -182,6 +190,7 @@ public class AllstockGUI {
 
 	@FXML
 	public void loadSignIn(ActionEvent event) throws IOException {
+		
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
 		fL.setController(this);
 		Parent pane;
