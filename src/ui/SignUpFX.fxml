@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="65.0" layoutY="42.0" text="Crear una cuenta">
          <font>
@@ -36,18 +37,18 @@
          <image>
             <Image url="@../../Imgns/usuario.png" />
          </image></ImageView>
-      <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="474.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="438.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imgns/empleado.png" />
          </image></ImageView>
-      <Button fx:id="btAdmin" layoutX="221.0" layoutY="300.0" mnemonicParsing="false" text="Administrador" />
-      <Button fx:id="btUser" layoutX="342.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Usuario" />
-      <Button fx:id="btEmpleado" layoutX="474.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Empleado" />
       <Label layoutX="320.0" layoutY="113.0" text="Seleccione tipo de Usuario" />
       <ImageView fitHeight="400.0" fitWidth="673.0" layoutY="-365.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imgns/F1-Bandera_azul.png" />
          </image>
       </ImageView>
+      <CheckBox fx:id="adminSelect" layoutX="218.0" layoutY="304.0" mnemonicParsing="false" onAction="#adminSelect" text="Administrador" />
+      <CheckBox fx:id="clientSelect" layoutX="338.0" layoutY="304.0" mnemonicParsing="false" onAction="#clientSelect" text="Cliente" />
+      <CheckBox fx:id="employeeSelect" layoutX="424.0" layoutY="304.0" mnemonicParsing="false" onAction="#employeeSelect" text="Empleado" />
    </children>
 </Pane>
