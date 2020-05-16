@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -15,6 +19,7 @@ public class AllStock {
 	private ArrayList<Company> companies;
 	private LinkedList<User> users;
 	private Company actualCompany;
+	
 	//RELACIONES
 	public AllStock() {
 		users = new LinkedList<>();
@@ -26,9 +31,7 @@ public class AllStock {
 		Comparator<User> namecomparator= new NameComparator();
 		//List<User>list.sortByName();
 	}
-	
-	
-	
+
 	public void removeUser(String id) {
 		
 	}
@@ -175,17 +178,57 @@ public class AllStock {
 	public void delateProduc(String idName) {
 		for (int i = 0; i < actualCompany.getProducts().size(); i++) {
 			if(actualCompany.getProducts().get(i).getId().equals(idName)||actualCompany.getProducts().get(i).getName().equals(idName)) {
-				
+				actualCompany.getProducts().remove(i);
+				break;
 			}
 		}
 	}
 	//LOGIN
-	public void loginUser(String id,String password) {
+	public boolean loginUser(String id,String password) {
+		
+		String idLogin = null;
+		String passwordLogin = null;
+		
+	
+		
+		boolean validate= false;
+		
+		if(idLogin.isEmpty() && passwordLogin.isEmpty()) {
+			
+			validate= false;
+			// el usuario le falto algun campo.
+			
+		}else if (idLogin.equals(id ) && passwordLogin.equals(password)){
+			
+			validate= true;
+			
+			// el usuario ingreso correctamente
+		}else {
+			
+			validate= false;
+			// 
+		}
+		
+		
+	
+		
+	return validate;
 		
 	}
 	//GENEERA UN REPORTE Y LOS GUARDA EN UN ARCHIVO TXT, EL DIRECTORIO ES UNA CONSTANTE 
-	public void generateReportUsers() {
-		
+	public void generateReportUsers() throws IOException {
+		File file = new File("data/reports/users.txt");
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+		String report = "id type;Nombre;id";
+		for (int i = 0; i < users.size(); i++) {
+			String id = users.get(i).getId();
+			String name = users.get(i).getName();
+			String idType = users.get(i).getIdType();
+			
+			report +="\n"+idType+";"+name+";"+id;
+		}
+		bw.write(report);
+		bw.close();
 	}
 	
 	public void generateIncreasesDecreases() {
