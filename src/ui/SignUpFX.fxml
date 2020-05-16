@@ -38,19 +38,33 @@
          <image>
             <Image url="@../../Imgns/usuario.png" />
          </image></ImageView>
+<<<<<<< HEAD
       <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="439.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imgns/empleado.png" />
          </image></ImageView>
       <Label layoutX="316.0" layoutY="67.0" text="Seleccione tipo de Usuario" />
+=======
+      <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="438.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Imgns/empleado.png" />
+         </image></ImageView>
+      <Label layoutX="320.0" layoutY="113.0" text="Seleccione tipo de Usuario" />
+>>>>>>> 619de76eb235b64f5d6087fca852dd9142d05d0d
       <ImageView fitHeight="400.0" fitWidth="673.0" layoutY="-365.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imgns/F1-Bandera_azul.png" />
          </image>
       </ImageView>
+<<<<<<< HEAD
       <CheckBox fx:id="adminSelect" layoutX="218.0" layoutY="242.0" mnemonicParsing="false" onAction="#adminSelect" text="Administrador" />
       <CheckBox fx:id="clientSelect" layoutX="338.0" layoutY="242.0" mnemonicParsing="false" onAction="#clientSelect" text="Cliente" />
       <CheckBox fx:id="employeeSelect" layoutX="420.0" layoutY="242.0" mnemonicParsing="false" onAction="#employeeSelect" text="Empleado" />
       <Separator layoutX="178.0" layoutY="34.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="48.0" />
+=======
+      <CheckBox fx:id="adminSelect" layoutX="218.0" layoutY="304.0" mnemonicParsing="false" onAction="#adminSelect" text="Administrador" />
+      <CheckBox fx:id="clientSelect" layoutX="338.0" layoutY="304.0" mnemonicParsing="false" onAction="#clientSelect" text="Cliente" />
+      <CheckBox fx:id="employeeSelect" layoutX="424.0" layoutY="304.0" mnemonicParsing="false" onAction="#employeeSelect" text="Empleado" />
+>>>>>>> 619de76eb235b64f5d6087fca852dd9142d05d0d
    </children>
 </Pane>
