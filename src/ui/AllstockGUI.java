@@ -2,6 +2,8 @@ package ui;
 
 import java.io.IOException;
 
+import CustomExceptions.UserExistException;
+import CustomExceptions.ValueIsEmptyException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -128,7 +130,7 @@ public class AllstockGUI {
 	}
 
 	@FXML
-	public void verifyLogin(ActionEvent event) throws IOException {
+	public void verifyLogin(ActionEvent event) throws Exception , IOException, ValueIsEmptyException{
 
 		String id = userTextField.getText();
 
@@ -149,18 +151,13 @@ public class AllstockGUI {
 
 		} else {
 			
-  // aqui llamo la excepcion que me manda la alerta no?
+  
 			
-		// ValueIsEmptyException;
+			throw new ValueIsEmptyException();
+		
 			
 			
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("ERROR");
-			alert.setHeaderText("ALL STOCK");
-			alert.setContentText("INFORMACION INCORRECTA" + "INTENTE NUEVAMENTE");
-
-			alert.showAndWait();
-	
+		
 
 		}
 		
@@ -232,13 +229,20 @@ public class AllstockGUI {
 
 	// Log Up
 	@FXML
-	void btnRegister(ActionEvent event) {
+	void btnRegister(ActionEvent event) throws UserExistException {
 		String name = txtSignName.getText();
 		String id = txtSignID.getText();
 		String password = txtPasword1.getText();
 		String confirmPassword = txtPasword2.getText();
 		String idType = adminSelect.isSelected()?User.ADMINISTRADOR:clientSelect.isSelected()?User.CLIENT:User.EMPLOYEE;
-		allStock.addUser(id, name, idType, password, "falta en la GUI");
+		if(password.equals(confirmPassword)) {
+			allStock.addUser(id, name, idType, password, "falta en la GUI");
+		}else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("password differents");
+			alert.setHeaderText("the password are not the same");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML

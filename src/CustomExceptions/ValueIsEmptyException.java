@@ -13,7 +13,7 @@ public class ValueIsEmptyException extends Exception {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("ERROR");
 		alert.setHeaderText("ALL STOCK");
-		alert.setContentText("DILIGENCIA LOS CAMPOS VACIOS ");
+		alert.setContentText("INFORMACION INCORRECTA ");
 
 		alert.showAndWait();
 	

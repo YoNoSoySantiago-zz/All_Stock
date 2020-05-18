@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
-import CustomExceptions.*;
+
+import CustomExceptions.AlreadyProductExistException;
+import CustomExceptions.UserExistException;
+import CustomExceptions.ValueIsEmptyException;
 
 public class AllStock {
 	///////////////////////////////////////////////////////////////////////////////////////
@@ -165,7 +168,7 @@ public class AllStock {
 
 	// AÑADIR UN USUARIO
 	// JAJAJA PACHON EXPLICA CON COMENTARIOS QUE NO SE ENTIENDE NI VERGA
-	public void addUser(String id, String name, String idType, String password, String userType) {
+	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException {
 		if (searchUser(id) == null) {
 			User nuevo;
 			if (id.equals(User.ADMINISTRADOR)) {
@@ -176,6 +179,8 @@ public class AllStock {
 				nuevo = new Client(id, name, idType, password, userType);
 			}
 			users.add(nuevo);
+		}else {
+			throw new UserExistException();
 		}
 
 	}
