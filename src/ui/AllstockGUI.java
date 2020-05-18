@@ -136,7 +136,7 @@ public class AllstockGUI {
 
 		String password = passwordField.getText();
 		
-		Boolean validate = false;
+		Boolean validate = allStock.loginUser(id,password);
 
 		if (validate == true) {
 

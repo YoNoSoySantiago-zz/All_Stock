@@ -219,9 +219,9 @@ public class AllStock {
 
 		boolean validate = false;
 
-		if (idLogin.isEmpty() && passwordLogin.isEmpty()) {
+		if (idLogin.isEmpty() || passwordLogin.isEmpty()) {
 
-			validate = false;
+			
 			// el usuario le falto algun campo.
 
 		} else if (idLogin.equals(id) && passwordLogin.equals(password)) {
