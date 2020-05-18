@@ -6,7 +6,6 @@ public abstract class User implements Comparable<User>,Permissions{
 	private String name;
 	private String idType;
 	private String password;
-	private String UserType;
 	//CHICOS PORQUE LAS CONSTANTES SON ENTEROS (LOS DEMAS VALORES SON STRING) 
 	public final static String ADMINISTRADOR="Admin";
 	public final static String EMPLOYEE="Employee";
@@ -18,7 +17,6 @@ public abstract class User implements Comparable<User>,Permissions{
 		this.name = name;
 		this.idType = idType;
 		this.password = password;
-		UserType = userType;
 	}
 	
 	
@@ -46,18 +44,10 @@ public abstract class User implements Comparable<User>,Permissions{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getUserType() {
-		return UserType;
-	}
-	public void setUserType(String userType) {
-		UserType = userType;
-	}
-
 	
 	@Override
 	public String toString() {
-		return "USUARIO REGISTRADO [ID=" + id + ", Nombre=" + name + ", Tipo de identificacion=" + idType + ", Contraseña=" + password + ", TIPO DE USUARIO="
-				+ UserType + "]";
+		return "USUARIO REGISTRADO [ID=" + id + ", Nombre=" + name + ", Tipo de Usuario=" + idType + ", Contraseña=" + password + "]";
 	}
 
 
