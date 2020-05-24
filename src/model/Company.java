@@ -11,6 +11,8 @@ public class Company{
 	private String phone;
 	private String category;
 	
+	private Company next;
+	private Company prev;
 	private ArrayList<Product>products;
 	
 	public Company(String name, String nit, String locate, String phone, String category) {
@@ -60,6 +62,22 @@ public class Company{
 
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
+	}
+
+	public Company getNext() {
+		return next;
+	}
+
+	public void setNext(Company next) {
+		this.next = next;
+	}
+
+	public Company getPrev() {
+		return prev;
+	}
+
+	public void setPrev(Company prev) {
+		this.prev = prev;
 	}
 	
 

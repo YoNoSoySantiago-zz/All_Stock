@@ -20,14 +20,14 @@ public class AllStock {
 	 */
 
 	// RELACIONES
-	private ArrayList<Company> companies;
-	private LinkedList<User> users;
+	private Company companies;
+	private User users;
 	private Company actualCompany;
 
 	// RELACIONES
 	public AllStock() {
-		users = new LinkedList<>();
-		companies = new ArrayList<Company>();
+		users = null;
+		companies = null;
 		actualCompany = null;
 	}
 
@@ -169,7 +169,7 @@ public class AllStock {
 	// AÑADIR UN USUARIO
 	// JAJAJA PACHON EXPLICA CON COMENTARIOS QUE NO SE ENTIENDE NI VERGA
 	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException {
-		if (searchUser(id) == null) {
+		if (searchUserR(id) == null) {
 			User nuevo;
 			if (id.equals(User.ADMINISTRADOR)) {
 				nuevo = new Admin(id, name, idType, password, userType);
@@ -178,21 +178,49 @@ public class AllStock {
 			} else {
 				nuevo = new Client(id, name, idType, password, userType);
 			}
-			users.add(nuevo);
+			if(users==null) {
+				users = nuevo;
+			}
+			addUserR(nuevo,users);
 		}else {
 			throw new UserExistException();
 		}
 
 	}
-
-	public User searchUser(String idName) {
-		User result = null;
-		for (int i = 0; i < users.size() && result == null; i++) {
-			if (users.get(i).getId().equals(idName) || users.get(i).getName().equals(idName)) {
-				result = users.get(i);
+	private void addUserR(User nuevo,User current) {
+		if(current.getNext()==null) {
+			current.setNext(nuevo);
+		}else {
+			addUserR(nuevo,current.getNext());
+		}
+	}
+	
+	public void delateUserR(String idName) {
+		if(users!=null) {
+			delateUserR(idName,users);
+		}
+	}
+	
+	private void delateUserR(String idName,User current) {
+		if(current!=null) {
+			if(current.getName().equals(idName)||current.getId().equals(idName)) {
+				current.getPrev().setNext(current.getNext());
+				current.getNext().setPrev(current.getPrev());
+			}else {
+				delateUserR(idName,current.getNext());
 			}
 		}
+	}
+
+	public User searchUserR(String idName) {
+		User result = searchUserR(users,idName);;
 		return result;
+	}
+	private User searchUserR(User current,String idName) {
+		if(current!=null && (!current.getId().equals(idName)&&!current.getName().equals(idName))){
+			searchUserR(current.getNext(),idName);
+		}
+		return current;
 	}
 
 	// BORRA TODOS LOS DATOS ACTUALES PERO GUARDA UNA COPIA EN EL ORDENADOR
@@ -245,12 +273,14 @@ public class AllStock {
 		File file = new File("data/reports/users.txt");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 		String report = "id type;Nombre;id";
-		for (int i = 0; i < users.size(); i++) {
-			String id = users.get(i).getId();
-			String name = users.get(i).getName();
-			String idType = users.get(i).getIdType();
+		User current = users;
+		while(current!=null) {
+			String id = current.getId();
+			String name = current.getName();
+			String idType = current.getIdType();
 
 			report += "\n" + idType + ";" + name + ";" + id;
+			current = current.getNext();
 		}
 		bw.write(report);
 		bw.close();

@@ -6,6 +6,9 @@ public abstract class User implements Comparable<User>,Permissions{
 	private String name;
 	private String idType;
 	private String password;
+	
+	private User next;
+	private User prev;
 	//CHICOS PORQUE LAS CONSTANTES SON ENTEROS (LOS DEMAS VALORES SON STRING) 
 	public final static String ADMINISTRADOR="Admin";
 	public final static String EMPLOYEE="Employee";
@@ -51,23 +54,22 @@ public abstract class User implements Comparable<User>,Permissions{
 	}
 
 
-	@Override
-	public int compareTo(User otherUser) {
-		if(name.compareTo(otherUser.name)>0) {
-			
-			return 1;
-		}if(name.compareTo(otherUser.name)<0) {
-			
-			return -1;
-		}else {
-			return 0;
-		}
-
+	public User getNext() {
+		return next;
 	}
-	
-	
-	
-	
-	
 
+
+	public void setNext(User next) {
+		this.next = next;
+	}
+
+
+	public User getPrev() {
+		return prev;
+	}
+
+
+	public void setPrev(User prev) {
+		this.prev = prev;
+	}
 }
