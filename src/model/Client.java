@@ -17,4 +17,10 @@ public class Client extends User {
 		return false;
 	}
 
+	@Override
+	public int compareTo(User o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

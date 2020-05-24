@@ -17,6 +17,12 @@ public class Employee extends User{
 	public boolean totalAccess() {
 		return false;
 	}
+
+	@Override
+	public int compareTo(User o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 

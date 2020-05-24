@@ -16,6 +16,12 @@ public class Admin extends User{
 
 		return true;
 	}
+
+	@Override
+	public int compareTo(User arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }
