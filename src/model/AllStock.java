@@ -147,10 +147,17 @@ public class AllStock {
 
 	private String generateIdProducts() {
 		int aux = 0;
+		
 		String result = "";
 		if (actualCompany != null) {
-			if (actualCompany.getProducts().size() > 0) {
-				String aux2 = actualCompany.getProducts().get(actualCompany.getProducts().size() - 1).getId();
+			if (actualCompany.getProducts()!=null) {
+				Product product = actualCompany.getProducts();
+				String aux2="-1";
+				while(product!=null) {
+					aux2 = product.getId();
+					product = product.getRight();
+				}
+				
 				aux = Integer.parseInt(aux2) + 1;
 			}
 		}
@@ -169,13 +176,7 @@ public class AllStock {
 	// BUSCAR UN PRODUCTO POR SU ID o NOMBRE
 	public Product searchProduct(String idName) {
 		Product result = null;
-		for (int i = 0; i < actualCompany.getProducts().size() && result == null; i++) {
-			if (actualCompany.getProducts().get(i).getId().equals(idName)
-					|| actualCompany.getProducts().get(i).getName().equals(idName)) {
-				result = actualCompany.getProducts().get(i);
-			}
-		}
-		return result;
+		
 	}
 
 	// AÑADIR UN USUARIO
