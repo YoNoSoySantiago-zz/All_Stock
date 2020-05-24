@@ -31,7 +31,7 @@ public class AllstockGUI {
 	private BorderPane mainPane, registerPane;
 
 	private AllStock allStock;
-	//private Exception exceptions;
+	// private Exception exceptions;
 
 	public AllstockGUI(AllStock allStock) {
 		this.allStock = allStock;
@@ -125,18 +125,35 @@ public class AllstockGUI {
 	@FXML
 	private TextField txtTotal;
 
+	// menu de registro
+
+	@FXML
+	private Button btnReports;
+
+	@FXML
+	private Button btnInventory;
+
+	@FXML
+	private Button btnSettings;
+
+	@FXML
+	private Button btnProducts;
+
+	@FXML
+	private Button btnGraphics;
+
 	public void initializate() {
 
 	}
 
 	@FXML
-	public void verifyLogin(ActionEvent event) throws Exception , IOException, ValueIsEmptyException{
+	public void verifyLogin(ActionEvent event) throws Exception, IOException, ValueIsEmptyException {
 
 		String id = userTextField.getText();
 
 		String password = passwordField.getText();
-		
-		Boolean validate = allStock.loginUser(id,password);
+
+		Boolean validate = allStock.loginUser(id, password);
 
 		if (validate == true) {
 
@@ -150,18 +167,10 @@ public class AllstockGUI {
 			loadMenuOptions();
 
 		} else {
-			
-  
-			
+
 			throw new ValueIsEmptyException();
-		
-			
-			
-		
 
 		}
-		
-		
 
 	}
 
@@ -187,7 +196,7 @@ public class AllstockGUI {
 
 	@FXML
 	public void loadSignIn(ActionEvent event) throws IOException {
-		
+
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
 		fL.setController(this);
 		Parent pane;
@@ -234,10 +243,11 @@ public class AllstockGUI {
 		String id = txtSignID.getText();
 		String password = txtPasword1.getText();
 		String confirmPassword = txtPasword2.getText();
-		String idType = adminSelect.isSelected()?User.ADMINISTRADOR:clientSelect.isSelected()?User.CLIENT:User.EMPLOYEE;
-		if(password.equals(confirmPassword)) {
+		String idType = adminSelect.isSelected() ? User.ADMINISTRADOR
+				: clientSelect.isSelected() ? User.CLIENT : User.EMPLOYEE;
+		if (password.equals(confirmPassword)) {
 			allStock.addUser(id, name, idType, password, "falta en la GUI");
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("password differents");
 			alert.setHeaderText("the password are not the same");
@@ -347,4 +357,36 @@ public class AllstockGUI {
 	void btAtrasTable(ActionEvent event) {
 
 	}
+
+	// manejo de tipos de usuarios en la app.
+
+	void initAdmin() {
+		// control total
+		btnGraphics.setDisable(false);
+		btnInventory.setDisable(false);
+		btnSettings.setDisable(false);
+		btnProducts.setDisable(false);
+		btnReports.setDisable(false);
+
+	}
+
+	void initEmployee() {
+		// todo menos ajustes
+		btnGraphics.setDisable(false);
+		btnInventory.setDisable(false);
+		btnSettings.setDisable(true);
+		btnProducts.setDisable(false);
+		btnReports.setDisable(false);
+	}
+
+	void initUser() {
+		// usuario ve reportes e inventario
+		btnGraphics.setDisable(true);
+		btnInventory.setDisable(false);
+		btnSettings.setDisable(true);
+		btnProducts.setDisable(true);
+		btnReports.setDisable(false);
+
+	}
+
 }

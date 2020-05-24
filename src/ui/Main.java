@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.AllStock;
 
+
 public class Main extends Application {
 	
 	private AllstockGUI allStockGUI;

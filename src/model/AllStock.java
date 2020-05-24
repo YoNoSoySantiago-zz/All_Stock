@@ -31,28 +31,43 @@ public class AllStock {
 		actualCompany = null;
 	}
 
-	public void sortByName() {
 
-		Comparator<User> namecomparator = new NameComparator();
-		// List<User>list.sortByName();
-	}
-
-	public void removeUser(String id) {
-
-	}
-
-	//// AGREGAR COMPAÑIA VERIFICAR SI NO EXISTE Y LOS PARAMETROS OBLIGATORIOS ESTEN
-	public void addCompany(String name, String nit, String locate, String phone, String category)
-			throws ValueIsEmptyException {
-
-		if (name.isEmpty() || nit.isEmpty() || locate.isEmpty() || category.isEmpty()) {
-
-			throw new ValueIsEmptyException();
-		} else {
-			Company nueva = new Company(name, nit, locate, phone, category);
-			companies.add(nueva);
+	
+	
+	public void addCompanyList(Company companies) {
+		Company node = companies;
+		if (actualCompany == null) {
+			actualCompany = node;
+			Company aux = actualCompany;
+			while (aux.getNextCompany() != null) {
+				aux = aux.getNextCompany();
+			}
+			node.setPrevCompany(aux);
+			aux.setNextCompany(node);
 		}
+
 	}
+	
+	//eliminar compania recursiva
+
+public boolean deleteCompanyR(String nit, Company actualCompany) {
+	
+	if(actualCompany == null) {
+		
+		return false;
+		
+	}
+	if(actualCompany.getNit().equals(nit)) {
+		
+		if(actualCompany.getNextCompany() != null && actualCompany.getPrevCompany() != null) {
+			actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
+			actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
+		}
+		return true;
+	}
+	return deleteCompanyR(nit, actualCompany.getNextCompany());
+}
+
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
 	public void addProduct(String name, String description, String brand, double price, int cant, double weight,
@@ -167,7 +182,7 @@ public class AllStock {
 	}
 
 	// AÑADIR UN USUARIO
-	// JAJAJA PACHON EXPLICA CON COMENTARIOS QUE NO SE ENTIENDE NI VERGA
+
 	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException {
 		if (searchUserR(id) == null) {
 			User nuevo;

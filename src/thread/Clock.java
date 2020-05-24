@@ -1,4 +1,4 @@
-package thread;
+package Thread;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +15,7 @@ public class Clock extends Thread {
 	}
 	
 	public LocalDateTime getDate() {
+		return null;
 		
 		
 	}
