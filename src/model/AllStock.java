@@ -41,17 +41,48 @@ public class AllStock {
 
 	}
 
-	//// AGREGAR COMPAÑIA VERIFICAR SI NO EXISTE Y LOS PARAMETROS OBLIGATORIOS ESTEN
-	public void addCompany(String name, String nit, String locate, String phone, String category)
-			throws ValueIsEmptyException {
+	//// AGREGAR COMPANY MEDIANTE UNA LISTA 
+	public void addCompany(Company company) {
+		Company node = company;
+		if (actualCompany == null) {
+			actualCompany = node;
 
-		if (name.isEmpty() || nit.isEmpty() || locate.isEmpty() || category.isEmpty()) {
-
-			throw new ValueIsEmptyException();
 		} else {
-			Company nueva = new Company(name, nit, locate, phone, category);
-			companies.add(nueva);
+			Company aux = actualCompany;
+			while (aux.getNextCompany() != null) {
+				aux = aux.getNextCompany();
+			}
+			node.setPrevCompany(aux);
+			aux.setNextCompany(node);
 		}
+
+	}
+	
+	
+	// BORRAR COMPANIA
+	
+	public boolean deleteCompanyRec(Company company) {
+		
+		
+		
+		if(company== null) {
+		
+			return false;
+			
+			
+		}if(company==company) {
+			if(company.getNextCompany() != null && company.getPrevCompany() != null ) {
+				company.getPrevCompany().setNextCompany(company.getNextCompany());
+				company.getNextCompany().setPrevCompany(company.getNextCompany());
+				
+				}
+
+			return true;
+		}
+
+		return deleteCompanyRec(company.getNextCompany());
+		
+	
 	}
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
@@ -168,7 +199,8 @@ public class AllStock {
 
 	// AÑADIR UN USUARIO
 	// JAJAJA PACHON EXPLICA CON COMENTARIOS QUE NO SE ENTIENDE NI VERGA
-	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException {
+	public void addUser(String id, String name, String idType, String password, String userType)
+			throws UserExistException {
 		if (searchUser(id) == null) {
 			User nuevo;
 			if (id.equals(User.ADMINISTRADOR)) {
@@ -179,7 +211,7 @@ public class AllStock {
 				nuevo = new Client(id, name, idType, password, userType);
 			}
 			users.add(nuevo);
-		}else {
+		} else {
 			throw new UserExistException();
 		}
 
@@ -221,7 +253,6 @@ public class AllStock {
 
 		if (idLogin.isEmpty() || passwordLogin.isEmpty()) {
 
-			
 			// el usuario le falto algun campo.
 
 		} else if (idLogin.equals(id) && passwordLogin.equals(password)) {
