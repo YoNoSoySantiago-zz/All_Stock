@@ -11,8 +11,8 @@ public class Company{
 	private String phone;
 	private String category;
 	
-	private Company next;
-	private Company prev;
+	private Company nextCompany;
+	private Company prevCompany;
 	private ArrayList<Product>products;
 	
 	public Company(String name, String nit, String locate, String phone, String category) {
@@ -64,21 +64,22 @@ public class Company{
 		this.products = products;
 	}
 
-	public Company getNext() {
-		return next;
+	public Company getNextCompany() {
+		return nextCompany;
 	}
 
-	public void setNext(Company next) {
-		this.next = next;
+	public void setNextCompany(Company nextCompany) {
+		this.nextCompany = nextCompany;
 	}
 
-	public Company getPrev() {
-		return prev;
+	public Company getPrevCompany() {
+		return prevCompany;
 	}
 
-	public void setPrev(Company prev) {
-		this.prev = prev;
+	public void setPrevCompany(Company prevCompany) {
+		this.prevCompany = prevCompany;
 	}
-	
+
+
 
 }
