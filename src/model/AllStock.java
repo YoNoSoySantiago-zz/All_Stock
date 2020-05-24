@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
 
 import CustomExceptions.AlreadyProductExistException;
 import CustomExceptions.UserExistException;
@@ -28,6 +31,9 @@ public class AllStock {
 		actualCompany = null;
 	}
 
+
+	
+	
 	public void addCompanyList(Company companies) {
 		Company node = companies;
 		if (actualCompany == null) {
@@ -41,48 +47,27 @@ public class AllStock {
 		}
 
 	}
-
-
-	// eliminar compania recursiva
-
-	public void DeleteUser(String nit) {
-		if (companies != null) {
-			deleteCompanyR(nit, companies);
-		}
-
-	}
-
-	public void deleteCompanyR(String nit, Company actualCompany) {
-
-		if (actualCompany != null) {
-
-			if (actualCompany.getNit().equals(nit)) {
-				actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
-				actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
-			} else {
-				deleteCompanyR(nit, actualCompany.getNextCompany());
-			}
-
-		}
-
-
 	
 	//eliminar compania recursiva
 
+public boolean deleteCompanyR(String nit, Company actualCompany) {
+	
+	if(actualCompany == null) {
+		
+		return false;
+		
 	}
-
-	public void searchCompanyRec(Company actualCompany, String name, String nit) {
-
-		if (actualCompany == null) {
-			// empresa no encontrada
-
-			searchCompanyRec(actualCompany.getNextCompany(), "", "");
+	if(actualCompany.getNit().equals(nit)) {
+		
+		if(actualCompany.getNextCompany() != null && actualCompany.getPrevCompany() != null) {
+			actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
+			actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
 		}
-		if (actualCompany.getName().equalsIgnoreCase(name) || actualCompany.equals(nit)) {
-
-			searchCompanyRec(actualCompany.getNextCompany(), name, nit);
-		}
+		return true;
 	}
+	return deleteCompanyR(nit, actualCompany.getNextCompany());
+}
+
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
 	public void addProduct(String name, String description, String brand, double price, int cant, double weight,
@@ -198,8 +183,7 @@ public class AllStock {
 
 	// AÑADIR UN USUARIO
 
-	public void addUser(String id, String name, String idType, String password, String userType)
-			throws UserExistException {
+	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException {
 		if (searchUserR(id) == null) {
 			User nuevo;
 			if (id.equals(User.ADMINISTRADOR)) {
@@ -209,50 +193,47 @@ public class AllStock {
 			} else {
 				nuevo = new Client(id, name, idType, password, userType);
 			}
-			if (users == null) {
+			if(users==null) {
 				users = nuevo;
 			}
-			addUserR(nuevo, users);
-		} else {
+			addUserR(nuevo,users);
+		}else {
 			throw new UserExistException();
 		}
 
 	}
-
-	private void addUserR(User nuevo, User current) {
-		if (current.getNext() == null) {
+	private void addUserR(User nuevo,User current) {
+		if(current.getNext()==null) {
 			current.setNext(nuevo);
-		} else {
-			addUserR(nuevo, current.getNext());
+		}else {
+			addUserR(nuevo,current.getNext());
 		}
 	}
-
+	
 	public void delateUserR(String idName) {
-		if (users != null) {
-			delateUserR(idName, users);
+		if(users!=null) {
+			delateUserR(idName,users);
 		}
 	}
-
-	private void delateUserR(String idName, User current) {
-		if (current != null) {
-			if (current.getName().equals(idName) || current.getId().equals(idName)) {
+	
+	private void delateUserR(String idName,User current) {
+		if(current!=null) {
+			if(current.getName().equals(idName)||current.getId().equals(idName)) {
 				current.getPrev().setNext(current.getNext());
 				current.getNext().setPrev(current.getPrev());
-			} else {
-				delateUserR(idName, current.getNext());
+			}else {
+				delateUserR(idName,current.getNext());
 			}
 		}
 	}
 
 	public User searchUserR(String idName) {
-		User result = searchUserR(users, idName);
-		;
+		User result = searchUserR(users,idName);;
 		return result;
 	}
-
-	private User searchUserR(User current, String idName) {
-		if (current != null && (!current.getId().equals(idName) && !current.getName().equals(idName))) {
-			searchUserR(current.getNext(), idName);
+	private User searchUserR(User current,String idName) {
+		if(current!=null && (!current.getId().equals(idName)&&!current.getName().equals(idName))){
+			searchUserR(current.getNext(),idName);
 		}
 		return current;
 	}
@@ -274,18 +255,16 @@ public class AllStock {
 	}
 
 	// LOGIN
-	public boolean loginUser(String id, String password) throws ValueIsEmptyException {
-		boolean validate = false;
-		if (!id.isEmpty() && !password.isEmpty()) {
-			User user = searchUserR(id);
-			if(user!=null) {
-				String passwordLogin = user.getPassword();
-				validate = passwordLogin.equals(password);
-			}
+	public boolean loginUser(String id, String password) {
 
+		String idLogin = null;
+		String passwordLogin = null;
+
+		boolean validate = false;
 
 		if (idLogin.isEmpty() || passwordLogin.isEmpty()) {
 
+			
 			// el usuario le falto algun campo.
 
 		} else if (idLogin.equals(id) && passwordLogin.equals(password)) {
@@ -297,12 +276,8 @@ public class AllStock {
 
 			validate = false;
 			//
-
-		}else {
-			throw new ValueIsEmptyException();
-
 		}
-		
+
 		return validate;
 
 	}
@@ -314,7 +289,7 @@ public class AllStock {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 		String report = "id type;Nombre;id";
 		User current = users;
-		while (current != null) {
+		while(current!=null) {
 			String id = current.getId();
 			String name = current.getName();
 			String idType = current.getIdType();
@@ -331,10 +306,6 @@ public class AllStock {
 	}
 
 	public void generateEarningsLoses() {
-
-	}
-
-	public void bubbleSortCantProducts() {
 
 	}
 
