@@ -37,9 +37,6 @@ public class AllstockGUI {
 		this.allStock = allStock;
 
 	}
-	
-	
-
 
 	// login
 
@@ -127,24 +124,6 @@ public class AllstockGUI {
 
 	@FXML
 	private TextField txtTotal;
-	
-	
-	// menu de registro
-	
-    @FXML
-    private Button btReports;
-
-    @FXML
-    private Button btnInventory;
-
-    @FXML
-    private Button btnSettings;
-
-    @FXML
-    private Button btnProducts;
-
-    @FXML
-    private Button btnGraphics;
 
 	public void initializate() {
 
@@ -367,35 +346,5 @@ public class AllstockGUI {
 	@FXML
 	void btAtrasTable(ActionEvent event) {
 
-	}
-	
-	// manejo de tipos de usuarios en la app.
-	
-	void initAdmin() {
-		// control total
-	btnGraphics.setDisable(false);
-	btnInventory.setDisable(false);
-	btnSettings.setDisable(false);
-	btnProducts.setDisable(false);
-	btReports.setDisable(false);
-	
-	}
-	void initEmployee() {
-		// todo menos ajustes
-		btnGraphics.setDisable(false);
-		btnInventory.setDisable(false);
-		btnSettings.setDisable(true);
-		btnProducts.setDisable(false);
-		btReports.setDisable(false);
-	}
-	
-	void initUser() {
-		// usuario ve reportes e inventario
-		btnGraphics.setDisable(true);
-		btnInventory.setDisable(false);
-		btnSettings.setDisable(true);
-		btnProducts.setDisable(true);
-		btReports.setDisable(false);
-		
 	}
 }
