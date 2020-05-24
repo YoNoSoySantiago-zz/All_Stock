@@ -13,7 +13,7 @@ public class Company{
 	
 	private Company nextCompany;
 	private Company prevCompany;
-	private ArrayList<Product>products;
+	private Product products;
 	
 	public Company(String name, String nit, String locate, String phone, String category) {
 		super();
@@ -22,7 +22,7 @@ public class Company{
 		this.locate = locate;
 		this.phone = phone;
 		this.category = category;
-		this.setProducts(new ArrayList<Product>());
+		setProducts(null);
 	}
 	
 	public String getName() {
@@ -56,14 +56,6 @@ public class Company{
 		this.category = category;
 	}
 
-	public ArrayList<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(ArrayList<Product> products) {
-		this.products = products;
-	}
-
 	public Company getNextCompany() {
 		return nextCompany;
 	}
@@ -78,6 +70,14 @@ public class Company{
 
 	public void setPrevCompany(Company prevCompany) {
 		this.prevCompany = prevCompany;
+	}
+
+	public Product getProducts() {
+		return products;
+	}
+
+	public void setProducts(Product products) {
+		this.products = products;
 	}
 
 
