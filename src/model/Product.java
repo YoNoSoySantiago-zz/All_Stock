@@ -15,6 +15,8 @@ public abstract class Product {
 	private double price;
 	private int cant;
 	
+	private Product right;
+	private Product left;
 	public Product(String id, String name, String description, String brand, double price, int cant) {
 		super();
 		this.id = id;
@@ -23,6 +25,22 @@ public abstract class Product {
 		this.brand = brand;
 		this.price = price;
 		this.cant = cant;
+	}
+	
+	public void add(Product product) {
+		if(product.getId().compareTo(id)<1) {
+			if(left!=null) {
+				left.add(product);
+			}else {
+				left = product;
+			}
+		}else {
+			if(right!=null) {
+				right.add(product);
+			}else {
+				right=product;
+			}
+		}
 	}
 	
 	public String getId() {
@@ -102,5 +120,21 @@ public abstract class Product {
 	public void setOthers(Others others) {
 		this.others = others;
 	}
+	public Product getRight() {
+		return right;
+	}
+
+	public void setRight(Product right) {
+		this.right = right;
+	}
+
+	public Product getLeft() {
+		return left;
+	}
+
+	public void setLeft(Product left) {
+		this.left = left;
+	}
+
 
 }

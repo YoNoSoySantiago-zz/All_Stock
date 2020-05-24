@@ -4,9 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
 
 import CustomExceptions.AlreadyProductExistException;
 import CustomExceptions.UserExistException;
@@ -50,23 +47,23 @@ public class AllStock {
 	
 	//eliminar compania recursiva
 
-public boolean deleteCompanyR(String nit, Company actualCompany) {
+	public boolean deleteCompanyR(String nit, Company actualCompany) {
 	
-	if(actualCompany == null) {
+		if(actualCompany == null) {
 		
-		return false;
+			return false;
 		
-	}
-	if(actualCompany.getNit().equals(nit)) {
-		
-		if(actualCompany.getNextCompany() != null && actualCompany.getPrevCompany() != null) {
-			actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
-			actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
 		}
+		if(actualCompany.getNit().equals(nit)) {
+		
+			if(actualCompany.getNextCompany() != null && actualCompany.getPrevCompany() != null) {
+				actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
+				actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
+			}
 		return true;
-	}
+		}
 	return deleteCompanyR(nit, actualCompany.getNextCompany());
-}
+	}
 
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
@@ -255,29 +252,19 @@ public boolean deleteCompanyR(String nit, Company actualCompany) {
 	}
 
 	// LOGIN
-	public boolean loginUser(String id, String password) {
-
-		String idLogin = null;
-		String passwordLogin = null;
-
+	public boolean loginUser(String id, String password) throws ValueIsEmptyException {
 		boolean validate = false;
+		if (!id.isEmpty() && !password.isEmpty()) {
+			User user = searchUserR(id);
+			if(user!=null) {
+				String passwordLogin = user.getPassword();
+				validate = passwordLogin.equals(password);
+			}
 
-		if (idLogin.isEmpty() || passwordLogin.isEmpty()) {
-
-			
-			// el usuario le falto algun campo.
-
-		} else if (idLogin.equals(id) && passwordLogin.equals(password)) {
-
-			validate = true;
-
-			// el usuario ingreso correctamente
-		} else {
-
-			validate = false;
-			//
+		}else {
+			throw new ValueIsEmptyException();
 		}
-
+		
 		return validate;
 
 	}
