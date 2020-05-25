@@ -259,7 +259,7 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		idTypeComboBox.getItems().addAll("CEDULA DE CIUDADAN√çA","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
+		idTypeComboBox.getItems().addAll("CEDULA DE CIUDADAN√?A","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
 		
 	
 	}

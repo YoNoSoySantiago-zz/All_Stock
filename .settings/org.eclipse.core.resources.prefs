@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/model/AllStock.java=Cp1252
 encoding//src/model/User.java=Cp1252
+encoding//src/ui/AllstockGUI.java=Cp1252
