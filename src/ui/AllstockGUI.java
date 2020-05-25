@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import CustomExceptions.CompanyExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
+import javafx.animation.Animation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,20 +33,27 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import model.*;
-import threads.Animacion;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import model.Admin;
+import model.AllStock;
+import model.Employee;
+import model.User;
+import threads.AnimationThread;
 
 public class AllstockGUI {
 
 	@FXML
 	private BorderPane mainPane, registerPane;
-
-	private AllStock allStock;
 	
+	private Stage window;
+	private AllStock allStock;
+	private AnimationThread animation;
 	private Boolean loginIsRunning;
-	public AllstockGUI(AllStock allStock) {
+	public AllstockGUI(Stage win,AllStock allStock) {
 		this.allStock = allStock;
-
+		window = win;
+		animation = new AnimationThread(this);
 	}
 
 	// login
@@ -192,7 +201,14 @@ public class AllstockGUI {
 	private Button btnGraphics;
 
 	public void initializate() {
-
+		window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				loginIsRunning = false;
+				System.out.println("Closing the window!");
+			}
+		});
 
 	}
 
@@ -242,10 +258,9 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		Animacion animacion = new Animacion(this);
-		animacion.start();
-	} 
-	
+		animation.start();
+	} //Ya lo estoy poniendo
+
 	public void loadMenuOptions(User u) {
 		try {
 			
