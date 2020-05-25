@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -44,7 +44,7 @@
                                     <Image url="@../../Imgns/computer-icons-google-account-icon-design-login-others-png-clip-art.png" />
                                  </image>
                               </ImageView>
-                              <TextField fx:id="userTextField" focusTraversable="false" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" prefWidth="200.0" promptText="Username" styleClass="Fields">
+                              <TextField fx:id="userTextField" focusTraversable="false" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" prefWidth="200.0" promptText="Usuario" styleClass="Fields">
                                  <font>
                                     <Font name="Cooper Black" size="20.0" />
                                  </font>
@@ -67,7 +67,7 @@
                                     <Image url="@../../Imgns/this-is-a-graphic-reation-of-a-pad-lock-username-and-password-icon-115534595184fsadfncq6.png" />
                                  </image>
                               </ImageView>
-                              <PasswordField fx:id="passwordField" focusTraversable="false" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" prefWidth="200.0" promptText="Password" styleClass="Fields">
+                              <PasswordField fx:id="passwordField" focusTraversable="false" maxHeight="35.0" minHeight="35.0" prefHeight="35.0" prefWidth="200.0" promptText="Contraseña" styleClass="Fields">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -84,7 +84,7 @@
                   </VBox>
                </center>
                <top>
-                  <Label alignment="TOP_CENTER" text="Login" textFill="#222831" BorderPane.alignment="CENTER">
+                  <Label alignment="TOP_CENTER" text="Iniciar Sesión" textFill="#222831" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Cooper Black" size="30.0" />
                      </font>
@@ -94,7 +94,7 @@
                   </Label>
                </top>
                <bottom>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#verifyLogin" prefHeight="30.0" prefWidth="200.0" styleClass="Button" text="Login" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#verifyLogin" prefHeight="30.0" prefWidth="200.0" styleClass="Button" text="Entrar" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Cooper Black" size="15.0" />
                      </font>
@@ -112,11 +112,11 @@
             </BorderPane>
             <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0" spacing="10.0">
                <children>
-                  <Label text="You still don't have an account?" textFill="#222831">
+                  <Label text="¿Aún no tienes una cuenta?" textFill="#222831">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Cooper Black" size="12.0" />
                      </font></Label>
-                  <Button mnemonicParsing="false" onAction="#loadSignIn" styleClass="HiperLink" text="Sign in" textFill="#1605ae">
+                  <Button mnemonicParsing="false" onAction="#loadSignIn" styleClass="HiperLink" text="Registrarse" textFill="#1605ae">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
