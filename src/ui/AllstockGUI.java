@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import CustomExceptions.CompanyExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
 import javafx.collections.FXCollections;
@@ -357,6 +358,8 @@ public class AllstockGUI {
 			allStock.addCompanyList(nameCompany,nit,location,phone,categories);
 		}catch(ValueIsEmptyException e) {
 			e.printStackTrace();
+		} catch (CompanyExistException e) {
+			e.printStackTrace();
 		}
 	}
 	@FXML
@@ -497,9 +500,6 @@ public class AllstockGUI {
 	
 
 	public void graphicsofPie() {
-		
-
-	    
         
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import CustomExceptions.AlreadyProductExistException;
+import CustomExceptions.CompanyExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
 
@@ -40,15 +41,15 @@ public class AllStock{
 
 	
 	
-	public void addCompanyList(String name, String nit, String locate, String phone, ArrayList<String> categories) throws ValueIsEmptyException {
+	public void addCompanyList(String name, String nit, String locate, String phone, ArrayList<String> categories) throws ValueIsEmptyException, CompanyExistException {
 		
 		if (name.isEmpty() || nit.isEmpty() || phone.isEmpty() || locate.isEmpty() || categories.isEmpty()) {
 			throw new ValueIsEmptyException();
 		}
 		
-//		if(searchCompanyRec(companies, name, nit)) {
-//			
-//		}
+		if(searchCompany(name, nit)!=null) {
+			throw new CompanyExistException();
+		}
 		
 		Company nuevo = new Company(name, nit, locate, phone, categories);
 		
@@ -88,21 +89,31 @@ public class AllStock{
 		}
 	}
 	
+	//Buscar compania 
+	public Company searchCompany(String name, String nit) {
+		
+		Company searched = null;
+		
+		if (actualCompany != null) {
+			searched = searchCompanyR(name,nit,companies);
+		}
+
+		return searched;
+	}
 	
-	//No se que pasa aquí :'v
-	public void searchCompanyRec(Company actualCompany, String name, String nit) {
-
-		if (actualCompany == null) {
-			// empresa no encontrada
-
-			searchCompanyRec(actualCompany.getNextCompany(), "", "");
+	
+	private Company searchCompanyR(String name, String nit, Company actual) {
+		//Si lo encuentra retorna la company actual
+		if (actual.getName().equals(name) || actual.getNit().equals(nit)) {
+			return actual;
 		}
-
-
-	if (actualCompany.getName().equalsIgnoreCase(name) || actualCompany.equals(nit)) {
-
-			searchCompanyRec(actualCompany.getNextCompany(), name, nit);
+		//Si no la encuentra verifica si la siguiente es null, si no lo es llama de nuevo el metodo
+		if(actual.getNextCompany()!=null) {
+			return searchCompanyR(name,nit,actual.getNextCompany());
 		}
+		//Si la verificación anterior no se cumple quiere decir que llegó al final y no lo encontró por lo que retorna null
+		return null;
+		
 	}
 		
 		
@@ -307,6 +318,8 @@ public class AllStock{
 		}
 	}
 
+	
+	//Something is strange
 	public User searchUserR(String idName) {
 		User result = searchUserR(users,idName);;
 		return result;
