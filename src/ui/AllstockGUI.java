@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
@@ -29,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import model.AllStock;
+import model.Company;
 import model.User;
 
 public class AllstockGUI {
@@ -37,10 +39,11 @@ public class AllstockGUI {
 	private BorderPane mainPane, registerPane;
 
 	private AllStock allStock;
-	// private Exception exceptions;
+	private Exception exceptions;
 
 	public AllstockGUI(AllStock allStock) {
 		this.allStock = allStock;
+this.exceptions=exceptions;
 
 	}
 
@@ -114,6 +117,36 @@ public class AllstockGUI {
 
 	@FXML
 	private Button btHelpProdcut;
+	
+	
+	// registro empresa
+	
+    @FXML
+    private TextField txtNameCompany;
+
+    @FXML
+    private TextField txtNit;
+
+    @FXML
+    private TextField txtLocation;
+
+    @FXML
+    private TextField txttelephoneCompany;
+
+    @FXML
+    private CheckBox chBoxAliments;
+
+    @FXML
+    private CheckBox chBoxClothes;
+
+    @FXML
+    private CheckBox chBoxLimpieza;
+
+    @FXML
+    private CheckBox chBoxMedicines;
+
+    @FXML
+    private CheckBox chBoxOthers;
 
 	// Tabla
 	@FXML
@@ -248,7 +281,7 @@ public class AllstockGUI {
 
 	// Log Up
 	@FXML
-	 public void btnRegister(ActionEvent event) throws UserExistException {
+	 public void RegisterUser(ActionEvent event) throws UserExistException {
 		String name = txtSignName.getText();
 		String id = txtSignID.getText();
 		String password = txtPasword1.getText();
@@ -265,6 +298,57 @@ public class AllstockGUI {
 		}
 	}
 
+	// registrar empresa
+	
+	@FXML
+	void registerCompany(ActionEvent event) {
+
+		
+		
+		if (!txtNameCompany.getText().isEmpty() && txtNit.getText().isEmpty() && txttelephoneCompany.getText().isEmpty()&& txtLocation.getText().isEmpty() && (chBoxAliments.isSelected() || chBoxClothes.isSelected() || chBoxLimpieza.isSelected() || chBoxMedicines.isSelected() || chBoxOthers.isSelected())) {
+			
+			String nameCompany= txtNameCompany.getText();
+			String nit= txtNit.getText();
+			String phone=txttelephoneCompany.getText();
+			String location=txtLocation.getText();
+			ArrayList<String> categories = new ArrayList<String>();
+			
+			if(chBoxAliments.isSelected()) 
+			{
+				categories.add(chBoxAliments.getText());
+			}
+			if(chBoxClothes.isSelected()) 
+			{
+				categories.add(chBoxClothes.getText());
+			}
+			if(chBoxLimpieza.isSelected()) 
+			{
+				categories.add(chBoxLimpieza.getText());
+			}
+			if(chBoxMedicines.isSelected()) 
+			{
+				categories.add(chBoxMedicines.getText());
+			}
+			if(chBoxOthers.isSelected()) 
+			{
+				categories.add(chBoxOthers.getText());
+			}
+			System.out.println(nameCompany+nit+ phone+ location+ categories);
+			Company companies = new Company(nameCompany,nit,location,phone,"categori ");
+			allStock.addCompanyList(companies);
+			
+			
+		}else {
+			// Excepcion campos vacios.
+	//ValueIsEmptyException();
+		}
+		
+		
+		
+		
+		
+		
+	}
 	@FXML
 	void adminSelect(ActionEvent event) {
 		if (adminSelect.isSelected()) {

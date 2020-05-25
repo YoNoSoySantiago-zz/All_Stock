@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane styleClass="BorderPane" BorderPane.alignment="CENTER">
          <children>
@@ -39,7 +39,7 @@
                </cursor>
             </Button>
             <ProgressBar layoutX="180.0" layoutY="28.0" prefHeight="20.0" prefWidth="500.0" progress="0.66" />
-            <TextField layoutX="260.0" layoutY="124.0" prefHeight="37.0" prefWidth="320.0" promptText="NAME" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
+            <TextField fx:id="txtNameCompany" layoutX="260.0" layoutY="124.0" prefHeight="37.0" prefWidth="320.0" promptText="NAME" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
                <font>
                   <Font name="Cooper Black" size="15.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField layoutX="260.0" layoutY="173.0" prefHeight="37.0" prefWidth="320.0" promptText="NIT" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
+            <TextField fx:id="txtNit" layoutX="260.0" layoutY="173.0" prefHeight="37.0" prefWidth="320.0" promptText="NIT" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
                <font>
                   <Font name="Cooper Black" size="15.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField layoutX="260.0" layoutY="252.0" prefHeight="37.0" prefWidth="320.0" promptText="LOCATION" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
+            <TextField fx:id="txtLocation" layoutX="260.0" layoutY="252.0" prefHeight="37.0" prefWidth="320.0" promptText="LOCATION" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
                <font>
                   <Font name="Cooper Black" size="15.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <TextField layoutX="260.0" layoutY="300.0" prefHeight="37.0" prefWidth="320.0" promptText="TELEPHONE" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
+            <TextField fx:id="txttelephoneCompany" layoutX="260.0" layoutY="300.0" prefHeight="37.0" prefWidth="320.0" promptText="TELEPHONE" styleClass="Hbox" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0">
                <font>
                   <Font name="Cooper Black" size="15.0" />
                </font>

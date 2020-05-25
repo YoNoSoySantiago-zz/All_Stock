@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane styleClass="BorderPane" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#btn" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Finish" AnchorPane.rightAnchor="300.0">
+            <Button alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#registerCompany" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Finish" AnchorPane.rightAnchor="300.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>
@@ -38,23 +38,23 @@
                </cursor>
             </Button>
             <ProgressBar layoutX="180.0" layoutY="28.0" prefHeight="20.0" prefWidth="500.0" progress="1.0" />
-            <CheckBox layoutX="350.0" layoutY="116.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Aliments" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="115.0">
+            <CheckBox fx:id="chBoxAliments" layoutX="350.0" layoutY="116.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Aliments" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="115.0">
                <font>
                   <Font name="Cooper Black" size="12.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="350.0" layoutY="158.0" mnemonicParsing="false" prefHeight="30.0" text="Clothes" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="165.0">
+            <CheckBox fx:id="chBoxClothes" layoutX="350.0" layoutY="158.0" mnemonicParsing="false" prefHeight="30.0" text="Clothes" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="165.0">
                <font>
                   <Font name="Cooper Black" size="12.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="350.0" layoutY="202.0" mnemonicParsing="false" prefHeight="30.0" text="Limpieza" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="215.0" />
-            <CheckBox layoutX="350.0" layoutY="242.0" mnemonicParsing="false" prefHeight="30.0" text="Medicines" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="265.0">
+            <CheckBox fx:id="chBoxLimpieza" layoutX="350.0" layoutY="202.0" mnemonicParsing="false" prefHeight="30.0" text="Limpieza" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="215.0" />
+            <CheckBox fx:id="chBoxMedicines" layoutX="350.0" layoutY="242.0" mnemonicParsing="false" prefHeight="30.0" text="Medicines" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="265.0">
                <font>
                   <Font name="Cooper Black" size="12.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="350.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" text="Others" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="315.0">
+            <CheckBox fx:id="chBoxOthers" layoutX="350.0" layoutY="285.0" mnemonicParsing="false" prefHeight="30.0" text="Others" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="315.0">
                <font>
                   <Font name="Cooper Black" size="12.0" />
                </font>
