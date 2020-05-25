@@ -111,7 +111,7 @@ public class AllStock{
 		if(actual.getNextCompany()!=null) {
 			return searchCompanyR(name,nit,actual.getNextCompany());
 		}
-		//Si la verificación anterior no se cumple quiere decir que llegó al final y no lo encontró por lo que retorna null
+		//Si la verificacion anterior no se cumple quiere decir que llego al final y no lo encontro por lo que retorna null
 		return null;
 		
 	}
@@ -279,15 +279,17 @@ public class AllStock{
 			User nuevo;
 			if (idType.equals(User.ADMINISTRADOR)) {
 				nuevo = new Admin(id, name, idType, password, userType);
-			} else if (id.equals(User.EMPLOYEE)) {
+			} else if (idType.equals(User.EMPLOYEE)) {
 				nuevo = new Employee(id, name, idType, password, userType);
 			} else {
 				nuevo = new Client(id, name, idType, password, userType);
 			}
 			if(users==null) {
 				users = nuevo;
+			}else {
+				addUserR(nuevo,users);
 			}
-			addUserR(nuevo,users);
+			
 		}else {
 				throw new UserExistException();
 		}
@@ -331,6 +333,7 @@ public class AllStock{
 		return current;
 	}
 
+	
 	// BORRA TODOS LOS DATOS ACTUALES PERO GUARDA UNA COPIA EN EL ORDENADOR
 	public void reset() {
 
