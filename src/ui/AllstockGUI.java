@@ -343,8 +343,12 @@ public class AllstockGUI {
 			
 			
 		}else {
-			// Excepcion campos vacios.
-	//ValueIsEmptyException();
+			
+			try{
+				throw new ValueIsEmptyException();
+			}catch(ValueIsEmptyException e) {
+				
+			}
 		}
 		
 		
