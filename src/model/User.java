@@ -73,4 +73,9 @@ public abstract class User implements Comparable<User>,Permissions{
 	public void setPrev(User prev) {
 		this.prev = prev;
 	}
+
+
+	public String getUserType() {
+		return userType;
+	}
 }

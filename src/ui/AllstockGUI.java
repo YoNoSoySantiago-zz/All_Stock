@@ -40,7 +40,8 @@ public class AllstockGUI {
 	private BorderPane mainPane, registerPane;
 
 	private AllStock allStock;
-
+	
+	private Boolean loginIsRunning;
 	public AllstockGUI(AllStock allStock) {
 		this.allStock = allStock;
 
@@ -58,7 +59,7 @@ public class AllstockGUI {
 	private PasswordField passwordField;
 	
     @FXML
-    private AnchorPane cuadrante;
+    private AnchorPane frame;
 
     @FXML
     private ImageView boxImageView;
@@ -197,22 +198,15 @@ public class AllstockGUI {
 
 	@FXML
 	public void verifyLogin(ActionEvent event){
-
-		
-			
-			
 			
 			String id = userTextField.getText();
 
 			String password = passwordField.getText();
 
-
-
 			Boolean validate = null;
 			try {
 				validate = allStock.loginUser(id, password);
 			} catch (ValueIsEmptyException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -236,25 +230,22 @@ public class AllstockGUI {
 				
 				userTextField.clear();
 				passwordField.clear();
-				
-
 			}
-
-
-	
 	}
 
 	@FXML
 	void btn(ActionEvent event) throws IOException {
+		setLoginIsRunning(true);
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("Login.fxml"));
 		fL.setController(this);
 		Parent pane;
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		
-	}
-
+		Animacion animacion = new Animacion(this);
+		animacion.start();
+	} 
+	
 	public void loadMenuOptions(User u) {
 		try {
 			
@@ -287,7 +278,7 @@ public class AllstockGUI {
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
-			idTypeComboBox.getItems().addAll("CEDULA DE CIUDADANÃ?A","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
+			idTypeComboBox.getItems().addAll("CEDULA DE CUIDADANIA","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -533,6 +524,7 @@ public class AllstockGUI {
 	void initAdmin() {
 		// control total
 		btnGraphics.setDisable(false);
+	
 		btnInventory.setDisable(false);
 		btnSettings.setDisable(false);
 		btnProducts.setDisable(false);
@@ -560,7 +552,11 @@ public class AllstockGUI {
 	}
 
 	public void updateBox() {
-		
+		if(boxImageView.getLayoutY()+boxImageView.getFitHeight()>=mainPane.getHeight()) {
+			boxImageView.setLayoutY(boxImageView.getLayoutY()-1);
+		}else {
+			boxImageView.setLayoutY(boxImageView.getLayoutY()+1);
+		}
 	}
 
 	public void graphicsofPie() {
@@ -590,5 +586,12 @@ public class AllstockGUI {
         });
  
 
+	}
+	public Boolean getLoginIsRunning() {
+		return loginIsRunning;
+	}
+
+	public void setLoginIsRunning(Boolean loginIsRunning) {
+		this.loginIsRunning = loginIsRunning;
 	}
 }

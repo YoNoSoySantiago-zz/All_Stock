@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 public class Clock extends Thread {
 	
-	private Long systemDate;
+	private LocalDateTime systemDate;
 	
 	public Clock () {
-		systemDate = System.currentTimeMillis();
+		systemDate = LocalDateTime.now();
 	}
 	
 	public void run() {
@@ -15,8 +15,7 @@ public class Clock extends Thread {
 	}
 	
 	public LocalDateTime getDate() {
+		
 		return null;
-		
-		
 	}
 }
