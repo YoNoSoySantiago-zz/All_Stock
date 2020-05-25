@@ -28,9 +28,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import model.*;
+import thread.Animacion;
 
 public class AllstockGUI {
 
@@ -55,6 +57,12 @@ public class AllstockGUI {
 
 	@FXML
 	private PasswordField passwordField;
+	
+    @FXML
+    private AnchorPane cuadrante;
+
+    @FXML
+    private ImageView ImageviewCaja;
 
 	// Log Up
 	@FXML
@@ -229,6 +237,10 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		 Animacion b1= new Animacion(ImageviewCaja, cuadrante, false);
+		 
+		 
+		 b1.start();
 	}
 
 	public void loadMenuOptions(User u) throws IOException {
@@ -267,6 +279,8 @@ public class AllstockGUI {
 	// MenuOptions
 	@FXML
 	void btnGraphics(ActionEvent event) throws IOException {
+		// grafica de barras
+		graphicsofPie();
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("GraficasFX.fxml"));
 		fL.setController(this);
 		Parent pane;
@@ -277,6 +291,8 @@ public class AllstockGUI {
 
 	@FXML
 	void btnInventory(ActionEvent event) throws IOException {
+		
+		
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("tabla.fxml"));
 		fL.setController(this);
 		Parent pane;
@@ -287,6 +303,10 @@ public class AllstockGUI {
 
 	@FXML
 	void btnLogOut(ActionEvent event) throws IOException {
+		
+
+
+		
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("Login.fxml"));
 		fL.setController(this);
 		Parent pane;

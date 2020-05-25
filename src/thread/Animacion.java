@@ -5,6 +5,7 @@ import com.sun.istack.internal.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import sun.util.logging.PlatformLogger.Level;
 
 public class Animacion extends Thread {
 	
@@ -18,10 +19,11 @@ AnchorPane cuadrante;
 private boolean direccion;
 
 
-public Animacion (	ImageView box, Boolean direccion) {
+public Animacion (	ImageView box,AnchorPane cuadrante, Boolean direccion) {
 	
 	
 	c=10;
+	this.cuadrante=cuadrante;
 	this.direccion= direccion; // false arriba, true abajo
 	
 }
@@ -40,19 +42,9 @@ public void run () {
 			Platform.runLater(() -> box.setLayoutY(box.getLayoutY()+c));
 			sleep(40);
 		} catch (Exception e) {
-			//Logger.getLogger(arg0)
+		
 		}
 		}		
 	}
 }
-// en la gui
-
-/*
- * Animacion b1= new Movimiento (fxidImageView, cuadrante, false);
- * 
- * 
- * b1.start();
- * 
- */
- */
 
