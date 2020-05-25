@@ -1,4 +1,4 @@
-package thread;
+package threads;
 
 import com.sun.istack.internal.logging.Logger;
 

@@ -32,7 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import model.*;
-import thread.Animacion;
+import threads.Animacion;
 
 public class AllstockGUI {
 
@@ -40,16 +40,15 @@ public class AllstockGUI {
 	private BorderPane mainPane, registerPane;
 
 	private AllStock allStock;
-	private Exception exceptions;
 
 	public AllstockGUI(AllStock allStock) {
 		this.allStock = allStock;
-		this.exceptions=exceptions;
 
 	}
 
 	// login
 
+	@FXML
 	private Button btLogin;
 
 	@FXML
