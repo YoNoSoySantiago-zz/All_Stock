@@ -1,5 +1,7 @@
 package ui;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -196,36 +198,39 @@ public class AllstockGUI {
 	}
 
 	@FXML
-	public void verifyLogin(ActionEvent event) throws Exception, IOException {
+	public void verifyLogin(ActionEvent event){
 
-		String id = userTextField.getText();
-
-		String password = passwordField.getText();
-
-		Boolean validate = allStock.loginUser(id, password);
-
-		if (validate == true) {
-
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("INGRESO");
-			alert.setHeaderText("ALL STOCK");
-			alert.setContentText("CONFIRMACION COMPLETA" + "Bienvenido " + id );
-
-			alert.showAndWait();
+		try {
 			
-			loadMenuOptions(allStock.searchUserR(id));
-		
+			
+			
+			String id = userTextField.getText();
 
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("ERROR");
-			alert.setHeaderText("ALL STOCK");
-			alert.setContentText("CONFIRMACION INCOMPLETA\n");
+			String password = passwordField.getText();
 
-			alert.showAndWait();
+//alla abajo en el cacth la atrapo
+
+			Boolean validate = allStock.loginUser(id, password);
+
+			if (validate == true) {
+
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("INGRESO");
+				alert.setHeaderText("ALL STOCK");
+				alert.setContentText("CONFIRMACION COMPLETA" + "Bienvenido " + id );
+
+				alert.showAndWait();
+				loadMenuOptions(allStock.searchUserR(id));
+			} else {
+
+			}
+
+
+		} catch (ValueIsEmptyException e) {
+ 
 
 		}
-
+	
 	}
 
 	@FXML
@@ -242,76 +247,91 @@ public class AllstockGUI {
 		 b1.start();
 	}
 
-	public void loadMenuOptions(User u) throws IOException {
-		
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		mainPane.getChildren().clear();
-		mainPane.setCenter(pane);
-		
-		if(u instanceof Admin) {
-			initAdmin();
-		}else if(u instanceof Employee) {
-			initEmployee();
-		}else {
-			initUser();
+	public void loadMenuOptions(User u) {
+		try {
+			
+			FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
+			fL.setController(this);
+			Parent pane;
+			pane = fL.load();
+			mainPane.getChildren().clear();
+			mainPane.setCenter(pane);
+			
+			if(u instanceof Admin) {
+				initAdmin();
+			}else if(u instanceof Employee) {
+				initEmployee();
+			}else {
+				initUser();
+			}
+		}catch(IOException e) {
+			System.out.println(e.getStackTrace());
 		}
 
 	}
 
 	@FXML
-	public void loadSignIn(ActionEvent event) throws IOException {
-
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		mainPane.getChildren().clear();
-		mainPane.setCenter(pane);
-		idTypeComboBox.getItems().addAll("CEDULA DE CIUDADANÃ?A","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
-		
+	public void loadSignIn(ActionEvent event){
+		try {
+			FXMLLoader fL = new FXMLLoader(getClass().getResource("SignUpFX.fxml"));
+			fL.setController(this);
+			Parent pane;
+			pane = fL.load();
+			mainPane.getChildren().clear();
+			mainPane.setCenter(pane);
+			idTypeComboBox.getItems().addAll("CEDULA DE CIUDADANÃ?A","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
+		}catch(IOException e) {
+			System.out.println(e.getStackTrace());
+		}
 	
 	}
 
 	// MenuOptions
 	@FXML
-	void btnGraphics(ActionEvent event) throws IOException {
-		// grafica de barras
-		graphicsofPie();
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("GraficasFX.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		mainPane.getChildren().clear();
-		mainPane.setCenter(pane);
+	void btnGraphics(ActionEvent event) {
+		try {
+			// grafica de barras
+			graphicsofPie();
+			FXMLLoader fL = new FXMLLoader(getClass().getResource("GraficasFX.fxml"));
+			fL.setController(this);
+			Parent pane;
+			pane = fL.load();
+			mainPane.getChildren().clear();
+			mainPane.setCenter(pane);
+		}catch(IOException e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
 
 	@FXML
-	void btnInventory(ActionEvent event) throws IOException {
+	void btnInventory(ActionEvent event) {
+		try {
 		
-		
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("tabla.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		mainPane.getChildren().clear();
-		mainPane.setCenter(pane);
+			FXMLLoader fL = new FXMLLoader(getClass().getResource("tabla.fxml"));
+			fL.setController(this);
+			Parent pane;
+			pane = fL.load();
+			mainPane.getChildren().clear();
+			mainPane.setCenter(pane);
+			
+		}catch(IOException e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
 
 	@FXML
-	void btnLogOut(ActionEvent event) throws IOException {
+	void btnLogOut(ActionEvent event){
 		
-
-
-		
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("Login.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		mainPane.getChildren().clear();
-		mainPane.setCenter(pane);
+		try {
+			FXMLLoader fL = new FXMLLoader(getClass().getResource("Login.fxml"));
+			fL.setController(this);
+			Parent pane;
+			pane = fL.load();
+			mainPane.getChildren().clear();
+			mainPane.setCenter(pane);
+		}catch(IOException e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
 
 	// Log Up
