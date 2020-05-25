@@ -29,3 +29,6 @@ public class Animacion extends Thread {
 		
 	}
 }
+
+
+//hols
