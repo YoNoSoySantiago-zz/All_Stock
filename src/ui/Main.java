@@ -15,7 +15,7 @@ public class Main extends Application {
 	
 	public Main() {
 		allStock = new AllStock();
-	
+		allStockGUI = new AllstockGUI(allStock);
 	}
 
 	public static void main(String[] args) {
@@ -27,7 +27,6 @@ public class Main extends Application {
 				
 //		FileInputStream fis = new FileInputStream("imgs/Icon.png");
 		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("WelcomeFX.fxml"));
-		allStockGUI = new AllstockGUI(stage,allStock);
 		fxmlLoad.setController(allStockGUI);
 		Parent root = fxmlLoad.load();
 		Scene scene = new Scene(root);

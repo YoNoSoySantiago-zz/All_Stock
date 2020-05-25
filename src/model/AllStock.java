@@ -498,11 +498,6 @@ public class AllStock{
 	public void generateEarningsLoses() {
 
 	}
-	
-	public void binarySearchCantProducts() {
-		
-		
-	}
 
 	// Genera y retorna los datos necesarios para las graficas de la GUI
 	public void generateGraphics() {
