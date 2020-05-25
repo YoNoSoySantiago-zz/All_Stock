@@ -6,6 +6,7 @@ public abstract class User implements Comparable<User>,Permissions{
 	private String name;
 	private String idType;
 	private String password;
+	private String userType;
 	
 	private User next;
 	private User prev;
@@ -15,7 +16,7 @@ public abstract class User implements Comparable<User>,Permissions{
 	public final static String CLIENT="Client";
 	
 	public User(String id, String name, String idType, String password, String userType) {
-	
+		this.userType = userType;
 		this.id = id;
 		this.name = name;
 		this.idType = idType;

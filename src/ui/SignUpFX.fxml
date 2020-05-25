@@ -13,22 +13,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="65.0" layoutY="42.0" text="Crear una cuenta">
+      <Label layoutX="57.0" layoutY="53.0" text="Crear una cuenta">
          <font>
-            <Font size="16.0" />
+            <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="84.0" text="Nombre">
+      <TextField fx:id="txtSignName" layoutX="32.0" layoutY="108.0" prefHeight="16.0" prefWidth="135.0" promptText="Nombre">
          <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtSignName" layoutX="35.0" layoutY="110.0" />
-      <Label layoutX="32.0" layoutY="177.0" text="ID" />
-      <TextField fx:id="txtSignID" layoutX="35.0" layoutY="207.0" />
-      <Button fx:id="btRegister" layoutX="283.0" layoutY="318.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="58.0" prefWidth="172.0" text="REGISTRARSE">
+            <Font size="15.0" />
+         </font></TextField>
+      <TextField fx:id="txtSignID" layoutX="35.0" layoutY="186.0" promptText="ID" />
+      <Button fx:id="btRegister" alignment="CENTER" layoutX="283.0" layoutY="318.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="58.0" prefWidth="172.0" styleClass="Button" text="REGISTRARSE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -66,16 +63,17 @@
             <Cursor fx:constant="HAND" />
          </cursor></CheckBox>
       <Separator layoutX="178.0" layoutY="34.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="48.0" />
-      <PasswordField fx:id="passFieldPassword1" layoutX="35.0" layoutY="242.0" promptText="ContraseÃ±a" />
-      <PasswordField fx:id="passFieldPassword2" layoutX="35.0" layoutY="280.0" promptText="Confirmar ContraseÃ±a" />
+      <PasswordField fx:id="passFieldPassword1" layoutX="35.0" layoutY="242.0" promptText="Contraseña" />
+      <PasswordField fx:id="passFieldPassword2" layoutX="35.0" layoutY="280.0" promptText="Confirmar Contraseña" />
       <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnLogOut" prefHeight="47.0" prefWidth="47.0" styleClass="atras">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ComboBox fx:id="idTypeComboBox" layoutX="32.0" layoutY="140.0" prefHeight="16.0" prefWidth="135.0" promptText="TIPO ID">
+      <ComboBox fx:id="idTypeComboBox" layoutX="32.0" layoutY="149.0" prefHeight="16.0" prefWidth="135.0" promptText="TIPO ID">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
 
    </children>
 </Pane>
+

@@ -61,7 +61,7 @@ public class AllstockGUI {
     private AnchorPane cuadrante;
 
     @FXML
-    private ImageView ImageviewCaja;
+    private ImageView boxImageView;
 
 	// Log Up
 	@FXML
@@ -227,6 +227,17 @@ public class AllstockGUI {
 				loadMenuOptions(allStock.searchUserR(id));
 			} else {
 
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("INGRESO");
+				alert.setHeaderText("ALL STOCK");
+				alert.setContentText("USUARIO NO REGISTRADO" );
+
+				alert.showAndWait();
+				
+				userTextField.clear();
+				passwordField.clear();
+				
+
 			}
 
 
@@ -241,10 +252,7 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		 Animacion b1= new Animacion(ImageviewCaja, cuadrante, false);
-		 
-		 
-		 b1.start();
+		
 	}
 
 	public void loadMenuOptions(User u) {
@@ -348,10 +356,27 @@ public class AllstockGUI {
 		if (password.equals(confirmPassword)) {
 			try {
 				allStock.addUser(id, name, idType, password, userType);
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("USUARIO REGISTRADO ");
+				alert.setHeaderText("EL USUSUARIO SE REGISTRO CORRECTaMENTE" );
+				alert.showAndWait();
+				
+			btnLogOut(event);
+				
+				/*
+				mainPane.getChildren().clear();
+				mainPane.setCenter(pane);
+				txtSignName.clear();
+				txtSignID.clear();
+				txtSignID.clear();
+
+				passFieldPassword1.clear();
+				passFieldPassword2.clear();
+			*/
 			}catch(UserExistException e) {
-				e.printStackTrace();
+				System.out.println(e.getStackTrace());
 			} catch (ValueIsEmptyException e) {
-				e.printStackTrace();
+				System.out.println(e.getStackTrace());
 			}
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -425,7 +450,6 @@ public class AllstockGUI {
 		}
 	}
 
-	//
 	@FXML
 	void btnProducts(ActionEvent event) throws IOException {
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("ProductRegister.fxml"));
@@ -535,8 +559,9 @@ public class AllstockGUI {
 
 	}
 
-	
-	
+	public void updateBox() {
+		
+	}
 
 	public void graphicsofPie() {
         

@@ -4,66 +4,76 @@
 	-fx-background-image: url("../../Imgns/reportesIcon.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 .bt2{
 	-fx-background-image: url("../../Imgns/stock.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 
 .bt3{
 	-fx-background-image: url("../../Imgns/graficos.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 .bt4{
 	-fx-background-image: url("../../Imgns/Mproducto.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 .bt5{
 	-fx-background-image: url("../../Imgns/configuracion.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 .bt6{
 	-fx-background-image: url("../../Imgns/help.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 .bt7{
 	-fx-background-image: url("../../Imgns/search.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
 .bt8{
 	-fx-background-image: url("../../Imgns/report.png");
         -fx-background-color: null;
-        -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
+        -fx-background-size: stretch;	
 }
 .bt9{
 	-fx-background-image: url("../../Imgns/reporteColor.png");
         -fx-background-color: null;
         -fx-background-size: stretch;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0) ;
-	
 }
+.bt1:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt2:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt3:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt4:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt5:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt6:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt7:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt8:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.bt9:hover{
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
 .atras{
 	-fx-background-image: url("../../Imgns/anterior.png");
         -fx-background-color: null;

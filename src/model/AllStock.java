@@ -267,7 +267,7 @@ public class AllStock{
 	}
 	
 	
-	// AADIR UN USUARIO
+	// ANIADIR UN USUARIO
 
 	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException, ValueIsEmptyException{
 		
@@ -276,16 +276,20 @@ public class AllStock{
 		}
 		
 		if (searchUserR(id) == null) {
-			User nuevo;
-			if (idType.equals(User.ADMINISTRADOR)) {
+			User nuevo = null;
+			if (userType.equalsIgnoreCase(User.ADMINISTRADOR)) {
 				nuevo = new Admin(id, name, idType, password, userType);
-			} else if (idType.equals(User.EMPLOYEE)) {
+			} else if (userType.equalsIgnoreCase(User.EMPLOYEE)) {
 				nuevo = new Employee(id, name, idType, password, userType);
-			} else {
+			} else if(userType.equalsIgnoreCase(User.CLIENT)){
 				nuevo = new Client(id, name, idType, password, userType);
 			}
 			if(users==null) {
-				users = nuevo;
+				if(nuevo!=null) {
+					users = nuevo;
+				}else {
+					System.out.println("Error de creacion");
+				}
 			}else {
 				addUserR(nuevo,users);
 			}
@@ -321,7 +325,6 @@ public class AllStock{
 	}
 
 	
-	//Something is strange
 	public User searchUserR(String idName) {
 		User result = searchUserR(users,idName);;
 		return result;
@@ -338,7 +341,7 @@ public class AllStock{
 	
 	// BORRA TODOS LOS DATOS ACTUALES PERO GUARDA UNA COPIA EN EL ORDENADOR
 	public void reset() {
-
+		
 	}
 
 	// SI EXISTE BORRAR UN PRODUCTO, SOLO PARA EMPLEADOS Y ADMIN

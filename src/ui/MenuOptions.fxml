@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,7 +16,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button fx:id="btnReports" mnemonicParsing="false" prefHeight="93.0" prefWidth="109.0" styleClass="bt1">
+                        <Button fx:id="btnReports" mnemonicParsing="false" onAction="#btnReports" prefHeight="93.0" prefWidth="109.0" styleClass="bt1">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -26,7 +26,7 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button fx:id="btnInventory" mnemonicParsing="false" prefHeight="86.0" prefWidth="82.0" styleClass="bt2">
+                        <Button fx:id="btnInventory" mnemonicParsing="false" onAction="#btnInventory" prefHeight="86.0" prefWidth="82.0" styleClass="bt2">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -40,7 +40,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button fx:id="btnSettings" mnemonicParsing="false" prefHeight="76.0" prefWidth="78.0" styleClass="bt5">
+                        <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#btnSettings" prefHeight="76.0" prefWidth="78.0" styleClass="bt5">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -50,7 +50,7 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button fx:id="btnProducts" mnemonicParsing="false" prefHeight="131.0" prefWidth="67.0" styleClass="bt4">
+                        <Button fx:id="btnProducts" mnemonicParsing="false" onAction="#btnProducts" prefHeight="131.0" prefWidth="67.0" styleClass="bt4">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -60,7 +60,7 @@
                   </VBox>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button fx:id="btnGraphics" mnemonicParsing="false" prefHeight="131.0" prefWidth="67.0" styleClass="bt3">
+                        <Button fx:id="btnGraphics" mnemonicParsing="false" onAction="#btnGraphics" prefHeight="131.0" prefWidth="67.0" styleClass="bt3">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
