@@ -237,7 +237,7 @@ public class AllStock{
 	}
 	
 	
-	// AÑADIR UN USUARIO
+	// AADIR UN USUARIO
 
 	public void addUser(String id, String name, String idType, String password, String userType){
 		if (searchUserR(id) == null) {
