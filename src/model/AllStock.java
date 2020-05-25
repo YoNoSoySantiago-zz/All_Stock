@@ -30,7 +30,9 @@ public class AllStock{
 		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);
 		
 		companies = null;
-		companies = new Company("CHOCOLIXIE", "121212", "CALI", "3558788", "Alimentos");
+		ArrayList<String> arr =  new ArrayList<String>();
+		arr.add("Aliments");
+		companies = new Company("CHOCOLIXIE", "121212", "CALI", "3558788", arr);
 		actualCompany = null;
 	}
 
@@ -38,9 +40,14 @@ public class AllStock{
 
 	
 	
-	public void addCompanyList(String name, String nit, String locate, String phone, String category) {
+	public void addCompanyList(String name, String nit, String locate, String phone, ArrayList<String> categories) throws ValueIsEmptyException {
 		
-		Company nuevo = new Company(name, nit, locate, phone, category);
+		if (name.isEmpty() || nit.isEmpty() || phone.isEmpty() || locate.isEmpty() || categories.isEmpty()) {
+			throw new ValueIsEmptyException();
+		}
+		
+		Company nuevo = new Company(name, nit, locate, phone, categories);
+		
 		if (actualCompany == null) {
 			actualCompany = nuevo;
 		}else {
@@ -245,7 +252,8 @@ public class AllStock{
 	
 	// AADIR UN USUARIO
 
-	public void addUser(String id, String name, String idType, String password, String userType){
+	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException{
+		
 		if (searchUserR(id) == null) {
 			User nuevo;
 			if (idType.equals(User.ADMINISTRADOR)) {
@@ -260,12 +268,7 @@ public class AllStock{
 			}
 			addUserR(nuevo,users);
 		}else {
-			
-			try{
 				throw new UserExistException();
-			}catch(UserExistException e) {
-				
-			}
 		}
 
 	}

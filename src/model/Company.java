@@ -1,25 +1,27 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Company{
 	
 	private String name; 
 	private String nit;
 	private String locate;
 	private String phone;
-	private String category;
+	private ArrayList<String> categories;
 	
 	private Company nextCompany;
 	private Company prevCompany;
 	private Product products;
 	private int cantProducts;
 	
-	public Company(String name, String nit, String locate, String phone, String category) {
+	public Company(String name, String nit, String locate, String phone, ArrayList<String> categories) {
 		super();
 		this.name = name;
 		this.nit = nit;
 		this.locate = locate;
 		this.phone = phone;
-		this.category = category;
+		this.categories = categories;
 		products = null;
 		setCantProducts(0);
 	}
@@ -27,32 +29,37 @@ public class Company{
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getNit() {
 		return nit;
 	}
+	
 	public void setNit(String nit) {
 		this.nit = nit;
 	}
+	
 	public String getLocate() {
 		return locate;
 	}
+	
 	public void setLocate(String locate) {
 		this.locate = locate;
 	}
+	
 	public String getPhone() {
 		return phone;
 	}
+	
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
+	
+	public ArrayList<String> getCategories() {
+		return categories;
 	}
 
 	public Company getNextCompany() {

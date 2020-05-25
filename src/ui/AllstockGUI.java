@@ -197,9 +197,7 @@ public class AllstockGUI {
 		Boolean validate = allStock.loginUser(id, password);
 
 		if (validate == true) {
-			
 
-			allStock.loginUser(id, password);
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("INGRESO");
 			alert.setHeaderText("ALL STOCK");
@@ -207,15 +205,7 @@ public class AllstockGUI {
 
 			alert.showAndWait();
 			
-			if(allStock.searchUserR(id) instanceof Admin) {
-				initAdmin();
-			}else if(allStock.searchUserR(id) instanceof Employee) {
-				initEmployee();
-			}else {
-				initUser();
-			}
-			
-			loadMenuOptions();
+			loadMenuOptions(allStock.searchUserR(id));
 		
 
 		} else {
@@ -240,15 +230,22 @@ public class AllstockGUI {
 		mainPane.setCenter(pane);
 	}
 
-	public void loadMenuOptions() throws IOException {
+	public void loadMenuOptions(User u) throws IOException {
 		
-	
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
 		fL.setController(this);
 		Parent pane;
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		
+		if(u instanceof Admin) {
+			initAdmin();
+		}else if(u instanceof Employee) {
+			initEmployee();
+		}else {
+			initUser();
+		}
 
 	}
 
@@ -299,7 +296,7 @@ public class AllstockGUI {
 
 	// Log Up
 	@FXML
-	 public void RegisterUser(ActionEvent event) throws UserExistException {
+	 public void RegisterUser(ActionEvent event) {
 		String name = txtSignName.getText();
 		String id = txtSignID.getText();
 		String idType = idTypeComboBox.getValue();
@@ -307,8 +304,13 @@ public class AllstockGUI {
 		String confirmPassword = passFieldPassword2.getText();
 		String userType = adminSelect.isSelected() ? User.ADMINISTRADOR
 				: clientSelect.isSelected() ? User.CLIENT : User.EMPLOYEE;
+		
 		if (password.equals(confirmPassword)) {
-			allStock.addUser(id, name, idType, password, userType);
+			try {
+				allStock.addUser(id, name, idType, password, userType);
+			}catch(UserExistException e) {
+				System.out.println(e.getStackTrace());
+			}
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("password differents");
@@ -322,55 +324,39 @@ public class AllstockGUI {
 	
 	@FXML
 	void registerCompany(ActionEvent event) {
-
 		
+		String nameCompany= txtNameCompany.getText();
+		String nit= txtNit.getText();
+		String phone=txttelephoneCompany.getText();
+		String location=txtLocation.getText();
+		ArrayList<String> categories = new ArrayList<String>();
 		
-		if (!txtNameCompany.getText().isEmpty() && txtNit.getText().isEmpty() && txttelephoneCompany.getText().isEmpty()&& txtLocation.getText().isEmpty() && (chBoxAliments.isSelected() || chBoxClothes.isSelected() || chBoxLimpieza.isSelected() || chBoxMedicines.isSelected() || chBoxOthers.isSelected())) {
-			
-			String nameCompany= txtNameCompany.getText();
-			String nit= txtNit.getText();
-			String phone=txttelephoneCompany.getText();
-			String location=txtLocation.getText();
-			ArrayList<String> categories = new ArrayList<String>();
-			
-			if(chBoxAliments.isSelected()) 
-			{
-				categories.add(chBoxAliments.getText());
-			}
-			if(chBoxClothes.isSelected()) 
-			{
-				categories.add(chBoxClothes.getText());
-			}
-			if(chBoxLimpieza.isSelected()) 
-			{
-				categories.add(chBoxLimpieza.getText());
-			}
-			if(chBoxMedicines.isSelected()) 
-			{
-				categories.add(chBoxMedicines.getText());
-			}
-			if(chBoxOthers.isSelected()) 
-			{
-				categories.add(chBoxOthers.getText());
-			}
-			System.out.println(nameCompany+nit+ phone+ location+ categories);
-			allStock.addCompanyList(nameCompany,nit,location,phone,"categoria");
-			
-			
-		}else {
-			
-			try{
-				throw new ValueIsEmptyException();
-			}catch(ValueIsEmptyException e) {
-				
-			}
+		if(chBoxAliments.isSelected()) 
+		{
+			categories.add(chBoxAliments.getText());
 		}
-		
-		
-		
-		
-		
-		
+		if(chBoxClothes.isSelected()) 
+		{
+			categories.add(chBoxClothes.getText());
+		}
+		if(chBoxLimpieza.isSelected()) 
+		{
+			categories.add(chBoxLimpieza.getText());
+		}
+		if(chBoxMedicines.isSelected()) 
+		{
+			categories.add(chBoxMedicines.getText());
+		}
+		if(chBoxOthers.isSelected()) 
+		{
+			categories.add(chBoxOthers.getText());
+		}
+		System.out.println(nameCompany+nit+ phone+ location+ categories);
+		try {
+			allStock.addCompanyList(nameCompany,nit,location,phone,categories);
+		}catch(ValueIsEmptyException e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
 	@FXML
 	void adminSelect(ActionEvent event) {

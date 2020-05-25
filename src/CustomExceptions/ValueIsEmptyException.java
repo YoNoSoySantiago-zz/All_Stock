@@ -5,9 +5,6 @@ import javafx.scene.control.Alert.AlertType;
 
 public class ValueIsEmptyException extends Exception {
 
-	
-
-
 	public ValueIsEmptyException() {
 	
 		Alert alert = new Alert(AlertType.ERROR);

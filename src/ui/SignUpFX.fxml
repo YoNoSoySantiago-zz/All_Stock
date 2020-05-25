@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -27,8 +28,10 @@
       <TextField fx:id="txtSignName" layoutX="35.0" layoutY="110.0" />
       <Label layoutX="32.0" layoutY="177.0" text="ID" />
       <TextField fx:id="txtSignID" layoutX="35.0" layoutY="207.0" />
-      <TextField fx:id="txtPasword2" layoutX="35.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" />
-      <Button fx:id="btRegister" layoutX="283.0" layoutY="318.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="58.0" prefWidth="172.0" text="REGISTRARSE" />
+      <Button fx:id="btRegister" layoutX="283.0" layoutY="318.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="58.0" prefWidth="172.0" text="REGISTRARSE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <ImageView fitHeight="98.0" fitWidth="97.0" layoutX="211.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Imgns/admin.png" />
@@ -50,14 +53,29 @@
          </image>
       </ImageView>
 
-      <CheckBox fx:id="adminSelect" layoutX="218.0" layoutY="242.0" mnemonicParsing="false" onAction="#adminSelect" text="Administrador" />
-      <CheckBox fx:id="clientSelect" layoutX="338.0" layoutY="242.0" mnemonicParsing="false" onAction="#clientSelect" text="Cliente" />
-      <CheckBox fx:id="employeeSelect" layoutX="420.0" layoutY="242.0" mnemonicParsing="false" onAction="#employeeSelect" text="Empleado" />
+      <CheckBox fx:id="adminSelect" layoutX="218.0" layoutY="242.0" mnemonicParsing="false" onAction="#adminSelect" text="Administrador">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></CheckBox>
+      <CheckBox fx:id="clientSelect" layoutX="338.0" layoutY="242.0" mnemonicParsing="false" onAction="#clientSelect" text="Cliente">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></CheckBox>
+      <CheckBox fx:id="employeeSelect" layoutX="420.0" layoutY="242.0" mnemonicParsing="false" onAction="#employeeSelect" text="Empleado">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></CheckBox>
       <Separator layoutX="178.0" layoutY="34.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="48.0" />
       <PasswordField fx:id="passFieldPassword1" layoutX="35.0" layoutY="242.0" promptText="Contraseña" />
       <PasswordField fx:id="passFieldPassword2" layoutX="35.0" layoutY="280.0" promptText="Confirmar Contraseña" />
-      <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#loadSignIn" prefHeight="47.0" prefWidth="47.0" styleClass="atras" />
-      <ComboBox fx:id="idTypeComboBox" layoutX="32.0" layoutY="140.0" prefHeight="16.0" prefWidth="135.0" promptText="TIPO ID" />
+      <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnLogOut" prefHeight="47.0" prefWidth="47.0" styleClass="atras">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ComboBox fx:id="idTypeComboBox" layoutX="32.0" layoutY="140.0" prefHeight="16.0" prefWidth="135.0" promptText="TIPO ID">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
 
    </children>
 </Pane>
