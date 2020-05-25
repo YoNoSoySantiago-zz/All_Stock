@@ -242,7 +242,7 @@ public class AllStock{
 	public void addUser(String id, String name, String idType, String password, String userType){
 		if (searchUserR(id) == null) {
 			User nuevo;
-			if (id.equals(User.ADMINISTRADOR)) {
+			if (idType.equals(User.ADMINISTRADOR)) {
 				nuevo = new Admin(id, name, idType, password, userType);
 			} else if (id.equals(User.EMPLOYEE)) {
 				nuevo = new Employee(id, name, idType, password, userType);
@@ -260,9 +260,9 @@ public class AllStock{
 			}catch(UserExistException e) {
 				
 			}
-		}//Oye santi, podes guardar y hacer un commit para yo y sebas descargarlo y ver si se me soluciona algo y ps a sebas igual?
+		}
 
-	}//Oka
+	}
 	private void addUserR(User nuevo,User current) {
 		if(current.getNext()==null) {
 			current.setNext(nuevo);

@@ -43,7 +43,7 @@ public class AllstockGUI {
 
 	public AllstockGUI(AllStock allStock) {
 		this.allStock = allStock;
-this.exceptions=exceptions;
+		this.exceptions=exceptions;
 
 	}
 
@@ -65,10 +65,10 @@ this.exceptions=exceptions;
 	private TextField txtSignID;
 
 	@FXML
-	private TextField txtPasword1;
+	private PasswordField txtPasword1;
 
 	@FXML
-	private TextField txtPasword2;
+	private PasswordField txtPasword2;
 
 	@FXML
 	private Button btRegister;
@@ -81,6 +81,9 @@ this.exceptions=exceptions;
 
 	@FXML
 	private CheckBox employeeSelect;
+	
+	@FXML
+	private ComboBox<String> idTypeComboBox;
 	// ProductRegister
 	@FXML
 	private Button btRegisterProduct;
@@ -284,12 +287,13 @@ this.exceptions=exceptions;
 	 public void RegisterUser(ActionEvent event) throws UserExistException {
 		String name = txtSignName.getText();
 		String id = txtSignID.getText();
+		String idType = idTypeComboBox.getValue();
 		String password = txtPasword1.getText();
 		String confirmPassword = txtPasword2.getText();
-		String idType = adminSelect.isSelected() ? User.ADMINISTRADOR
+		String userType = adminSelect.isSelected() ? User.ADMINISTRADOR
 				: clientSelect.isSelected() ? User.CLIENT : User.EMPLOYEE;
 		if (password.equals(confirmPassword)) {
-			allStock.addUser(id, name, idType, password, "falta en la GUI");
+			allStock.addUser(id, name, idType, password, userType);
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("password differents");
