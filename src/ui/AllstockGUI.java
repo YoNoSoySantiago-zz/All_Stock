@@ -29,9 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import model.AllStock;
-import model.Company;
-import model.User;
+import model.*;
 
 public class AllstockGUI {
 
@@ -199,6 +197,7 @@ public class AllstockGUI {
 		Boolean validate = allStock.loginUser(id, password);
 
 		if (validate == true) {
+			
 
 			allStock.loginUser(id, password);
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -207,6 +206,14 @@ public class AllstockGUI {
 			alert.setContentText("CONFIRMACION COMPLETA" + "Bienvenido " + id );
 
 			alert.showAndWait();
+			
+			if(allStock.searchUserR(id) instanceof Admin) {
+				initAdmin();
+			}else if(allStock.searchUserR(id) instanceof Employee) {
+				initEmployee();
+			}else {
+				initUser();
+			}
 			
 			loadMenuOptions();
 		
@@ -254,6 +261,9 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		idTypeComboBox.getItems().addAll("CEDULA DE CIUDADANÍA","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
+		
+	
 	}
 
 	// MenuOptions
@@ -344,7 +354,7 @@ public class AllstockGUI {
 				categories.add(chBoxOthers.getText());
 			}
 			System.out.println(nameCompany+nit+ phone+ location+ categories);
-			allStock.addCompanyList(nameCompany,nit,location,phone,"categori ");
+			allStock.addCompanyList(nameCompany,nit,location,phone,"categoria");
 			
 			
 		}else {
