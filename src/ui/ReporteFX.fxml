@@ -30,7 +30,7 @@
          <image>
             <Image url="@../../Imgns/reporteColor.png" />
          </image></ImageView>
-      <Button layoutX="34.0" layoutY="21.0" mnemonicParsing="false" onAction="#loadMenuOptions" prefHeight="42.0" prefWidth="42.0" styleClass="atras">
+      <Button layoutX="34.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnAtras" prefHeight="42.0" prefWidth="42.0" styleClass="atras">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

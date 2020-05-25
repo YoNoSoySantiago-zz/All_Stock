@@ -3,11 +3,11 @@ package threads;
 import javafx.application.Platform;
 import ui.AllstockGUI;
 
-public class Animacion extends Thread {
+public class AnimationThread extends Thread {
 	
 	private AllstockGUI allGUI;
 	
-	public Animacion (AllstockGUI allGUI) {
+	public AnimationThread (AllstockGUI allGUI) {
 		this.allGUI = allGUI;
 	}
 
