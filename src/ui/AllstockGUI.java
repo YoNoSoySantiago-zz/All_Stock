@@ -1,7 +1,5 @@
 package ui;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -200,7 +198,7 @@ public class AllstockGUI {
 	@FXML
 	public void verifyLogin(ActionEvent event){
 
-		try {
+		
 			
 			
 			
@@ -208,16 +206,22 @@ public class AllstockGUI {
 
 			String password = passwordField.getText();
 
-//alla abajo en el cacth la atrapo
 
-			Boolean validate = allStock.loginUser(id, password);
+
+			Boolean validate = null;
+			try {
+				validate = allStock.loginUser(id, password);
+			} catch (ValueIsEmptyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			if (validate == true) {
 
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("INGRESO");
 				alert.setHeaderText("ALL STOCK");
-				alert.setContentText("CONFIRMACION COMPLETA" + "Bienvenido " + id );
+				alert.setContentText("CONFIRMACION COMPLETA" +"\n"+ " BIENVENIDO " + id );
 
 				alert.showAndWait();
 				loadMenuOptions(allStock.searchUserR(id));
@@ -226,10 +230,6 @@ public class AllstockGUI {
 			}
 
 
-		} catch (ValueIsEmptyException e) {
- 
-
-		}
 	
 	}
 

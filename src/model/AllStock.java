@@ -327,9 +327,11 @@ public class AllStock{
 		return result;
 	}
 	private User searchUserR(User current,String idName) {
+		
 		if(current!=null && (!current.getId().equals(idName)&&!current.getName().equals(idName))){
-			searchUserR(current.getNext(),idName);
+			return searchUserR(current.getNext(),idName);
 		}
+		
 		return current;
 	}
 
