@@ -28,7 +28,7 @@ public abstract class Product {
 	}
 	
 	public void add(Product product) {
-		if(product.getId().compareTo(id)<1) {
+		if(product.getName().compareToIgnoreCase(name)<1) {
 			if(left!=null) {
 				left.add(product);
 			}else {
@@ -76,10 +76,10 @@ public abstract class Product {
 	public int getCant() {
 		return cant;
 	}
+	
 	public void setCant(int cant) {
 		this.cant = cant;
 	}
-
 
 	public Aliments getAliments() {
 		return aliments;

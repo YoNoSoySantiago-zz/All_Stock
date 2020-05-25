@@ -1,11 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Company{
 	
 	private String name; 
-	
 	private String nit;
 	private String locate;
 	private String phone;
@@ -14,6 +11,7 @@ public class Company{
 	private Company nextCompany;
 	private Company prevCompany;
 	private Product products;
+	private int cantProducts;
 	
 	public Company(String name, String nit, String locate, String phone, String category) {
 		super();
@@ -22,7 +20,8 @@ public class Company{
 		this.locate = locate;
 		this.phone = phone;
 		this.category = category;
-		setProducts(null);
+		products = null;
+		setCantProducts(0);
 	}
 	
 	public String getName() {
@@ -78,6 +77,14 @@ public class Company{
 
 	public void setProducts(Product products) {
 		this.products = products;
+	}
+
+	public int getCantProducts() {
+		return cantProducts;
+	}
+
+	public void setCantProducts(int cantProducts) {
+		this.cantProducts = cantProducts;
 	}
 
 

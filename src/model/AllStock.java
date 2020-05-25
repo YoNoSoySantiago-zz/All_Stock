@@ -4,12 +4,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import CustomExceptions.AlreadyProductExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
 
-public class AllStock {
+public class AllStock{
 	///////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * AUNQUE EL RETORNO ESTE EN VOID LOGICAMENTE ESTO SE CAMBIA DEPENDIENDO COMO LO
@@ -21,13 +22,15 @@ public class AllStock {
 	private User users;
 	private Company actualCompany;
 
-	// RELACIONES
+	
+	// CONSTRUCTOR
 	public AllStock() {
-		users = null;
+		users= null;
 		companies = null;
 		actualCompany = null;
 	}
 
+	
 
 	
 	
@@ -47,24 +50,45 @@ public class AllStock {
 	
 	//eliminar compania recursiva
 
-	public boolean deleteCompanyR(String nit, Company actualCompany) {
-	
-		if(actualCompany == null) {
-		
-			return false;
-		
+	public void DeleteUser(String nit) {
+		if (companies != null) {
+			deleteCompanyR(nit, companies);
 		}
-		if(actualCompany.getNit().equals(nit)) {
-		
-			if(actualCompany.getNextCompany() != null && actualCompany.getPrevCompany() != null) {
-				actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
-				actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
-			}
-		return true;
-		}
-	return deleteCompanyR(nit, actualCompany.getNextCompany());
+
 	}
 
+	public void deleteCompanyR(String nit, Company actualCompany) {
+
+		if (actualCompany != null) {
+
+			if (actualCompany.getNit().equals(nit)) {
+				actualCompany.getPrevCompany().setNextCompany(actualCompany.getNextCompany());
+				actualCompany.getNextCompany().setPrevCompany(actualCompany.getPrevCompany());
+			} else {
+				deleteCompanyR(nit, actualCompany.getNextCompany());
+			}
+
+		}
+	}
+	
+	public void searchCompanyRec(Company actualCompany, String name, String nit) {
+
+		if (actualCompany == null) {
+			// empresa no encontrada
+
+			searchCompanyRec(actualCompany.getNextCompany(), "", "");
+		}
+
+
+	if (actualCompany.getName().equalsIgnoreCase(name) || actualCompany.equals(nit)) {
+
+			searchCompanyRec(actualCompany.getNextCompany(), name, nit);
+		}
+	}
+		
+		
+	
+	
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
 	public void addProduct(String name, String description, String brand, double price, int cant, double weight,
@@ -73,9 +97,10 @@ public class AllStock {
 				|| price <= 0 || cant < 0) {
 			throw new ValueIsEmptyException();
 		} else {
-			if (searchProduct(name) == null) {
+			if (searchProductByName(name) == null) {
 				String id = generateIdProducts();
 				Product nuevo = new Aliments(id, name, description, brand, price, cant, weight, type);
+				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
 				actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
@@ -89,9 +114,10 @@ public class AllStock {
 				|| sizes.length == 0 || colors.length == 0) {
 			throw new ValueIsEmptyException();
 		} else {
-			if (searchProduct(name) == null) {
+			if (searchProductByName(name) == null) {
 				String id = generateIdProducts();
 				Product nuevo = new Clothes(id, name, description, brand, price, cant, sizes, colors);
+				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
 				actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
@@ -104,9 +130,10 @@ public class AllStock {
 		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || price <= 0 || cant < 0) {
 			throw new ValueIsEmptyException();
 		} else {
-			if (searchProduct(name) == null) {
+			if (searchProductByName(name) == null) {
 				String id = generateIdProducts();
 				Product nuevo = new Cleaning(id, name, description, brand, price, cant);
+				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
 				actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
@@ -120,9 +147,10 @@ public class AllStock {
 				|| price <= 0 || cant < 0 || type.isEmpty()) {
 			throw new ValueIsEmptyException();
 		} else {
-			if (searchProduct(name) == null) {
+			if (searchProductByName(name) == null) {
 				String id = generateIdProducts();
 				Product nuevo = new Medicines(id, name, description, brand, price, cant, type);
+				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
 				actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
@@ -135,9 +163,10 @@ public class AllStock {
 		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || price <= 0 || cant < 0) {
 			throw new ValueIsEmptyException();
 		} else {
-			if (searchProduct(name) == null) {
+			if (searchProductByName(name) == null) {
 				String id = generateIdProducts();
 				Product nuevo = new Others(id, name, description, brand, price, cant, characteristics);
+				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
 				actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
@@ -150,16 +179,7 @@ public class AllStock {
 		
 		String result = "";
 		if (actualCompany != null) {
-			if (actualCompany.getProducts()!=null) {
-				Product product = actualCompany.getProducts();
-				String aux2="-1";
-				while(product!=null) {
-					aux2 = product.getId();
-					product = product.getRight();
-				}
-				
-				aux = Integer.parseInt(aux2) + 1;
-			}
+			aux = actualCompany.getCantProducts();
 		}
 		if (aux < 10) {
 			result = "000" + aux;
@@ -173,15 +193,53 @@ public class AllStock {
 		return result;
 	}
 
-	// BUSCAR UN PRODUCTO POR SU ID o NOMBRE
-	public Product searchProduct(String idName) {
+	// BUSCAR UN PRODUCTO POR SU NOMBRE
+	public Product searchProductByName(String name) {
 		Product result = null;
-		
+		if(actualCompany.getProducts()!=null) {
+			Product current = actualCompany.getProducts();
+			while(current!=null&&result==null) {
+				if(current.getName().equals(name)) {
+					result = current;
+				}else {
+					if(name.compareToIgnoreCase(current.getName())<1) {
+						current = current.getLeft();
+					}else {
+						current = current.getRight();
+					}
+				}
+			}
+		}
+		return result;
 	}
-
+	//LOS PRODUCTOS ESTAN EN UN ARBOL BINARIO
+	// BUSCAR UN PRODUCTO POR SU ID
+	public Product searchProductById(String id) {
+		Product searched = null;
+		if(actualCompany.getProducts()!=null) {
+			searched =  searchProductByIdR(id,actualCompany.getProducts());
+		}
+		return searched;		
+	}
+	
+	private Product searchProductByIdR(String idSearch, Product actual){
+		if(actual.getId().equals(idSearch)) {
+			return actual;
+		}
+		Product searched = null;
+		if(actual.getLeft()!=null) {
+			searched = searchProductByIdR(idSearch,actual.getLeft());
+		}
+		if(actual.getRight()!=null&&searched==null){
+			searched = searchProductByIdR(idSearch,actual.getRight());
+		}
+		return searched;
+	}
+	
+	
 	// AÑADIR UN USUARIO
 
-	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException {
+	public void addUser(String id, String name, String idType, String password, String userType){
 		if (searchUserR(id) == null) {
 			User nuevo;
 			if (id.equals(User.ADMINISTRADOR)) {
@@ -196,10 +254,15 @@ public class AllStock {
 			}
 			addUserR(nuevo,users);
 		}else {
-			throw new UserExistException();
-		}
+			
+			try{
+				throw new UserExistException();
+			}catch(UserExistException e) {
+				
+			}
+		}//Oye santi, podes guardar y hacer un commit para yo y sebas descargarlo y ver si se me soluciona algo y ps a sebas igual?
 
-	}
+	}//Oka
 	private void addUserR(User nuevo,User current) {
 		if(current.getNext()==null) {
 			current.setNext(nuevo);
@@ -243,13 +306,7 @@ public class AllStock {
 
 	// SI EXISTE BORRAR UN PRODUCTO, SOLO PARA EMPLEADOS Y ADMIN
 	public void delateProduc(String idName) {
-		for (int i = 0; i < actualCompany.getProducts().size(); i++) {
-			if (actualCompany.getProducts().get(i).getId().equals(idName)
-					|| actualCompany.getProducts().get(i).getName().equals(idName)) {
-				actualCompany.getProducts().remove(i);
-				break;
-			}
-		}
+		
 	}
 
 	// LOGIN
@@ -269,7 +326,112 @@ public class AllStock {
 		return validate;
 
 	}
+	
+	private User[] generateUserArray() {
+		int cant = 0;
+		User current = users;
+		while(current!=null) {
+			cant++;
+			current = current.getNext();
+		}
+		User[] result = new User[cant];
+		current = users;
+		int i=0;
+		while(current!=null) {
+			result[i] = current;
+			current = current.getNext();
+			i++;
+		}
+		return result;
+	}
 
+	public ArrayList<User> userBubbleSortbyName(){
+		User[] users = generateUserArray();
+		ArrayList<User> result = new ArrayList<User>();
+		for (int i = users.length; i >0; i--) {
+			for (int j = 0; j < i-1; j++) {
+				int compare =users[j].getName().compareTo(users[j+1].getName());
+				if(compare<0) {
+					User temp = users[j];
+					users[j] = users[j+1];
+					users[j+1]=temp;
+				}else if(compare ==0) {
+					 if(Integer.parseInt(users[j].getId())<Integer.parseInt(users[j+1].getId())) {
+						User temp = users[j];
+						users[j] = users[j+1];
+						users[j+1]=temp;
+					 }
+				}
+			}
+		}
+		for (int i = 0; i < users.length; i++) {
+			result.add(users[i]);
+		}
+		return result;
+	}
+	
+	public ArrayList<User> userSelectionSortById(){
+		User[] users = generateUserArray();
+		ArrayList<User> result = new ArrayList<User>();
+		for (int i = 0; i < users.length; i++) {
+			User less =	users[i];
+			int wich = i;
+			for (int j = i+1; j < users.length; j++) {
+				
+				if(Integer.parseInt(users[j].getId())<Integer.parseInt(less.getId())) {
+					less = users[j];
+					wich = j;
+				}
+			}
+			User temp = users[i];
+			users[i] = less;
+			users[wich] = temp;
+			result.add(less);
+		}
+		return result;
+	}
+
+	public ArrayList<Product> productSelectionSortById(Product[] products){
+		ArrayList<Product> result = new ArrayList<Product>();
+		for (int i = 0; i < products.length; i++) {
+			Product less =	products[i];
+			int wich = i;
+			for (int j = i+1; j < products.length; j++) {
+				
+				if(Integer.parseInt(products[j].getId())<Integer.parseInt(less.getId())) {
+					less = products[j];
+					wich = j;
+				}
+			}
+			Product temp = products[i];
+			products[i] = less;
+			products[wich] = temp;
+			result.add(less);
+		}
+		return result;
+	}
+	
+	public ArrayList<Product> productInsertionSortByName(Product[] products){
+		ArrayList<Product> result = new ArrayList<Product>();
+		for (int i = 1; i < products.length; i++) {
+		
+			for (int j = i; j >0 && products[j-1].getName().compareToIgnoreCase(products[j].getName())>=0; j--) {
+				if(products[j-1].getName().compareToIgnoreCase(products[j].getName())==0) {
+					if(Integer.parseInt(products[j-1].getId())>Integer.parseInt(products[j].getId())) {
+						Product temp = products[j];
+						products[i] = products[j-1];
+						products[j-1] = temp;
+					}
+				}else {
+					Product temp = products[j];
+					products[i] = products[j-1];
+					products[j-1] = temp;
+				}
+			}
+		}
+		return result;
+	}
+	
 	// GENEERA UN REPORTE Y LOS GUARDA EN UN ARCHIVO TXT, EL DIRECTORIO ES UNA
 	// CONSTANTE
 	public void generateReportUsers() throws IOException {

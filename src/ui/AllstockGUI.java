@@ -4,16 +4,20 @@ import java.io.IOException;
 
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
@@ -21,7 +25,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import model.AllStock;
 import model.User;
 
@@ -147,7 +153,7 @@ public class AllstockGUI {
 	}
 
 	@FXML
-	public void verifyLogin(ActionEvent event) throws Exception, IOException, ValueIsEmptyException {
+	public void verifyLogin(ActionEvent event) throws Exception, IOException {
 
 		String id = userTextField.getText();
 
@@ -167,8 +173,12 @@ public class AllstockGUI {
 			loadMenuOptions();
 
 		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText("ALL STOCK");
+			alert.setContentText("CONFIRMACION INCOMPLETA\n");
 
-			throw new ValueIsEmptyException();
+			alert.showAndWait();
 
 		}
 
@@ -238,7 +248,7 @@ public class AllstockGUI {
 
 	// Log Up
 	@FXML
-	void btnRegister(ActionEvent event) throws UserExistException {
+	 public void btnRegister(ActionEvent event) throws UserExistException {
 		String name = txtSignName.getText();
 		String id = txtSignID.getText();
 		String password = txtPasword1.getText();
@@ -389,4 +399,38 @@ public class AllstockGUI {
 
 	}
 
+	
+	
+
+	public void graphicsofPie() {
+		
+
+	    
+        
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("bolsa de leche", 13),
+                new PieChart.Data("pan", 25),
+                new PieChart.Data("jamon", 10),
+                new PieChart.Data("pollo", 22),
+                new PieChart.Data("carne", 30));
+ 
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle(" Cantidad de productos ");
+        
+        final Label caption = new Label("");
+        caption.setTextFill(Color.DARKORANGE);
+        caption.setStyle("-fx-font: 24 arial;");
+        chart.getData().stream().forEach((data) ->{
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, 
+            (MouseEvent e) -> {
+                caption.setTranslateX(e.getSceneX());
+                caption.setTranslateY(e.getSceneY());
+                caption.setText(String.valueOf(data.getPieValue())
+                        + "%");
+            });
+        });
+ 
+
+	}
 }
