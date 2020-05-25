@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="btRegisterProduct" alignment="CENTER" layoutX="758.0" layoutY="351.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="100.0" styleClass="Button" text="REGISTRAR">
          <font>
@@ -36,7 +36,7 @@
       <Label layoutX="238.0" layoutY="204.0" text="DESCRIPCION:" />
       <TextArea fx:id="txtDescription" layoutX="318.0" layoutY="195.0" prefHeight="131.0" prefWidth="149.0" />
       <Separator layoutX="475.0" layoutY="7.0" orientation="VERTICAL" prefHeight="586.0" prefWidth="52.0" />
-      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#loadMenuOptions" prefHeight="42.0" prefWidth="42.0" styleClass="atras" />
+      <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#btnAtras" prefHeight="42.0" prefWidth="42.0" styleClass="atras" />
       <ImageView fitHeight="143.0" fitWidth="150.0" layoutX="75.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
          <effect>
             <ImageInput />
