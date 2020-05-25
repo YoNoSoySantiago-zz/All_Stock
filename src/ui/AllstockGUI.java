@@ -309,14 +309,15 @@ public class AllstockGUI {
 			try {
 				allStock.addUser(id, name, idType, password, userType);
 			}catch(UserExistException e) {
-				System.out.println(e.getStackTrace());
+				e.printStackTrace();
+			} catch (ValueIsEmptyException e) {
+				e.printStackTrace();
 			}
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("password differents");
 			alert.setHeaderText("the password are not the same");
 			alert.showAndWait();
-			// poneos la excepcion de campos vacios?
 		}
 	}
 
@@ -355,7 +356,7 @@ public class AllstockGUI {
 		try {
 			allStock.addCompanyList(nameCompany,nit,location,phone,categories);
 		}catch(ValueIsEmptyException e) {
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 	}
 	@FXML

@@ -46,6 +46,10 @@ public class AllStock{
 			throw new ValueIsEmptyException();
 		}
 		
+//		if(searchCompanyRec(companies, name, nit)) {
+//			
+//		}
+		
 		Company nuevo = new Company(name, nit, locate, phone, categories);
 		
 		if (actualCompany == null) {
@@ -84,6 +88,8 @@ public class AllStock{
 		}
 	}
 	
+	
+	//No se que pasa aquí :'v
 	public void searchCompanyRec(Company actualCompany, String name, String nit) {
 
 		if (actualCompany == null) {
@@ -252,7 +258,11 @@ public class AllStock{
 	
 	// AADIR UN USUARIO
 
-	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException{
+	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException, ValueIsEmptyException{
+		
+		if(id.isEmpty() || name.isEmpty() || idType.isEmpty() || password.isEmpty() || userType.isEmpty()) {
+			throw new ValueIsEmptyException();
+		}
 		
 		if (searchUserR(id) == null) {
 			User nuevo;
