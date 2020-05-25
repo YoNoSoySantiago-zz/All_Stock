@@ -26,7 +26,11 @@ public class AllStock{
 	// CONSTRUCTOR
 	public AllStock() {
 		users= null;
+		//Login Default
+		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);
+		
 		companies = null;
+		companies = new Company("CHOCOLIXIE", "121212", "CALI", "3558788", "Alimentos");
 		actualCompany = null;
 	}
 
@@ -34,16 +38,18 @@ public class AllStock{
 
 	
 	
-	public void addCompanyList(Company companies) {
-		Company node = companies;
+	public void addCompanyList(String name, String nit, String locate, String phone, String category) {
+		
+		Company nuevo = new Company(name, nit, locate, phone, category);
 		if (actualCompany == null) {
-			actualCompany = node;
+			actualCompany = nuevo;
+		}else {
 			Company aux = actualCompany;
 			while (aux.getNextCompany() != null) {
 				aux = aux.getNextCompany();
 			}
-			node.setPrevCompany(aux);
-			aux.setNextCompany(node);
+			nuevo.setPrevCompany(aux);
+			aux.setNextCompany(nuevo);
 		}
 
 	}

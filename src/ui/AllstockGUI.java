@@ -65,10 +65,10 @@ public class AllstockGUI {
 	private TextField txtSignID;
 
 	@FXML
-	private PasswordField txtPasword1;
+	private PasswordField passFieldPassword1;
 
 	@FXML
-	private PasswordField txtPasword2;
+	private PasswordField passFieldPassword2;
 
 	@FXML
 	private Button btRegister;
@@ -186,6 +186,7 @@ public class AllstockGUI {
 
 	public void initializate() {
 
+
 	}
 
 	@FXML
@@ -203,10 +204,12 @@ public class AllstockGUI {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("INGRESO");
 			alert.setHeaderText("ALL STOCK");
-			alert.setContentText("CONFIRMACION COMPLETA");
+			alert.setContentText("CONFIRMACION COMPLETA" + "Bienvenido " + id );
 
 			alert.showAndWait();
+			
 			loadMenuOptions();
+		
 
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -231,6 +234,8 @@ public class AllstockGUI {
 	}
 
 	public void loadMenuOptions() throws IOException {
+		
+	
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
 		fL.setController(this);
 		Parent pane;
@@ -288,8 +293,8 @@ public class AllstockGUI {
 		String name = txtSignName.getText();
 		String id = txtSignID.getText();
 		String idType = idTypeComboBox.getValue();
-		String password = txtPasword1.getText();
-		String confirmPassword = txtPasword2.getText();
+		String password = passFieldPassword1.getText();
+		String confirmPassword = passFieldPassword2.getText();
 		String userType = adminSelect.isSelected() ? User.ADMINISTRADOR
 				: clientSelect.isSelected() ? User.CLIENT : User.EMPLOYEE;
 		if (password.equals(confirmPassword)) {
@@ -299,6 +304,7 @@ public class AllstockGUI {
 			alert.setTitle("password differents");
 			alert.setHeaderText("the password are not the same");
 			alert.showAndWait();
+			// poneos la excepcion de campos vacios?
 		}
 	}
 
@@ -338,8 +344,7 @@ public class AllstockGUI {
 				categories.add(chBoxOthers.getText());
 			}
 			System.out.println(nameCompany+nit+ phone+ location+ categories);
-			Company companies = new Company(nameCompany,nit,location,phone,"categori ");
-			allStock.addCompanyList(companies);
+			allStock.addCompanyList(nameCompany,nit,location,phone,"categori ");
 			
 			
 		}else {
