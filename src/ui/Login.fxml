@@ -127,9 +127,9 @@
       </VBox>
    </right>
    <center>
-      <AnchorPane fx:id="cuadrante" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="frame" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="ImageviewCaja" fitHeight="71.0" fitWidth="96.0" layoutX="196.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="boxImageView" fitHeight="71.0" fitWidth="96.0" layoutX="196.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Imgns/Mproducto.png" />
                </image>
