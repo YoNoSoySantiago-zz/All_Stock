@@ -385,10 +385,14 @@ public class AllStock{
 		}
 		return result;
 	
-	
+	}
 	private Product[] generateProductsArray() {
 		Product[] result = new Product[actualCompany.getCantProducts()];
 		counter = 0;
+		if(actualCompany.getProducts()!=null) {
+			result = generateProductsArrayR(result,actualCompany.getProducts());
+		}
+		return result;
 	}
 	
 	
@@ -450,7 +454,8 @@ public class AllStock{
 		return result;
 	}
 
-	public ArrayList<Product> productSelectionSortById(Product[] products){
+	public ArrayList<Product> productSelectionSortById(){
+		Product[] products = generateProductsArray();
 		ArrayList<Product> result = new ArrayList<Product>();
 		for (int i = 0; i < products.length; i++) {
 			Product less =	products[i];
@@ -470,7 +475,8 @@ public class AllStock{
 		return result;
 	}
 	
-	public ArrayList<Product> productInsertionSortByName(Product[] products){
+	public ArrayList<Product> productInsertionSortByName(){
+		Product[] products = generateProductsArray();
 		ArrayList<Product> result = new ArrayList<Product>();
 		for (int i = 1; i < products.length; i++) {
 		
