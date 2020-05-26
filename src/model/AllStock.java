@@ -159,100 +159,79 @@ public class AllStock implements Serializable {
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
 	public void addProduct(String name, String description, String brand, double price, int cant, double weight,
-			String type) throws ValueIsEmptyException, AlreadyProductExistException {
-		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || type.isEmpty()
-				|| price <= 0 || cant < 0) {
-			throw new ValueIsEmptyException();
+			String type) throws AlreadyProductExistException {
+		
+		if (searchProductByName(name) == null) {
+			String id = generateIdProducts();
+			Product nuevo = new Aliments(id, name, description, brand, price, cant, weight, type);
+			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
+			if(actualCompany.getProducts()==null)
+				actualCompany.setProducts(nuevo);
+			else
+				actualCompany.getProducts().add(nuevo);
 		} else {
-			if (searchProductByName(name) == null) {
-				String id = generateIdProducts();
-				Product nuevo = new Aliments(id, name, description, brand, price, cant, weight, type);
-				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				if(actualCompany.getProducts()==null)
-					actualCompany.setProducts(nuevo);
-				else
-					actualCompany.getProducts().add(nuevo);
-			} else {
-				throw new AlreadyProductExistException();
-			}
+			throw new AlreadyProductExistException();
 		}
 	}
 
 	public void addProduct(String name, String description, String brand, double price, int cant, double[] sizes,
-			String[] colors) throws ValueIsEmptyException, AlreadyProductExistException {
-		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || price <= 0 || cant < 0
-				|| sizes.length == 0 || colors.length == 0) {
-			throw new ValueIsEmptyException();
+			String[] colors) throws AlreadyProductExistException {
+		
+		if (searchProductByName(name) == null) {
+			String id = generateIdProducts();
+			Product nuevo = new Clothes(id, name, description, brand, price, cant, sizes, colors);
+			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
+			if(actualCompany.getProducts()==null)
+				actualCompany.setProducts(nuevo);
+			else
+				actualCompany.getProducts().add(nuevo);
 		} else {
-			if (searchProductByName(name) == null) {
-				String id = generateIdProducts();
-				Product nuevo = new Clothes(id, name, description, brand, price, cant, sizes, colors);
-				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				if(actualCompany.getProducts()==null)
-					actualCompany.setProducts(nuevo);
-				else
-					actualCompany.getProducts().add(nuevo);
-			} else {
-				throw new AlreadyProductExistException();
-			}
+			throw new AlreadyProductExistException();
 		}
 	}
 
-	public void addProduct(String name, String description, String brand, double price, int cant)
-			throws ValueIsEmptyException, AlreadyProductExistException {
-		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || price <= 0 || cant < 0) {
-			throw new ValueIsEmptyException();
+	public void addProduct(String name, String description, String brand, double price, int cant) throws  AlreadyProductExistException {
+		
+		if (searchProductByName(name) == null) {
+			String id = generateIdProducts();
+			Product nuevo = new Cleaning(id, name, description, brand, price, cant);
+			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
+			if(actualCompany.getProducts()==null)
+				actualCompany.setProducts(nuevo);
+			else
+				actualCompany.getProducts().add(nuevo);
 		} else {
-			if (searchProductByName(name) == null) {
-				String id = generateIdProducts();
-				Product nuevo = new Cleaning(id, name, description, brand, price, cant);
-				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				if(actualCompany.getProducts()==null)
-					actualCompany.setProducts(nuevo);
-				else
-					actualCompany.getProducts().add(nuevo);
-			} else {
-				throw new AlreadyProductExistException();
-			}
+			throw new AlreadyProductExistException();
 		}
 	}
 
-	public void addProduct(String name, String description, String brand, double price, int cant, String type)
-			throws ValueIsEmptyException, AlreadyProductExistException {
-		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || type.isEmpty()
-				|| price <= 0 || cant < 0 || type.isEmpty()) {
-			throw new ValueIsEmptyException();
+	public void addProduct(String name, String description, String brand, double price, int cant, String type) throws AlreadyProductExistException {
+		if (searchProductByName(name) == null) {
+			String id = generateIdProducts();
+			Product nuevo = new Medicines(id, name, description, brand, price, cant, type);
+			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
+			if(actualCompany.getProducts()==null)
+				actualCompany.setProducts(nuevo);
+			else
+				actualCompany.getProducts().add(nuevo);
 		} else {
-			if (searchProductByName(name) == null) {
-				String id = generateIdProducts();
-				Product nuevo = new Medicines(id, name, description, brand, price, cant, type);
-				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				if(actualCompany.getProducts()==null)
-					actualCompany.setProducts(nuevo);
-				else
-					actualCompany.getProducts().add(nuevo);
-			} else {
-				throw new AlreadyProductExistException();
-			}
+			throw new AlreadyProductExistException();
 		}
 	}
 
 	public void addProducts(String name, String description, String brand, double price, int cant,
-			String[][] characteristics) throws ValueIsEmptyException, AlreadyProductExistException {
-		if (name.isEmpty() || description.isEmpty() || brand.isEmpty() || brand.isEmpty() || price <= 0 || cant < 0) {
-			throw new ValueIsEmptyException();
+			String[][] characteristics) throws  AlreadyProductExistException {
+		
+		if (searchProductByName(name) == null) {
+			String id = generateIdProducts();
+			Product nuevo = new Others(id, name, description, brand, price, cant, characteristics);
+			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
+			if(actualCompany.getProducts()==null)
+				actualCompany.setProducts(nuevo);
+			else
+				actualCompany.getProducts().add(nuevo);
 		} else {
-			if (searchProductByName(name) == null) {
-				String id = generateIdProducts();
-				Product nuevo = new Others(id, name, description, brand, price, cant, characteristics);
-				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				if(actualCompany.getProducts()==null)
-					actualCompany.setProducts(nuevo);
-				else
-					actualCompany.getProducts().add(nuevo);
-			} else {
-				throw new AlreadyProductExistException();
-			}
+			throw new AlreadyProductExistException();
 		}
 	}
 
@@ -321,11 +300,8 @@ public class AllStock implements Serializable {
 	
 	// ANIADIR UN USUARIO
 
-	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException, ValueIsEmptyException{
-		
-		if(id.isEmpty() || name.isEmpty() || idType.isEmpty() || password.isEmpty() || userType.isEmpty()) {
-			throw new ValueIsEmptyException();
-		}
+	public void addUser(String id, String name, String idType, String password, String userType) throws UserExistException{
+
 		
 		if (searchUserR(id) == null) {
 			User nuevo = null;

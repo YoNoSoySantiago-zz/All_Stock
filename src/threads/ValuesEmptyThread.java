@@ -39,6 +39,19 @@ public class ValuesEmptyThread extends Thread{
 					e.printStackTrace();
 				}
 			}
+		}else if(allStockGUI.isProductIsRunning()) {
+			while(allStockGUI.isProductIsRunning()) {
+				Platform.runLater(new Thread() {
+					public void run() {
+						allStockGUI.verifyValuesEmptyProduct();
+					}
+				});
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }

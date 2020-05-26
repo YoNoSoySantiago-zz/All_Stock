@@ -70,7 +70,7 @@ public class AllstockGUI {
 		window = win;
 		setRegisterIsRunnning(false);
 		loginIsRunning= true;
-		productIsRunning=false;
+		setProductIsRunning(false);
 		animation = new AnimationThread(this);
 		empty = new ValuesEmptyThread(this);
 		upBox = 1;
@@ -273,6 +273,8 @@ public class AllstockGUI {
 			@Override
 			public void handle(WindowEvent event) {
 				loginIsRunning = false;
+				registerIsRunning = false;
+				setProductIsRunning(false);
 				System.out.println("Closing the window!");
 				try {
 					ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/allStock.sds"));
@@ -345,14 +347,13 @@ public class AllstockGUI {
 
 	public void loadMenuOptions(ActionEvent event) {
 		try {
-			
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
 			fL.setController(this);
 			Parent pane;
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
-			
+			setProductIsRunning(false);
 			if(userActual instanceof Admin) {
 				initAdmin();
 			}else if(userActual instanceof Employee) {
@@ -476,8 +477,6 @@ public class AllstockGUI {
 			
 			}catch(UserExistException e) {
 				System.out.println(e.getStackTrace());
-			} catch (ValueIsEmptyException e) {
-				System.out.println(e.getStackTrace());
 			}
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -572,8 +571,10 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		productIsRunning = true;
+		setProductIsRunning(true);
 		cbCategory.getItems().addAll("Alimentos","Limpieza","Ropa","Medicina","Otra");
+		empty = new ValuesEmptyThread(this);
+		empty.start();
 	}
 
 	@FXML
@@ -800,7 +801,7 @@ public class AllstockGUI {
 
 	}
 	
-	public void verifyValuesEmptyPRoduct() {
+	public void verifyValuesEmptyProduct() {
 		String name =txtNameProduct.getText();
 		String brand = txtBrand.getText();
 		String description = txtDescription.getText();
@@ -808,6 +809,7 @@ public class AllstockGUI {
 		String cant = txtCantidad.getText();
 		String category = cbCategory.getValue();
 		if(name.isEmpty()||brand.isEmpty()||description.isEmpty()||price.isEmpty()||cant.isEmpty()||category==null) {
+			
 			btRegisterProduct.setDisable(true);
 		}else {
 			btRegisterProduct.setDisable(false);
@@ -909,4 +911,12 @@ public class AllstockGUI {
 			System.out.println("No se generó el reporte de usuarios");
 		}
     }
+
+	public boolean isProductIsRunning() {
+		return productIsRunning;
+	}
+
+	public void setProductIsRunning(boolean productIsRunning) {
+		this.productIsRunning = productIsRunning;
+	}
 }
