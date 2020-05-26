@@ -22,14 +22,14 @@ public class AllStock{
 	private Company companies;
 	private User users;
 	private Company actualCompany;
-
+	private int counter;
 	
 	// CONSTRUCTOR
 	public AllStock() {
 		users= null;
 		//Login Default
 		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);
-		
+		counter = 0;
 		companies = null;
 		ArrayList<String> arr =  new ArrayList<String>();
 		arr.add("Aliments");
@@ -68,13 +68,14 @@ public class AllStock{
 	
 	//eliminar compania recursiva
 
-	public void DeleteUser(String nit) {
+	public void DeleteCompany(String nit) {
 		if (companies != null) {
 			deleteCompanyR(nit, companies);
 		}
 
 	}
-
+// pues la verdad no las he pensaddo bien, que podriamos per?
+	//sisas esta vacio, un boton de reset, ver empresas, no s...
 	public void deleteCompanyR(String nit, Company actualCompany) {
 
 		if (actualCompany != null) {
@@ -384,7 +385,29 @@ public class AllStock{
 		}
 		return result;
 	}
-
+	
+	private Product[] generateProductsArray() {
+		Product[] result = new Product[actualCompany.getCantProducts()];
+		counter = 0;
+		if(actualCompany.getProducts()!=null) {
+			result=generateProductsArrayR(result,actualCompany.getProducts());
+		}
+		return result;
+	}
+	
+	private Product[] generateProductsArrayR(Product[] result,Product actual) {
+		
+		result[counter] = actual;
+		counter++;
+		if(actual.getLeft()!=null) {
+			result = generateProductsArrayR(result,actual.getLeft());
+		}
+		if(actual.getRight()!=null){
+			result = generateProductsArrayR(result,actual.getRight());
+		}
+		return result;
+	}
+	
 	public ArrayList<User> userBubbleSortbyName(){
 		User[] users = generateUserArray();
 		ArrayList<User> result = new ArrayList<User>();
@@ -431,7 +454,8 @@ public class AllStock{
 		return result;
 	}
 
-	public ArrayList<Product> productSelectionSortById(Product[] products){
+	public ArrayList<Product> productSelectionSortById(){
+		Product[] products=generateProductsArray();
 		ArrayList<Product> result = new ArrayList<Product>();
 		for (int i = 0; i < products.length; i++) {
 			Product less =	products[i];
@@ -451,7 +475,8 @@ public class AllStock{
 		return result;
 	}
 	
-	public ArrayList<Product> productInsertionSortByName(Product[] products){
+	public ArrayList<Product> productInsertionSortByName(){
+		Product[] products=generateProductsArray();
 		ArrayList<Product> result = new ArrayList<Product>();
 		for (int i = 1; i < products.length; i++) {
 		

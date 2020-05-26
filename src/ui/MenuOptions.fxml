@@ -74,7 +74,7 @@
       </VBox>
    </center>
    <top>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#btn" prefHeight="31.0" prefWidth="77.0" styleClass="Button" text="Log out" BorderPane.alignment="CENTER_RIGHT">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnLogOut" prefHeight="31.0" prefWidth="77.0" styleClass="Button" text="Log out" BorderPane.alignment="CENTER_RIGHT">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>

@@ -203,7 +203,7 @@ public class AllstockGUI {
 	@FXML
 	private Button btnGraphics;
 
-	public void initializate() {
+	public void initialize() {
 		window.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			
 			@Override
@@ -222,7 +222,7 @@ public class AllstockGUI {
 
 			String password = passwordField.getText();
 
-			Boolean validate = null;
+			Boolean validate = false;
 			try {
 				validate = allStock.loginUser(id, password);
 			} catch (ValueIsEmptyException e) {
@@ -362,27 +362,17 @@ public class AllstockGUI {
 		String confirmPassword = passFieldPassword2.getText();
 		String userType = adminSelect.isSelected() ? User.ADMINISTRADOR
 				: clientSelect.isSelected() ? User.CLIENT : User.EMPLOYEE;
-		
+		System.out.println(idType);
 		if (password.equals(confirmPassword)) {
 			try {
 				allStock.addUser(id, name, idType, password, userType);
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("USUARIO REGISTRADO ");
-				alert.setHeaderText("EL USUSUARIO SE REGISTRO CORRECTaMENTE" );
+				alert.setHeaderText("EL USUARIO SE REGISTRO CORRECTAMENTE" );
 				alert.showAndWait();
 				
 			btnLogOut(event);
-				
-				/*
-				mainPane.getChildren().clear();
-				mainPane.setCenter(pane);
-				txtSignName.clear();
-				txtSignID.clear();
-				txtSignID.clear();
-
-				passFieldPassword1.clear();
-				passFieldPassword2.clear();
-			*/
+			
 			}catch(UserExistException e) {
 				System.out.println(e.getStackTrace());
 			} catch (ValueIsEmptyException e) {
@@ -390,8 +380,8 @@ public class AllstockGUI {
 			}
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("password differents");
-			alert.setHeaderText("the password are not the same");
+			alert.setTitle("CONTRASEÑAS DIFERENTES");
+			alert.setHeaderText("LAS CONTRASEÑAS NO SON IGUALES");
 			alert.showAndWait();
 		}
 	}
