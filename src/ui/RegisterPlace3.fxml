@@ -21,7 +21,7 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="314.0" layoutY="386.0" mnemonicParsing="false" onAction="#loadSignIn" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="300.0">
+            <Button alignment="CENTER" layoutX="314.0" layoutY="386.0" mnemonicParsing="false" onAction="#LoadRegister" prefHeight="33.0" prefWidth="96.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="300.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>
@@ -29,7 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#registerCompany" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Finish" AnchorPane.rightAnchor="300.0">
+            <Button fx:id="btFinishCreateCompany" alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#registerCompany" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Finish" AnchorPane.rightAnchor="300.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>

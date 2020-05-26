@@ -563,11 +563,24 @@ public class AllStock{
 	}
 
 	public void generateCantProducts() throws IOException {
-		File file = new File("data/reports/products.txt");
+		File file = new File("data/reports/cant-products.txt");
 		BufferedWriter bw = new BufferedWriter(new FileWriter(file,true));
 		LocalDateTime ldt = LocalDateTime.now();
 		int cant = actualCompany.getCantProducts();
-		bw.write("\n"+ldt+";"+cant);
+		bw.write(ldt+";"+cant);
+		bw.close();
+		Desktop.getDesktop().open(file);
+	}
+	
+	public void generateProducts() throws IOException {
+		Product[] products = generateProductsArray();
+		File file = new File("data/reports/cant-products.txt");
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+		String result ="";
+		for (int i = 0; i < products.length; i++) {
+			result+="\n"+products.toString();
+		}
+		bw.write(result);
 		bw.close();
 		Desktop.getDesktop().open(file);
 	}

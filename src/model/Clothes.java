@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class Clothes extends Product {
 	private double[] sizes;
 	private String[] colors;
@@ -25,6 +27,11 @@ public class Clothes extends Product {
 	public void setColors(String[] colors) {
 		this.colors = colors;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Clothes"+super.toString()+" [sizes=" + Arrays.toString(sizes) + ", colors=" + Arrays.toString(colors) + "]";
+	}
+	
+	
 }

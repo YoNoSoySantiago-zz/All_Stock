@@ -64,6 +64,19 @@
             <Image url="@../../Imgns/addProduct.png" />
          </image>
       </ImageView>
-      <Label layoutX="165.0" layoutY="266.0" text="BUSCAR" />
+      <Label layoutX="165.0" layoutY="266.0" text="BUSCA IMAGEN" />
+      <Pane fx:id="alimentsPane" layoutX="35.0" layoutY="421.0" prefHeight="143.0" prefWidth="432.0" visible="false">
+         <children>
+            <Label layoutX="233.0" layoutY="18.0" text="PESO:" />
+            <TextField fx:id="txtPeso" layoutX="276.0" layoutY="14.0" />
+            <Label layoutX="233.0" layoutY="60.0" text="TIPO:" />
+            <TextField fx:id="txtTipo" layoutX="276.0" layoutY="56.0" />
+         </children>
+      </Pane>
+      <Label layoutX="264.0" layoutY="343.0" text="PRECIO:" />
+      <TextField fx:id="txtPrecio" layoutX="318.0" layoutY="339.0" />
+      <Label layoutX="246.0" layoutY="377.0" text="CANTIDAD:" />
+      <TextField fx:id="txtCantidad" layoutX="318.0" layoutY="373.0" />
+      <Pane fx:id="clothesPane" layoutX="35.0" layoutY="434.0" prefHeight="143.0" prefWidth="432.0" />
    </children>
 </Pane>

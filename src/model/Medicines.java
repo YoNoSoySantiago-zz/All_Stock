@@ -1,6 +1,7 @@
 package model;
 
 public class Medicines extends Product {
+	
 	private String type;
 	public Medicines(String id, String name, String description, String brand, double price, int cant,String type) {
 		super(id, name, description, brand, price, cant);
@@ -11,6 +12,10 @@ public class Medicines extends Product {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	@Override
+	public String toString() {
+		return "Medicines "+super.toString()+ "[type=" + type + "]";
 	}
 
 }

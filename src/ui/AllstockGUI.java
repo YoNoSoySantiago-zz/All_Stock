@@ -1,8 +1,10 @@
 package ui;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
+import CustomExceptions.AlreadyProductExistException;
 import CustomExceptions.CompanyExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
@@ -16,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -52,10 +55,12 @@ public class AllstockGUI {
 	private AllStock allStock;
 	private AnimationThread animation;
 	private ValuesEmptyThread empty;
-	private Boolean loginIsRunning;
+	private boolean loginIsRunning;
+	private boolean registerIsRunning;
+	private boolean productIsRunning;
 	private int upBox;
 	private User userActual;
-	private boolean registerIsRunning;
+	
 	
 	
 	public AllstockGUI(Stage win,AllStock allStock) {
@@ -63,6 +68,7 @@ public class AllstockGUI {
 		window = win;
 		setRegisterIsRunnning(false);
 		loginIsRunning= true;
+		productIsRunning=false;
 		animation = new AnimationThread(this);
 		empty = new ValuesEmptyThread(this);
 		upBox = 1;
@@ -116,6 +122,12 @@ public class AllstockGUI {
 	@FXML
 	private ComboBox<String> idTypeComboBox;
 	// ProductRegister
+    @FXML
+    private TextField txtPrecio;
+
+    @FXML
+    private TextField txtCantidad;
+
 	@FXML
 	private Button btRegisterProduct;
 
@@ -153,6 +165,13 @@ public class AllstockGUI {
 	// registro empresa
 	
     @FXML
+    private Button btFinishCreateCompany;
+    // este me reggistra namecompany,nit,location,telephoneCompany;
+    @FXML
+    private Button btRegisterBasicCompany;
+
+	///register place 2
+    @FXML
     private TextField txtNameCompany;
 
     @FXML
@@ -164,6 +183,7 @@ public class AllstockGUI {
     @FXML
     private TextField txttelephoneCompany;
 
+    // register place 3
     @FXML
     private CheckBox chBoxAliments;
 
@@ -188,17 +208,14 @@ public class AllstockGUI {
 	@FXML
 	private TableColumn<Product,String> nameCol;
 	@FXML
-	private TableColumn<Product,String> descriptionCol;
+	private TableColumn<Product,String> category;
 	@FXML
-	private TableColumn<Product,String> BrandCol;
+	private TableColumn<Product,Double> priceCol;
 	@FXML
-	private TableColumn<Product,String> priceCol;
-	@FXML
-	private TableColumn<Product,String> cantCol;
+	private TableColumn<Product,Integer> cantCol;
+    @FXML
+    private Label totalLabel;	
 	
-	@FXML
-	private DatePicker txtCalendar;
-
 	@FXML
 	private Button btDescargar;
 
@@ -224,6 +241,15 @@ public class AllstockGUI {
 
 	@FXML
 	private Button btnGraphics;
+	
+	//settings
+    @FXML
+    private Button btCreateCompany;
+
+    @FXML
+    private Button btDeleteUser;
+
+    
 
 	public void initialize() {
 		window.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -337,6 +363,8 @@ public class AllstockGUI {
 	void btnGraphics(ActionEvent event) {
 		try {
 			// grafica de barras
+			//aqui puse fue una grafica de pastel
+			
 			graphicsofPie();
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("GraficasFX.fxml"));
 			fL.setController(this);
@@ -359,7 +387,21 @@ public class AllstockGUI {
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
+			tableInventary = new TableView<Product>();
+			ObservableList<Product> observableList;
+			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
+			tableInventary.setItems(observableList);
+			idCol.setCellFactory(new PropertyValueFactory<Product, String>("id"));
 			
+			
+			/*
+			 * listContact = new TableView<Contact>();
+    	 ObservableList<Contact> observableList;
+    	 	observableList = FXCollections.observableArrayList(contactManager.getContacts());
+    			listContact.setItems(observableList);
+    			listName.setCellValueFactory(new PropertyValueFactory<Contact,String>("name"));
+    			listEmail.setCellValueFactory(new PropertyValueFactory<Contact,String>("email"));		
+			 */
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -454,12 +496,25 @@ public class AllstockGUI {
 		System.out.println(nameCompany+nit+ phone+ location+ categories);
 		try {
 			allStock.addCompanyList(nameCompany,nit,location,phone,categories);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("EMPRESA REGISTRADA CORRECTAMENTE ");
+			alert.setHeaderText("LA EMPRESA SE REGISTRO CORRECTAMENTE" );
+			alert.showAndWait();
+			loadMenuOptions(event);
 		}catch(ValueIsEmptyException e) {
 			e.printStackTrace();
 		} catch (CompanyExistException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
+	
+	
+ 
+	
+	
+	
 	@FXML
 	void adminSelect(ActionEvent event) {
 		if (adminSelect.isSelected()) {
@@ -492,6 +547,8 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		productIsRunning = true;
+		cbCategory.getItems().addAll("Alimentos","Limpieza","Ropa","Medicina","Otra");
 	}
 
 	@FXML
@@ -516,23 +573,60 @@ public class AllstockGUI {
 	}
 	
     @FXML
-    void btRegisterProduct(ActionEvent event) {
-    	String name = txtNameProduct.getText();
-    	String brand  = txtBrand.getText();
-    	String descrption = txtDescription.getText();
+    void btRegisterProduct(ActionEvent event) throws ValueIsEmptyException, AlreadyProductExistException {
+    	try {
+    		String name = txtNameProduct.getText();
+        	String brand  = txtBrand.getText();
+        	String description = txtDescription.getText();
+        	double price = Double.parseDouble(txtPrecio.getText());
+        	int cant = Integer.parseInt(txtCantidad.getText());
+        	if(cbCategory.getValue().equals("Alimentos")) {
+        		allStock.addProduct(name, description, brand, price, cant, 0, "UnKnown");
+        	}else if(cbCategory.getValue().equals("Limpieza")) {
+        		allStock.addProduct(name, description, brand, price, cant);
+        	}else if(cbCategory.getValue().equals("Ropa")) {
+        		double[ ]sizes = new double[0];
+        		String[]colors = new String[0];
+        		allStock.addProduct(name, description, brand, price, cant, sizes, colors);
+        	}else if(cbCategory.getValue().equals("Medicina")){
+        		allStock.addProduct(name, description, brand, price, cant, "UnKnown");
+        	}else {
+        		String[][] characteristics = new String[0][0];
+        		allStock.addProducts(name, description, brand, price, cant, characteristics);
+        	}
+        	Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("EXITO");
+    		alert.setHeaderText("Producto registrado con exito");
+    		alert.showAndWait();
+    	}catch(NumberFormatException e) {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+    		alert.setTitle("NUMBERS");
+    		alert.setHeaderText("Formato invalido por favor verifica que solo sean valores numericos");
+    		alert.showAndWait();
+    	}
+    	
     }
 
-	// Register
+	// Register company
+
+ // Pide datos basicos de empresa
+    
 	@FXML
-	void btnRegisterPlace(ActionEvent event) throws IOException {
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace.fxml"));
+	void LoadRegister(ActionEvent event) throws IOException {
+		
+		
+		
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace2.fxml"));
 		fL.setController(this);
 		Parent pane;
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		
+		
 	}
-
+	
+/*
 	@FXML
 	void btnRegisterPlace2(ActionEvent event) throws IOException {
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace2.fxml"));
@@ -541,18 +635,24 @@ public class AllstockGUI {
 		pane = fL.load();
 		registerPane.getChildren().clear();
 		registerPane.setCenter(pane);
+		
 	}
+	*/
+// ventana que pide las categorias d la empresa a registrar
 
-	@FXML
-	void btnRegisterPlace3(ActionEvent event) throws IOException {
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace3.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		registerPane.getChildren().clear();
-		registerPane.setCenter(pane);
-	}
 
+	
+	  @FXML
+	    void loadCategoriesCompany(ActionEvent event) throws IOException {
+			FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace3.fxml"));
+			fL.setController(this);
+			Parent pane;
+			pane = fL.load();
+			mainPane.getChildren().clear();
+			mainPane.setCenter(pane);
+	    }
+	  
+	  
 	// Tabla
 	@FXML
 	void btnReports(ActionEvent event) throws IOException {
@@ -567,7 +667,7 @@ public class AllstockGUI {
 	// manejo de tipos de usuarios en la app.
 
 	void initAdmin() {
-		// control total
+		// control total6
 		btnGraphics.setDisable(false);
 		btnInventory.setDisable(false);
 		btnSettings.setDisable(false);
@@ -629,6 +729,21 @@ public class AllstockGUI {
         });
  
 
+	}
+	
+	public void verifyValuesEmptyPRoduct() {
+		String name =txtNameProduct.getText();
+		String brand = txtBrand.getText();
+		String description = txtDescription.getText();
+		String price = txtPrecio.getText();
+		String cant = txtCantidad.getText();
+		String category = cbCategory.getValue();
+		if(name.isEmpty()||brand.isEmpty()||description.isEmpty()||price.isEmpty()||cant.isEmpty()||category==null) {
+			btRegisterProduct.setDisable(true);
+		}else {
+			btRegisterProduct.setDisable(false);
+		}
+		
 	}
 	public void verifyValesEmptyLogin() {
 		if(!userTextField.getText().isEmpty() && !passwordField.getText().isEmpty()) {

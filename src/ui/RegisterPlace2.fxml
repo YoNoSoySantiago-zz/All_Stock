@@ -22,7 +22,7 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="314.0" layoutY="386.0" mnemonicParsing="false" onAction="#loadSignIn" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="300.0">
+            <Button alignment="CENTER" layoutX="314.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnSettings" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="300.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>
@@ -30,7 +30,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnRegister3" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Next" AnchorPane.rightAnchor="300.0">
+            <Button fx:id="btRegisterBasicCompany" alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#loadCategoriesCompany" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Next" AnchorPane.rightAnchor="300.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>
