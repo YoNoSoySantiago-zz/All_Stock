@@ -13,6 +13,7 @@ public class Company{
 	private Company nextCompany;
 	private Company prevCompany;
 	private Product products;
+	private int cantProductsPrev;
 	private int cantProducts;
 	
 	public Company(String name, String nit, String locate, String phone, ArrayList<String> categories) {
@@ -24,6 +25,7 @@ public class Company{
 		this.categories = categories;
 		products = null;
 		setCantProducts(0);
+		setCantProductsPrev(0);
 	}
 	
 	public String getName() {
@@ -92,6 +94,14 @@ public class Company{
 
 	public void setCantProducts(int cantProducts) {
 		this.cantProducts = cantProducts;
+	}
+
+	public int getCantProductsPrev() {
+		return cantProductsPrev;
+	}
+
+	public void setCantProductsPrev(int cantProductsPrev) {
+		this.cantProductsPrev = cantProductsPrev;
 	}
 
 

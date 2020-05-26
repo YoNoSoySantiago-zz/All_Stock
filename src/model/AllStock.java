@@ -1,9 +1,11 @@
 package model;
 
+import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import CustomExceptions.AlreadyProductExistException;
@@ -41,6 +43,22 @@ public class AllStock{
 
 	
 	
+	public User getUsers() {
+		return users;
+	}
+
+
+
+
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+
+
+
+
 	public Company getActualCompany() {
 		return actualCompany;
 	}
@@ -90,8 +108,7 @@ public class AllStock{
 		}
 
 	}
-// pues la verdad no las he pensaddo bien, que podriamos per?
-	//sisas esta vacio, un boton de reset, ver empresas, no s...
+
 	public void deleteCompanyR(String nit, Company actualCompany) {
 
 		if (actualCompany != null) {
@@ -530,19 +547,29 @@ public class AllStock{
 		}
 		bw.write(report);
 		bw.close();
+		Desktop.getDesktop().open(file);
 	}
 
-	public void generateIncreasesDecreases() {
-
+	public void generateIncreasesDecreases() throws IOException {
+		File file = new File("data/reports/increases-decreases.txt");
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file,true));
+		LocalDateTime ldt = LocalDateTime.now();
+		double result = actualCompany.getCantProductsPrev()-actualCompany.getCantProducts();
+		double prev  = actualCompany.getCantProductsPrev();
+		result = prev==0?100:result/prev;
+		bw.write("\n"+ldt+ ";"+result+"%");
+		bw.close();
+		Desktop.getDesktop().open(file);
 	}
 
-	public void generateEarningsLoses() {
-
-	}
-	
-	public void binarySearchCantProducts() {
-		
-		
+	public void generateCantProducts() throws IOException {
+		File file = new File("data/reports/products.txt");
+		BufferedWriter bw = new BufferedWriter(new FileWriter(file,true));
+		LocalDateTime ldt = LocalDateTime.now();
+		int cant = actualCompany.getCantProducts();
+		bw.write("\n"+ldt+";"+cant);
+		bw.close();
+		Desktop.getDesktop().open(file);
 	}
 
 	// Genera y retorna los datos necesarios para las graficas de la GUI

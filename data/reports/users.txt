@@ -1,0 +1,2 @@
+id type;Nombre;id
+CC;admin;1234

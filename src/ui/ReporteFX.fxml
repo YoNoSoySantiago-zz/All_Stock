@@ -7,21 +7,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="btReportUser" alignment="CENTER" layoutX="55.0" layoutY="101.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="USUARIOS REGISTRADOS">
+      <Button fx:id="btReportUser" alignment="CENTER" layoutX="55.0" layoutY="101.0" mnemonicParsing="false" onAction="#btReportUser" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="USUARIOS REGISTRADOS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btReporProduct" alignment="CENTER" layoutX="55.0" layoutY="160.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="PRODUCTOS REGISTRADOS">
+      <Button fx:id="btReporProduct" alignment="CENTER" layoutX="55.0" layoutY="160.0" mnemonicParsing="false" onAction="#btReporProduct" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="PRODUCTOS REGISTRADOS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button alignment="CENTER" layoutX="55.0" layoutY="219.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="ENTRADA Y SALIDA DE PRODUCTOS">
+      <Button alignment="CENTER" disable="true" layoutX="55.0" layoutY="219.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="ENTRADA Y SALIDA DE PRODUCTOS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button alignment="CENTER" layoutX="55.0" layoutY="276.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="AUMENTOS Y PERDIDAS">
+      <Button fx:id="btIcreasesAndLoses" alignment="CENTER" layoutX="55.0" layoutY="276.0" mnemonicParsing="false" onAction="#btIcreasesAndLoses" prefHeight="29.0" prefWidth="206.0" styleClass="Button" text="AUMENTOS Y PERDIDAS">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

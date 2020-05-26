@@ -120,9 +120,6 @@ public class AllstockGUI {
 	private Button btRegisterProduct;
 
 	@FXML
-	private TextField txtIdProduct;
-
-	@FXML
 	private TextField txtNameProduct;
 
 	@FXML
@@ -517,6 +514,13 @@ public class AllstockGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
 	}
+	
+    @FXML
+    void btRegisterProduct(ActionEvent event) {
+    	String name = txtNameProduct.getText();
+    	String brand  = txtBrand.getText();
+    	String descrption = txtDescription.getText();
+    }
 
 	// Register
 	@FXML
@@ -675,8 +679,6 @@ public class AllstockGUI {
 	public void resetSystem(ActionEvent event) {
 		
 	}
-	
-	
 
 	public boolean isRegisterIsRunnning() {
 		return registerIsRunning;
@@ -685,4 +687,39 @@ public class AllstockGUI {
 	public void setRegisterIsRunnning(boolean registerIsRunnning) {
 		this.registerIsRunning = registerIsRunnning;
 	}
+	//REPORTS
+	@FXML
+    private Button btReportUser;
+
+	@FXML
+    private Button btReporProduct;
+
+    @FXML
+    private Button btIcreasesAndLoses;
+
+    @FXML
+    void btIcreasesAndLoses(ActionEvent event) {
+    	try{
+    		allStock.generateIncreasesDecreases();
+    	}
+    	catch (IOException e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+    }
+
+    @FXML
+	void btReporProduct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btReportUser(ActionEvent event) {
+    	try {
+			allStock.generateReportUsers();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }
