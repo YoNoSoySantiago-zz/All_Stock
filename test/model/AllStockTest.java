@@ -14,11 +14,11 @@ import CustomExceptions.ValueIsEmptyException;
 
 class AllStockTest {
 	
-private AllStock control;
-private Product miproduct;
-private Company miCompany;
-private ArrayList<String> categories;
-private  User myUser;
+	private AllStock control;
+	private Product miproduct;
+	private Company miCompany;
+	private ArrayList<String> categories;
+	private  User myUser;
 
 
 // CREACION DE EMPRESAS
@@ -26,40 +26,40 @@ private  User myUser;
 
 
 
-control.addCompanyList("Chocolixie", "0878", "Cali", "3224548", categories);
-control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", categories);
-control.addCompanyList("DROGERIA", "1234", "CALI", "45454", categories);
+		control.addCompanyList("Chocolixie", "0878", "Cali", "3224548", categories);
+		control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", categories);
+		control.addCompanyList("DROGERIA", "1234", "CALI", "45454", categories);
 
 	}
 	
 	// productos sin categoria
-void setup2() throws ValueIsEmptyException, AlreadyProductExistException  {
-	control.addProduct("agua", "botella 400", "manantial", 1500, 42);
-	control.addProduct("pastel", "rico pastel, suave ", "Compan", 700, 8);
-	control.addProduct("cafe", " colombiano 100%", "Aguila roja",3500, 74);
-	control.addProduct("Alpinete", "mermelada ", "Alpina", 4500, 30);
+	void setup2() throws ValueIsEmptyException, AlreadyProductExistException  {
+		control.addProduct("agua", "botella 400", "manantial", 1500, 42);
+		control.addProduct("pastel", "rico pastel, suave ", "Compan", 700, 8);
+		control.addProduct("cafe", " colombiano 100%", "Aguila roja",3500, 74);
+		control.addProduct("Alpinete", "mermelada ", "Alpina", 4500, 30);
 	
-}
-void setup3() throws ValueIsEmptyException, AlreadyProductExistException  {
-	//productos ropa
-	//control.addProduct("Camisa manga larga", "cuadros azules", "polo", 100, 5, 16 , arrayColors);
+	}
+	void setup3() throws ValueIsEmptyException, AlreadyProductExistException  {
+		//productos ropa
+		//control.addProduct("Camisa manga larga", "cuadros azules", "polo", 100, 5, 16 , arrayColors);
 	
 	
-}
+	}
 
 // usuarios
-public void setup4() throws UserExistException, ValueIsEmptyException {
-	control.addUser("123", "Sebastian", "PASAPORTE", "123", User.ADMINISTRADOR);
-	control.addUser("12454", "Santiago", "CEDULA DE CIUDADANIA ", "1234567", User.EMPLOYEE);
-	control.addUser("4548", "Diego", "CEDULA DE CIUDADANIA ", "32145", User.CLIENT);
-	
-}
+	public void setup4() throws UserExistException, ValueIsEmptyException {
+		control.addUser("123", "Sebastian", "PASAPORTE", "123", User.ADMINISTRADOR);
+		control.addUser("12454", "Santiago", "CEDULA DE CIUDADANIA ", "1234567", User.EMPLOYEE);
+		control.addUser("4548", "Diego", "CEDULA DE CIUDADANIA ", "32145", User.CLIENT);
+		
+	}
 // Agrega una empresa si la lista esta vacia.
 	@Test
 	public void TestaddCompanyList() throws ValueIsEmptyException, CompanyExistException {
-	setup1();
+		setup1();
 
-assertTrue(control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", arr));
+		assertTrue(control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", categories));
 	}
     @Test
     public void testAddCompanyList1() throws ValueIsEmptyException, CompanyExistException {
@@ -87,7 +87,7 @@ assertTrue(control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", a
 	@Test
 	public void TestSearchCompanyR() throws ValueIsEmptyException, CompanyExistException {
 		setup1();
-assertEquals("Chocolixie", control.getActualCompany().getName() );
+		assertEquals("Chocolixie", control.getActualCompany().getName() );
 
 	}
 	// agregar un producto al arbol si esta vacio
@@ -135,35 +135,35 @@ assertEquals("Chocolixie", control.getActualCompany().getName() );
 	
 	// agrega un Usuario a una lista vacia
 	@Test
-public void TestaddUsersR() throws UserExistException, ValueIsEmptyException {
-	control.addUser("123", "sebastian", "PASAPORTE", "123", User.ADMINISTRADOR);
-	
-	assertTrue(false, "Agregado");
-}
-// elimina a un usuario 
-
-	@Test
-public void TestDeleleUserR() {
-	
-	
-}
-	
-	// verifica el login
-	@Test
-public void TestLogin() {
-
-	
-}
-
-
-
-	@Test
-public void TestUserArray() {
+	public void TestaddUsersR() throws UserExistException, ValueIsEmptyException {
+		control.addUser("123", "sebastian", "PASAPORTE", "123", User.ADMINISTRADOR);
+		
+		assertTrue(false, "Agregado");
 	}
-
-// duda
-public void GenerateProductsArray() {}
-
-
-
-}
+	// elimina a un usuario 
+	
+		@Test
+	public void TestDeleleUserR() {
+		
+		
+	}
+		
+		// verifica el login
+		@Test
+	public void TestLogin() {
+	
+		
+	}
+	
+	
+	
+		@Test
+	public void TestUserArray() {
+		}
+	
+	// duda
+	public void GenerateProductsArray() {}
+	
+	
+	
+	}

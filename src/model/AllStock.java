@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,13 +14,15 @@ import CustomExceptions.CompanyExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
 
-public class AllStock{
+public class AllStock implements Serializable {
 	///////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * AUNQUE EL RETORNO ESTE EN VOID LOGICAMENTE ESTO SE CAMBIA DEPENDIENDO COMO LO
 	 * NECESITEMOS ASU QUE CAMBIENLO A GUSTO SI ES NECESARIO
 	 */
 
+	private static final long serialVersionUID = 1L;
+	
 	// RELACIONES
 	private Company companies;
 	private User users;
@@ -27,7 +30,7 @@ public class AllStock{
 	private int counter;
 	
 	// CONSTRUCTOR
-	public AllStock() {
+	public AllStock () {
 		users= null;
 		//Login Default
 		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);
@@ -165,7 +168,10 @@ public class AllStock{
 				String id = generateIdProducts();
 				Product nuevo = new Aliments(id, name, description, brand, price, cant, weight, type);
 				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				actualCompany.getProducts().add(nuevo);
+				if(actualCompany.getProducts()==null)
+					actualCompany.setProducts(nuevo);
+				else
+					actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
 			}
@@ -182,7 +188,10 @@ public class AllStock{
 				String id = generateIdProducts();
 				Product nuevo = new Clothes(id, name, description, brand, price, cant, sizes, colors);
 				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				actualCompany.getProducts().add(nuevo);
+				if(actualCompany.getProducts()==null)
+					actualCompany.setProducts(nuevo);
+				else
+					actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
 			}
@@ -198,7 +207,10 @@ public class AllStock{
 				String id = generateIdProducts();
 				Product nuevo = new Cleaning(id, name, description, brand, price, cant);
 				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				actualCompany.getProducts().add(nuevo);
+				if(actualCompany.getProducts()==null)
+					actualCompany.setProducts(nuevo);
+				else
+					actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
 			}
@@ -215,7 +227,10 @@ public class AllStock{
 				String id = generateIdProducts();
 				Product nuevo = new Medicines(id, name, description, brand, price, cant, type);
 				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				actualCompany.getProducts().add(nuevo);
+				if(actualCompany.getProducts()==null)
+					actualCompany.setProducts(nuevo);
+				else
+					actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
 			}
@@ -231,7 +246,10 @@ public class AllStock{
 				String id = generateIdProducts();
 				Product nuevo = new Others(id, name, description, brand, price, cant, characteristics);
 				actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-				actualCompany.getProducts().add(nuevo);
+				if(actualCompany.getProducts()==null)
+					actualCompany.setProducts(nuevo);
+				else
+					actualCompany.getProducts().add(nuevo);
 			} else {
 				throw new AlreadyProductExistException();
 			}
@@ -438,8 +456,8 @@ public class AllStock{
 		if(actual.getRight()!=null){
 			result = generateProductsArrayR(result,actual.getRight());
 		}
-		return result;//creo que eran las configuraciones y cambios que puede hacer el admin //esto y no se que mas
-	}//lo de settings se le ocurrio a sebas, preguntale
+		return result;
+	}
 	
 	public ArrayList<User> userBubbleSortbyName(){
 		User[] users = generateUserArray();

@@ -1,9 +1,9 @@
 package model;
 
-public class Aliments extends Product {
+public class Aliments extends Product{
 
+	private static final long serialVersionUID = 1L;
 	
-
 	private double weight;
 	private String type;
 	

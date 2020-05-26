@@ -3,6 +3,9 @@ package model;
 import java.util.Arrays;
 
 public class Clothes extends Product {
+
+	private static final long serialVersionUID = 1L;
+	
 	private double[] sizes;
 	private String[] colors;
 	

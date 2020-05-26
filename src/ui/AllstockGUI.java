@@ -1,7 +1,9 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import CustomExceptions.AlreadyProductExistException;
@@ -22,7 +24,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -35,6 +36,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -161,6 +163,23 @@ public class AllstockGUI {
 	@FXML
 	private Button btHelpProdcut;
 	
+	@FXML
+	private Pane alimentsPane;
+	
+	@FXML
+	private Pane clothesPane;
+	
+	@FXML
+	private Pane medicinePane;
+	
+	@FXML
+	private Pane othersPane;
+	
+	@FXML
+	private TextField txtTipoMedicine;
+	
+	@FXML
+	private TextField txtTipo;
 	
 	// registro empresa
 	
@@ -215,9 +234,6 @@ public class AllstockGUI {
 	private TableColumn<Product,Integer> cantCol;
     @FXML
     private Label totalLabel;	
-	
-	@FXML
-	private Button btDescargar;
 
 	@FXML
 	private TextField txtSearchTable;
@@ -258,13 +274,23 @@ public class AllstockGUI {
 			public void handle(WindowEvent event) {
 				loginIsRunning = false;
 				System.out.println("Closing the window!");
+				try {
+					ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/allStock.sds"));
+					oos.writeObject(allStock);
+					oos.close();
+				} catch (FileNotFoundException e) {
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
 	}
 
 	@FXML
-	public void verifyLogin(ActionEvent event){
+	public void verifyLogin(ActionEvent event) throws IOException{
 			
 			String id = userTextField.getText();
 
@@ -287,7 +313,10 @@ public class AllstockGUI {
 				alert.showAndWait();
 				userActual = allStock.searchUserR(id);
 				loginIsRunning = false;
-				loadMenuOptions(event);
+				if(allStock.getActualCompany()==null)
+					LoadRegister(event);
+				else
+					loadMenuOptions(event);
 			} else {
 
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -378,8 +407,7 @@ public class AllstockGUI {
 	}
 
 	@FXML
-	void btnInventory(ActionEvent event) {
-		try {
+	void btnInventory(ActionEvent event) throws IOException {
 		
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("tabla.fxml"));
 			fL.setController(this);
@@ -391,7 +419,7 @@ public class AllstockGUI {
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
 			tableInventary.setItems(observableList);
-			idCol.setCellFactory(new PropertyValueFactory<Product, String>("id"));
+			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
 			
 			
 			/*
@@ -402,9 +430,6 @@ public class AllstockGUI {
     			listName.setCellValueFactory(new PropertyValueFactory<Contact,String>("name"));
     			listEmail.setCellValueFactory(new PropertyValueFactory<Contact,String>("email"));		
 			 */
-		}catch(IOException e) {
-			System.out.println(e.getStackTrace());
-		}
 	}
 
 	@FXML
@@ -447,7 +472,7 @@ public class AllstockGUI {
 				alert.setHeaderText("EL USUARIO SE REGISTRO CORRECTAMENTE" );
 				alert.showAndWait();
 				registerIsRunning=false;
-			btnLogOut(event);
+				btnLogOut(event);
 			
 			}catch(UserExistException e) {
 				System.out.println(e.getStackTrace());
@@ -572,6 +597,42 @@ public class AllstockGUI {
 		mainPane.setCenter(pane);
 	}
 	
+	@FXML
+	public void showExtraFields(ActionEvent event) {
+		switch(cbCategory.getValue()) {
+			case "Alimentos":
+				alimentsPane.setVisible(true);
+				clothesPane.setVisible(false);
+				medicinePane.setVisible(false);
+				othersPane.setVisible(false);
+				break;
+			case "Ropa":
+				alimentsPane.setVisible(false);
+				clothesPane.setVisible(true);
+				medicinePane.setVisible(false);
+				othersPane.setVisible(false);
+				break;
+			case "Medicina":
+				alimentsPane.setVisible(false);
+				clothesPane.setVisible(false);
+				medicinePane.setVisible(true);
+				othersPane.setVisible(false);
+				break;
+			case "Otra":
+				alimentsPane.setVisible(false);
+				clothesPane.setVisible(false);
+				medicinePane.setVisible(false);
+				othersPane.setVisible(true);
+				break;
+			case "Limpieza":
+				alimentsPane.setVisible(false);
+				clothesPane.setVisible(false);
+				medicinePane.setVisible(false);
+				othersPane.setVisible(false);
+				break;
+		}
+	}
+	
     @FXML
     void btRegisterProduct(ActionEvent event) throws ValueIsEmptyException, AlreadyProductExistException {
     	try {
@@ -581,7 +642,9 @@ public class AllstockGUI {
         	double price = Double.parseDouble(txtPrecio.getText());
         	int cant = Integer.parseInt(txtCantidad.getText());
         	if(cbCategory.getValue().equals("Alimentos")) {
-        		allStock.addProduct(name, description, brand, price, cant, 0, "UnKnown");
+        		String tipo = txtTipo.getText();
+        		allStock.addProduct(name, description, brand, price, cant, 0, tipo);
+        		txtTipo.clear();
         	}else if(cbCategory.getValue().equals("Limpieza")) {
         		allStock.addProduct(name, description, brand, price, cant);
         	}else if(cbCategory.getValue().equals("Ropa")) {
@@ -589,7 +652,9 @@ public class AllstockGUI {
         		String[]colors = new String[0];
         		allStock.addProduct(name, description, brand, price, cant, sizes, colors);
         	}else if(cbCategory.getValue().equals("Medicina")){
-        		allStock.addProduct(name, description, brand, price, cant, "UnKnown");
+        		String tipo = txtTipoMedicine.getText(); 
+        		allStock.addProduct(name, description, brand, price, cant, tipo);
+        		txtTipoMedicine.clear();
         	}else {
         		String[][] characteristics = new String[0][0];
         		allStock.addProducts(name, description, brand, price, cant, characteristics);
@@ -598,6 +663,13 @@ public class AllstockGUI {
     		alert.setTitle("EXITO");
     		alert.setHeaderText("Producto registrado con exito");
     		alert.showAndWait();
+    		
+    		txtNameProduct.clear();
+        	txtBrand.clear();
+        	txtDescription.clear();
+        	txtPrecio.clear();
+        	txtCantidad.clear();
+    		
     	}catch(NumberFormatException e) {
     		Alert alert = new Alert(AlertType.INFORMATION);
     		alert.setTitle("NUMBERS");
@@ -614,15 +686,12 @@ public class AllstockGUI {
 	@FXML
 	void LoadRegister(ActionEvent event) throws IOException {
 		
-		
-		
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace2.fxml"));
 		fL.setController(this);
 		Parent pane;
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		
 		
 	}
 	
@@ -638,10 +707,10 @@ public class AllstockGUI {
 		
 	}
 	*/
-// ventana que pide las categorias d la empresa a registrar
 
 
-	
+
+	// ventana que pide las categorias de la empresa a registrar
 	  @FXML
 	    void loadCategoriesCompany(ActionEvent event) throws IOException {
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace3.fxml"));
@@ -792,7 +861,8 @@ public class AllstockGUI {
 	
 	@FXML
 	public void resetSystem(ActionEvent event) {
-		
+		allStock = new AllStock();
+		btnLogOut(event);
 	}
 
 	public boolean isRegisterIsRunnning() {
@@ -807,34 +877,36 @@ public class AllstockGUI {
     private Button btReportUser;
 
 	@FXML
-    private Button btReporProduct;
+    private Button btReportProduct;
 
     @FXML
     private Button btIcreasesAndLoses;
 
     @FXML
-    void btIcreasesAndLoses(ActionEvent event) {
+    public void btIcreasesAndLoses(ActionEvent event) {
     	try{
     		allStock.generateIncreasesDecreases();
     	}
     	catch (IOException e) {
-    		// TODO Auto-generated catch block
-    		e.printStackTrace();
+    		System.out.println("No se pueden generar los ingresos!");
     	}
     }
 
     @FXML
-	void btReporProduct(ActionEvent event) {
-
+	public void btReportProduct(ActionEvent event) {
+    	try {
+			allStock.generateProducts();
+		} catch (IOException e) {
+			System.out.println("No se generó el reporte de productos");
+		}
     }
 
     @FXML
-    void btReportUser(ActionEvent event) {
+    public void btReportUser(ActionEvent event) {
     	try {
 			allStock.generateReportUsers();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se generó el reporte de usuarios");
 		}
     }
 }
