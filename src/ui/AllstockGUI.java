@@ -237,6 +237,7 @@ public class AllstockGUI {
 				alert.setContentText("CONFIRMACION COMPLETA" +"\n"+ " BIENVENIDO " + id );
 
 				alert.showAndWait();
+				userActual = allStock.searchUserR(id);
 				loadMenuOptions(event);
 			} else {
 
