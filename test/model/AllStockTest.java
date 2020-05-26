@@ -22,7 +22,7 @@ class AllStockTest {
 
 
 // CREACION DE EMPRESAS
-	public void setup1() CompanyExistException {
+	public void setup1() throws CompanyExistException, ValueIsEmptyException {
 
 
 
