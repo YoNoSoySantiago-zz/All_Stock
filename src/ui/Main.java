@@ -41,7 +41,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 				
-		FileInputStream fis = new FileInputStream("imgns/logo.png");
+		FileInputStream fis = new FileInputStream("imgns/icon.png");
 		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("WelcomeFX.fxml"));
 		allStockGUI = new AllstockGUI(stage,allStock);
 		fxmlLoad.setController(allStockGUI);

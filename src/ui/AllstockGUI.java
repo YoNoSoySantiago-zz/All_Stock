@@ -312,38 +312,39 @@ public class AllstockGUI {
 			Boolean validate = false;
 			try {
 				validate = allStock.loginUser(id, password);
+
+				if (validate == true) {
+	
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("INGRESO");
+					alert.setHeaderText("ALL STOCK");
+					alert.setContentText("CONFIRMACION COMPLETA" +"\n"+ " BIENVENIDO " + id );
+	
+					alert.showAndWait();
+					userActual = allStock.searchUserR(id);
+					loginIsRunning = false;
+					if(allStock.getActualCompany()==null)
+						LoadRegister(event);
+					else
+						loadMenuOptions(event);
+				} else {
+	
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("INGRESO");
+					alert.setHeaderText("ALL STOCK");
+					alert.setContentText("USUARIO NO REGISTRADO" );
+	
+					alert.showAndWait();
+					
+					userTextField.clear();
+					passwordField.clear();
+				}
 			} catch (ValueIsEmptyException e) {
-				e.printStackTrace();
-			}
-
-			if (validate == true) {
-
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("INGRESO");
-				alert.setHeaderText("ALL STOCK");
-				alert.setContentText("CONFIRMACION COMPLETA" +"\n"+ " BIENVENIDO " + id );
-
-				alert.showAndWait();
-				userActual = allStock.searchUserR(id);
-				loginIsRunning = false;
-				if(allStock.getActualCompany()==null)
-					LoadRegister(event);
-				else
-					loadMenuOptions(event);
-			} else {
-
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("INGRESO");
-				alert.setHeaderText("ALL STOCK");
-				alert.setContentText("USUARIO NO REGISTRADO" );
-
-				alert.showAndWait();
-				
-				userTextField.clear();
-				passwordField.clear();
+				System.out.println("Exception of value empty");
 			}
 	}
-
+	
+	// si yaguarde me tira en el main 444
 	@FXML
 	void btn(ActionEvent event) throws IOException {
 		setLoginIsRunning(true);
