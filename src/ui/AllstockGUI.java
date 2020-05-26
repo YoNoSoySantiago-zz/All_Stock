@@ -558,9 +558,6 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-		
-		
-		allStock.productInsertionSortByName();
 	}
 
 	// manejo de tipos de usuarios en la app.
@@ -568,7 +565,6 @@ public class AllstockGUI {
 	void initAdmin() {
 		// control total
 		btnGraphics.setDisable(false);
-	
 		btnInventory.setDisable(false);
 		btnSettings.setDisable(false);
 		btnProducts.setDisable(false);

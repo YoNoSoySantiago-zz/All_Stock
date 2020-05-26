@@ -4,17 +4,15 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <Pane prefHeight="595.0" prefWidth="1057.0" BorderPane.alignment="CENTER">
          <children>
-            <BarChart layoutX="56.0" layoutY="54.0" prefHeight="242.0" prefWidth="322.0" title="productos cantidad">
+            <BarChart layoutX="72.0" layoutY="56.0" prefHeight="242.0" prefWidth="322.0" title="productos cantidad">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -22,8 +20,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <PieChart layoutX="525.0" layoutY="324.0" prefHeight="205.0" prefWidth="243.0" title="perdidas y ganancias" />
-            <LineChart layoutX="516.0" layoutY="39.0" prefHeight="246.0" prefWidth="331.0" title="aumentos y disminucion">
+            <LineChart layoutX="72.0" layoutY="298.0" prefHeight="246.0" prefWidth="331.0" title="aumentos y disminucion">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -31,7 +28,6 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <TextField layoutX="149.0" layoutY="285.0" />
             <Button layoutX="30.0" layoutY="521.0" mnemonicParsing="false" onAction="#loadMenuOptions" prefHeight="42.0" prefWidth="42.0" styleClass="atras" />
          </children>
       </Pane>
