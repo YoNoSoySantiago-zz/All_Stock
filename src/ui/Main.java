@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.AllStock;
 
@@ -40,7 +41,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 				
-//		FileInputStream fis = new FileInputStream("imgs/Icon.png");
+		FileInputStream fis = new FileInputStream("imgns/logo.png");
 		FXMLLoader fxmlLoad = new FXMLLoader(getClass().getResource("WelcomeFX.fxml"));
 		allStockGUI = new AllstockGUI(stage,allStock);
 		fxmlLoad.setController(allStockGUI);
@@ -51,7 +52,7 @@ public class Main extends Application {
 		stage.centerOnScreen();
 		stage.setMinHeight(600);
 		stage.setMinWidth(1000);
-//		stage.getIcons().add(new Image(fis));
+		stage.getIcons().add(new Image(fis));
 		stage.setTitle("All Stock");
 		stage.show();
 
