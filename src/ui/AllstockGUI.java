@@ -344,7 +344,7 @@ public class AllstockGUI {
 			}
 	}
 	
-	// si yaguarde me tira en el main 444
+
 	@FXML
 	void btn(ActionEvent event) throws IOException {
 		setLoginIsRunning(true);
@@ -425,7 +425,7 @@ public class AllstockGUI {
 
 	@FXML
 	void btnInventory(ActionEvent event) throws IOException {
-		
+	
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("tabla.fxml"));
 			fL.setController(this);
 			Parent pane;
@@ -433,10 +433,13 @@ public class AllstockGUI {
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
 			
-			tableInventary = new TableView<Product>();
+			//tableInventary = new TableView<Product>();
+			
+			
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
 			tableInventary.setItems(observableList);
+			System.out.println(allStock.productInsertionSortByName()+ "Entro" );
 			
 			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
@@ -648,7 +651,7 @@ public class AllstockGUI {
 	}
 	
     @FXML
-    void btRegisterProduct(ActionEvent event) throws ValueIsEmptyException, AlreadyProductExistException {
+    void btRegisterProduct(ActionEvent event) throws ValueIsEmptyException, AlreadyProductExistException, IOException {
     	try {
     		String name = txtNameProduct.getText();
         	String brand  = txtBrand.getText();
@@ -677,7 +680,7 @@ public class AllstockGUI {
     		alert.setTitle("EXITO");
     		alert.setHeaderText("Producto registrado con exito");
     		alert.showAndWait();
-    		
+    		btnInventory(event);
     		txtNameProduct.clear();
         	txtBrand.clear();
         	txtDescription.clear();
@@ -849,14 +852,15 @@ public class AllstockGUI {
 	}
 
 	public void graphicsofPie() {
-        
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Bolsa de leche", 13),
-                new PieChart.Data("Pan", 25),
-                new PieChart.Data("Jamon", 10),
-                new PieChart.Data("Pollo", 22),
-                new PieChart.Data("Carne", 30));
+		
+		ArrayList<Product> p = allStock.productInsertionSortByName();
+		ArrayList<PieChart.Data> arr = new ArrayList<PieChart.Data>();
+		
+		for(Product prod : p) {
+			arr.add(new PieChart.Data(prod.getName(), prod.getCant()));
+		}
+		
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(arr);
  
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle(" Cantidad de productos ");
@@ -878,6 +882,9 @@ public class AllstockGUI {
 	}
 	
 	public void barGrafic() {
+		
+		ArrayList<Product> p = allStock.productInsertionSortByName();
+		
 		final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String,Number> bc = new BarChart<>(xAxis,yAxis);
@@ -885,12 +892,10 @@ public class AllstockGUI {
         xAxis.setLabel("Productos");       
         yAxis.setLabel("Cantidad");
  
-        XYChart.Series<String,Number> series = new Series<String, Number>();      
-        series.getData().add(new Data<String, Number>("Bolsa de leche", 13));
-        series.getData().add(new Data<String, Number>("Pan", 25));
-        series.getData().add(new Data<String, Number>("Jamon", 10));
-        series.getData().add(new Data<String, Number>("Pollo", 22));
-        series.getData().add(new Data<String, Number>("Carne", 30));
+        XYChart.Series<String,Number> series = new Series<String, Number>(); 
+        for(Product prod : p) {
+			series.getData().add(new Data<String,Number>(prod.getName(),prod.getCant()));
+		}
         
         bc.getData().add(series);
         

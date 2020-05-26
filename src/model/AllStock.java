@@ -273,6 +273,7 @@ public class AllStock implements Serializable {
 		}
 		return result;
 	}
+	
 	//LOS PRODUCTOS ESTAN EN UN ARBOL BINARIO
 	// BUSCAR UN PRODUCTO POR SU ID
 	public Product searchProductById(String id) {
@@ -590,7 +591,7 @@ public class AllStock implements Serializable {
 
 	// Genera y retorna los datos necesarios para las graficas de la GUI
 	public void generateGraphics() {
-
+		
 	}
 
 }
