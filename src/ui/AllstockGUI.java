@@ -23,6 +23,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -37,8 +38,10 @@ import javafx.stage.WindowEvent;
 import model.Admin;
 import model.AllStock;
 import model.Employee;
+import model.Product;
 import model.User;
 import threads.AnimationThread;
+import threads.ValuesEmptyThread;
 
 public class AllstockGUI {
 
@@ -48,18 +51,27 @@ public class AllstockGUI {
 	private Stage window;
 	private AllStock allStock;
 	private AnimationThread animation;
+	private ValuesEmptyThread empty;
 	private Boolean loginIsRunning;
 	private int upBox;
 	private User userActual;
+	private boolean registerIsRunning;
+	
 	
 	public AllstockGUI(Stage win,AllStock allStock) {
 		this.allStock = allStock;
 		window = win;
+		setRegisterIsRunnning(false);
+		loginIsRunning= true;
 		animation = new AnimationThread(this);
+		empty = new ValuesEmptyThread(this);
 		upBox = 1;
 	}
 
 	// login
+	
+	@FXML
+	private Button verifyLogin;
 
 	@FXML
 	private Button btLogin;
@@ -126,7 +138,7 @@ public class AllstockGUI {
 	private RadioButton rdNOCategory;
 
 	@FXML
-	private ComboBox<?> cbCategory;
+	private ComboBox<String> cbCategory;
 
 	@FXML
 	private TextArea txtDescription;
@@ -171,9 +183,22 @@ public class AllstockGUI {
     private CheckBox chBoxOthers;
 
 	// Tabla
+    
 	@FXML
-	private TableView<?> tableInventary;
-
+	private TableView<Product> tableInventary;
+	@FXML
+	private TableColumn<Product,String> idCol;
+	@FXML
+	private TableColumn<Product,String> nameCol;
+	@FXML
+	private TableColumn<Product,String> descriptionCol;
+	@FXML
+	private TableColumn<Product,String> BrandCol;
+	@FXML
+	private TableColumn<Product,String> priceCol;
+	@FXML
+	private TableColumn<Product,String> cantCol;
+	
 	@FXML
 	private DatePicker txtCalendar;
 
@@ -238,6 +263,7 @@ public class AllstockGUI {
 
 				alert.showAndWait();
 				userActual = allStock.searchUserR(id);
+				loginIsRunning = false;
 				loadMenuOptions(event);
 			} else {
 
@@ -298,6 +324,11 @@ public class AllstockGUI {
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
 			idTypeComboBox.getItems().addAll("CEDULA DE CUIDADANIA","TARJETA IDENTIDAD","PASAPORTE","CEDULA EXTRANJERA");
+			setRegisterIsRunnning(true);
+			loginIsRunning=false;
+			System.out.println("empezo");
+			ValuesEmptyThread valuesEmptyThread = new ValuesEmptyThread(this);
+			valuesEmptyThread.start();
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -341,12 +372,18 @@ public class AllstockGUI {
 	void btnLogOut(ActionEvent event){
 		
 		try {
+			registerIsRunning=false;
+			loginIsRunning=true;
+			animation=new AnimationThread(this);
+			empty = new ValuesEmptyThread(this);
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("Login.fxml"));
 			fL.setController(this);
 			Parent pane;
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
+			animation.start();
+			empty.start();
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -370,7 +407,7 @@ public class AllstockGUI {
 				alert.setTitle("USUARIO REGISTRADO ");
 				alert.setHeaderText("EL USUARIO SE REGISTRO CORRECTAMENTE" );
 				alert.showAndWait();
-				
+				registerIsRunning=false;
 			btnLogOut(event);
 			
 			}catch(UserExistException e) {
@@ -461,16 +498,6 @@ public class AllstockGUI {
 	}
 
 	@FXML
-	void btnReports(ActionEvent event) throws IOException {
-		FXMLLoader fL = new FXMLLoader(getClass().getResource("ReporteFX.fxml"));
-		fL.setController(this);
-		Parent pane;
-		pane = fL.load();
-		mainPane.getChildren().clear();
-		mainPane.setCenter(pane);
-	}
-
-	@FXML
 	void btnSettings(ActionEvent event) throws IOException {
 		FXMLLoader fL = new FXMLLoader(getClass().getResource("Settings.fxml"));
 		fL.setController(this);
@@ -489,7 +516,7 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
-	}//Santi?
+	}
 
 	// Register
 	@FXML
@@ -524,8 +551,16 @@ public class AllstockGUI {
 
 	// Tabla
 	@FXML
-	void btAtrasTable(ActionEvent event) {
-
+	void btnReports(ActionEvent event) throws IOException {
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("ReporteFX.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		mainPane.getChildren().clear();
+		mainPane.setCenter(pane);
+		
+		
+		allStock.productInsertionSortByName();
 	}
 
 	// manejo de tipos de usuarios en la app.
@@ -595,11 +630,63 @@ public class AllstockGUI {
  
 
 	}
+	public void verifyValesEmptyLogin() {
+		if(!userTextField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
+			verifyLogin.setDisable(false);
+		}else {
+			verifyLogin.setDisable(true);
+		}
+	}
+	
+	public void verifyValuesEmptyRegister() {
+		String name = txtSignName.getText();
+		String id = txtSignID.getText();
+		String idType = idTypeComboBox.getValue();
+		String password = passFieldPassword1.getText();
+		String confirmPassword = passFieldPassword2.getText();
+		String userType = adminSelect.isSelected() ? User.ADMINISTRADOR
+				: clientSelect.isSelected() ? User.CLIENT :employeeSelect.isSelected()? User.EMPLOYEE:null;
+
+		if(!id.isEmpty()&&!name.isEmpty()&&idType!=null&&!password.isEmpty()&&!confirmPassword.isEmpty()&&userType!=null) {
+			System.out.println("como debe ser");
+			btRegister.setDisable(false);
+		}else {
+			btRegister.setDisable(true);
+		}
+	}
+	
 	public Boolean getLoginIsRunning() {
 		return loginIsRunning;
 	}
 
 	public void setLoginIsRunning(Boolean loginIsRunning) {
 		this.loginIsRunning = loginIsRunning;
+		
+	}
+	//Settings
+	
+	@FXML
+	public void deleteUser(ActionEvent event) {
+		
+	}
+	
+	@FXML
+	public void deleteCompany(ActionEvent event) {
+		
+	}
+	
+	@FXML
+	public void resetSystem(ActionEvent event) {
+		
+	}
+	
+	
+
+	public boolean isRegisterIsRunnning() {
+		return registerIsRunning;
+	}
+
+	public void setRegisterIsRunnning(boolean registerIsRunnning) {
+		this.registerIsRunning = registerIsRunnning;
 	}
 }

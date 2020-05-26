@@ -94,7 +94,7 @@
                   </Label>
                </top>
                <bottom>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#verifyLogin" prefHeight="30.0" prefWidth="200.0" styleClass="Button" text="Entrar" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Button fx:id="verifyLogin" alignment="CENTER" mnemonicParsing="false" onAction="#verifyLogin" prefHeight="30.0" prefWidth="200.0" styleClass="Button" text="Entrar" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Cooper Black" size="15.0" />
                      </font>

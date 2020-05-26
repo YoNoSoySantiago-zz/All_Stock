@@ -41,6 +41,22 @@ public class AllStock{
 
 	
 	
+	public Company getActualCompany() {
+		return actualCompany;
+	}
+
+
+
+
+
+	public void setActualCompany(Company actualCompany) {
+		this.actualCompany = actualCompany;
+	}
+
+
+
+
+
 	public void addCompanyList(String name, String nit, String locate, String phone, ArrayList<String> categories) throws ValueIsEmptyException, CompanyExistException {
 		
 		if (name.isEmpty() || nit.isEmpty() || phone.isEmpty() || locate.isEmpty() || categories.isEmpty()) {
