@@ -505,6 +505,7 @@ public class AllStock implements Serializable {
 	public ArrayList<Product> productInsertionSortByName(){
 		Product[] products = generateProductsArray();
 		ArrayList<Product> result = new ArrayList<Product>();
+		System.out.println(products.length);
 		for (int i = 1; i < products.length; i++) {
 		
 			for (int j = i; j >0 && products[j-1].getName().compareToIgnoreCase(products[j].getName())>=0; j--) {
@@ -572,7 +573,9 @@ public class AllStock implements Serializable {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 		String result ="";
 		for (int i = 0; i < products.length; i++) {
-			result+="\n"+products.toString();
+			if(products[i]!=null) {
+				result+="\n"+products[i].toString();
+			}
 		}
 		bw.write(result);
 		bw.close();

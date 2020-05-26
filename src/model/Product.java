@@ -142,10 +142,8 @@ public abstract class Product implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[aliments=" + aliments + ", cleaning=" + cleaning + ", clothes=" + clothes + ", medicines="
-				+ medicines + ", others=" + others + ", id=" + id + ", name=" + name + ", description=" + description
-				+ ", brand=" + brand + ", price=" + price + ", cant=" + cant + ", right=" + right + ", left=" + left
-				+ "]";
+		return "[ id=" + id + ", name=" + name + ", description=" + description
+				+ ", brand=" + brand + ", price=" + price + ", cant=" + cant + "]";
 	}
 
 

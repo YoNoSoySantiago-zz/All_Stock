@@ -1,3 +1,0 @@
-id type;Nombre;id
-CC;admin;1234
-PASAPORTE;user123;123
