@@ -50,6 +50,8 @@ public class AllstockGUI {
 	private AnimationThread animation;
 	private Boolean loginIsRunning;
 	private int upBox;
+	private User userActual;
+	
 	public AllstockGUI(Stage win,AllStock allStock) {
 		this.allStock = allStock;
 		window = win;
@@ -235,7 +237,7 @@ public class AllstockGUI {
 				alert.setContentText("CONFIRMACION COMPLETA" +"\n"+ " BIENVENIDO " + id );
 
 				alert.showAndWait();
-				loadMenuOptions(allStock.searchUserR(id));
+				loadMenuOptions(event);
 			} else {
 
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -262,7 +264,7 @@ public class AllstockGUI {
 		animation.start();
 	} //Ya lo estoy poniendo
 
-	public void loadMenuOptions(User u) {
+	public void loadMenuOptions(ActionEvent event) {
 		try {
 			
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("MenuOptions.fxml"));
@@ -272,9 +274,9 @@ public class AllstockGUI {
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
 			
-			if(u instanceof Admin) {
+			if(userActual instanceof Admin) {
 				initAdmin();
-			}else if(u instanceof Employee) {
+			}else if(userActual instanceof Employee) {
 				initEmployee();
 			}else {
 				initUser();
