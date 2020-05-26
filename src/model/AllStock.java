@@ -384,29 +384,25 @@ public class AllStock{
 			i++;
 		}
 		return result;
-	}
+	
 	
 	private Product[] generateProductsArray() {
 		Product[] result = new Product[actualCompany.getCantProducts()];
 		counter = 0;
-		if(actualCompany.getProducts()!=null) {
-			result=generateProductsArrayR(result,actualCompany.getProducts());
-		}
-		return result;
 	}
+	
 	
 	private Product[] generateProductsArrayR(Product[] result,Product actual) {
 		
 		result[counter] = actual;
-		counter++;
 		if(actual.getLeft()!=null) {
 			result = generateProductsArrayR(result,actual.getLeft());
 		}
 		if(actual.getRight()!=null){
 			result = generateProductsArrayR(result,actual.getRight());
 		}
-		return result;
-	}
+		return result;//creo que eran las configuraciones y cambios que puede hacer el admin //esto y no se que mas
+	}//lo de settings se le ocurrio a sebas, preguntale
 	
 	public ArrayList<User> userBubbleSortbyName(){
 		User[] users = generateUserArray();
@@ -454,8 +450,7 @@ public class AllStock{
 		return result;
 	}
 
-	public ArrayList<Product> productSelectionSortById(){
-		Product[] products=generateProductsArray();
+	public ArrayList<Product> productSelectionSortById(Product[] products){
 		ArrayList<Product> result = new ArrayList<Product>();
 		for (int i = 0; i < products.length; i++) {
 			Product less =	products[i];
@@ -475,8 +470,7 @@ public class AllStock{
 		return result;
 	}
 	
-	public ArrayList<Product> productInsertionSortByName(){
-		Product[] products=generateProductsArray();
+	public ArrayList<Product> productInsertionSortByName(Product[] products){
 		ArrayList<Product> result = new ArrayList<Product>();
 		for (int i = 1; i < products.length; i++) {
 		
