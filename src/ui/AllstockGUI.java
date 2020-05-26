@@ -17,7 +17,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,6 +43,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -52,6 +60,9 @@ public class AllstockGUI {
 
 	@FXML
 	private BorderPane mainPane, registerPane;
+	
+	@FXML
+	private GridPane graficPane;
 	
 	private Stage window;
 	private AllStock allStock;
@@ -395,13 +406,17 @@ public class AllstockGUI {
 			// grafica de barras
 			//aqui puse fue una grafica de pastel
 			
-			graphicsofPie();
+			
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("GraficasFX.fxml"));
 			fL.setController(this);
 			Parent pane;
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
+			graphicsofPie();
+			barGrafic();
+			lineChart();
+			barGraficTwo();
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -416,11 +431,20 @@ public class AllstockGUI {
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
+			
 			tableInventary = new TableView<Product>();
+			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
+			nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+			category.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
+			cantCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("cant"));
+			priceCol.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+			
+			tableInventary.getColumns().addAll(idCol,nameCol,category,cantCol,priceCol);
+			
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
 			tableInventary.setItems(observableList);
-			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
+			
 			
 			
 			/*
@@ -771,16 +795,79 @@ public class AllstockGUI {
 		}
 		boxImageView.setLayoutY(boxImageView.getLayoutY()+upBox);
 	}
+	
+	public void barGraficTwo() {
+		final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String,Number> bc = new BarChart<>(xAxis,yAxis);
+        bc.setTitle("Cantidad de productos - Entrada & Salida");
+        xAxis.setLabel("Producto");
+        yAxis.setLabel("Cantidad");
+ 
+        XYChart.Series<String, Number> series = new Series<String, Number>();
+        series.setName("Entrada de productos");
+        series.getData().add(new Data<String, Number>("Bolsa de leche", 50));
+        series.getData().add(new Data<String, Number>("Pan", 70));
+        series.getData().add(new Data<String, Number>("Jamon", 30));
+        series.getData().add(new Data<String, Number>("Pollo", 30));
+        series.getData().add(new Data<String, Number>("Carne", 50));
+
+        
+        XYChart.Series<String, Number> series2 = new Series<String, Number>();
+        series2.setName("Salida de productos");
+        series2.getData().add(new Data<String, Number>("Bolsa de leche", 37));
+        series2.getData().add(new Data<String, Number>("Pan", 45));
+        series2.getData().add(new Data<String, Number>("Jamon", 20));
+        series2.getData().add(new Data<String, Number>("Pollo", 8));
+        series2.getData().add(new Data<String, Number>("Carne", 20));
+        
+        
+        bc.getData().addAll(series,series2);
+        
+        graficPane.add(bc, 1, 0);
+        
+	}
+	
+	public void lineChart() {
+		CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis(0, 4, 1);
+        
+        xAxis.setLabel("Usuarios");
+
+    	LineChart<String, Number> lineChart;
+        
+        lineChart = new LineChart<String,Number>(xAxis,yAxis);
+        lineChart.setTitle("Usuarios registrados");
+        
+        XYChart.Series<String,Number> series = new Series<String, Number>();
+        series.setName("Año 2020");
+        series.getData().add(new XYChart.Data<String, Number>("Enero", 1));
+        series.getData().add(new XYChart.Data<String, Number>("Febrero", 1));
+        series.getData().add(new XYChart.Data<String, Number>("Marzo", 2));
+        series.getData().add(new XYChart.Data<String, Number>("Abril", 1));
+        series.getData().add(new XYChart.Data<String, Number>("Mayo", 3));
+        series.getData().add(new XYChart.Data<String, Number>("Junio", 0));
+        series.getData().add(new XYChart.Data<String, Number>("Julio", 0));
+        series.getData().add(new XYChart.Data<String, Number>("Agosto", 0));
+        series.getData().add(new XYChart.Data<String, Number>("Septiembre", 0));
+        series.getData().add(new XYChart.Data<String, Number>("Octubre", 0));
+        series.getData().add(new XYChart.Data<String, Number>("Noviembre", 0));
+        series.getData().add(new XYChart.Data<String, Number>("Diciembre", 0));
+        
+        lineChart.getData().add(series);
+        
+        graficPane.add(lineChart, 0, 0);
+	}
 
 	public void graphicsofPie() {
         
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                new PieChart.Data("bolsa de leche", 13),
-                new PieChart.Data("pan", 25),
-                new PieChart.Data("jamon", 10),
-                new PieChart.Data("pollo", 22),
-                new PieChart.Data("carne", 30));
+                new PieChart.Data("Bolsa de leche", 13),
+                new PieChart.Data("Pan", 25),
+                new PieChart.Data("Jamon", 10),
+                new PieChart.Data("Pollo", 22),
+                new PieChart.Data("Carne", 30));
  
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle(" Cantidad de productos ");
@@ -798,7 +885,28 @@ public class AllstockGUI {
             });
         });
  
-
+        graficPane.add(chart, 0, 1);
+	}
+	
+	public void barGrafic() {
+		final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String,Number> bc = new BarChart<>(xAxis,yAxis);
+        bc.setTitle("Cantidad de productos");
+        xAxis.setLabel("Productos");       
+        yAxis.setLabel("Cantidad");
+ 
+        XYChart.Series<String,Number> series = new Series<String, Number>();      
+        series.getData().add(new Data<String, Number>("Bolsa de leche", 13));
+        series.getData().add(new Data<String, Number>("Pan", 25));
+        series.getData().add(new Data<String, Number>("Jamon", 10));
+        series.getData().add(new Data<String, Number>("Pollo", 22));
+        series.getData().add(new Data<String, Number>("Carne", 30));
+        
+        bc.getData().add(series);
+        
+        graficPane.add(bc, 1, 1);
+        
 	}
 	
 	public void verifyValuesEmptyProduct() {

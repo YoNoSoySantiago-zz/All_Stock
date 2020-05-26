@@ -1,0 +1,2 @@
+
+[ id=0000, name=qwertegd, description=fzfxgh, brand=esrgrb, price=12.0, cant=1]
