@@ -3,6 +3,8 @@ package model;
 import java.util.Arrays;
 
 public class Others extends Product {
+
+	private static final long serialVersionUID = 1L;
 	
 	private String[][] characteristics;
 	public Others(String id, String name, String description, String brand, double price, int cant,String[][]characteristics) {

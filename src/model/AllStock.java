@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,13 +14,15 @@ import CustomExceptions.CompanyExistException;
 import CustomExceptions.UserExistException;
 import CustomExceptions.ValueIsEmptyException;
 
-public class AllStock{
+public class AllStock implements Serializable {
 	///////////////////////////////////////////////////////////////////////////////////////
 	/*
 	 * AUNQUE EL RETORNO ESTE EN VOID LOGICAMENTE ESTO SE CAMBIA DEPENDIENDO COMO LO
 	 * NECESITEMOS ASU QUE CAMBIENLO A GUSTO SI ES NECESARIO
 	 */
 
+	private static final long serialVersionUID = 1L;
+	
 	// RELACIONES
 	private Company companies;
 	private User users;
@@ -27,7 +30,7 @@ public class AllStock{
 	private int counter;
 	
 	// CONSTRUCTOR
-	public AllStock() {
+	public AllStock () {
 		users= null;
 		//Login Default
 		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);

@@ -1,7 +1,9 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import CustomExceptions.AlreadyProductExistException;
@@ -272,6 +274,16 @@ public class AllstockGUI {
 			public void handle(WindowEvent event) {
 				loginIsRunning = false;
 				System.out.println("Closing the window!");
+				try {
+					ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/allStock.sds"));
+					oos.writeObject(allStock);
+					oos.close();
+				} catch (FileNotFoundException e) {
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -695,10 +707,10 @@ public class AllstockGUI {
 		
 	}
 	*/
-// ventana que pide las categorias d la empresa a registrar
 
 
-	
+
+	// ventana que pide las categorias de la empresa a registrar
 	  @FXML
 	    void loadCategoriesCompany(ActionEvent event) throws IOException {
 			FXMLLoader fL = new FXMLLoader(getClass().getResource("RegisterPlace3.fxml"));
@@ -849,7 +861,8 @@ public class AllstockGUI {
 	
 	@FXML
 	public void resetSystem(ActionEvent event) {
-		
+		allStock = new AllStock();
+		btnLogOut(event);
 	}
 
 	public boolean isRegisterIsRunnning() {

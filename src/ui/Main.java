@@ -1,5 +1,10 @@
 package ui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,9 +20,17 @@ public class Main extends Application {
 	
 	public Main() {
 		
-		
-		
-		allStock = new AllStock();
+		try {
+			ObjectInputStream fis = new ObjectInputStream(new FileInputStream("data/allStock.sds"));
+			allStock = (AllStock) fis.readObject();
+			fis.close();
+		} catch (FileNotFoundException e) {
+			allStock = new AllStock();
+		} catch (IOException e) {
+			System.out.println("Algo ocurrió mal");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Algo ocurrió mal - Error 404 Class not found!");
+		}
 	}
 
 	public static void main(String[] args) {
