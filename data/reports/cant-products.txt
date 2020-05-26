@@ -1,2 +1,6 @@
 
-[ id=0000, name=qwertegd, description=fzfxgh, brand=esrgrb, price=12.0, cant=1]
+id: 0000, name: qewrty, description: ewretrtf, brand: qewretry, price: 132.0, cant: 13
+id: 0001, name: asdf, description: afsgdh, brand: afgsdhf, price: 140.0, cant: 1
+id: 0002, name: adsfbnf, description: dszdfxff, brand: dsfdgdf, price: 13.0, cant: 4
+Othersid: 0003, name: <zghrxd, description: <zdfxcg, brand: <szfdxgcg, price: 3.0, cant: 12 [characteristics=[]]
+Clothesid: 0004, name: dgfnhgfhg, description: szdfxghcj, brand: dxfgchv, price: 400.0, cant: 15 [sizes=[], colors=[]]

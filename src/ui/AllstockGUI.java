@@ -433,28 +433,16 @@ public class AllstockGUI {
 			mainPane.setCenter(pane);
 			
 			tableInventary = new TableView<Product>();
+			ObservableList<Product> observableList;
+			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
+			tableInventary.setItems(observableList);
+			
 			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 			category.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
 			cantCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("cant"));
 			priceCol.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
-			
-			tableInventary.getColumns().addAll(idCol,nameCol,category,cantCol,priceCol);
-			
-			ObservableList<Product> observableList;
-			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
-			tableInventary.setItems(observableList);
-			
-			
-			
-			/*
-			 * listContact = new TableView<Contact>();
-    	 ObservableList<Contact> observableList;
-    	 	observableList = FXCollections.observableArrayList(contactManager.getContacts());
-    			listContact.setItems(observableList);
-    			listName.setCellValueFactory(new PropertyValueFactory<Contact,String>("name"));
-    			listEmail.setCellValueFactory(new PropertyValueFactory<Contact,String>("email"));		
-			 */
+	
 	}
 
 	@FXML

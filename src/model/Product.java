@@ -6,12 +6,6 @@ public abstract class Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Aliments aliments;
-	private Cleaning cleaning;
-	private Clothes  clothes;
-	private Medicines medicines;
-	private Others others;
-	
 	private String id;
 	private String name;
 	private String description;
@@ -21,6 +15,7 @@ public abstract class Product implements Serializable {
 	
 	private Product right;
 	private Product left;
+	
 	public Product(String id, String name, String description, String brand, double price, int cant) {
 		super();
 		this.id = id;
@@ -85,45 +80,6 @@ public abstract class Product implements Serializable {
 		this.cant = cant;
 	}
 
-	public Aliments getAliments() {
-		return aliments;
-	}
-
-	public void setAliments(Aliments aliments) {
-		this.aliments = aliments;
-	}
-
-	public Cleaning getCleaning() {
-		return cleaning;
-	}
-
-	public void setCleaning(Cleaning cleaning) {
-		this.cleaning = cleaning;
-	}
-
-	public Clothes getClothes() {
-		return clothes;
-	}
-
-	public void setClothes(Clothes clothes) {
-		this.clothes = clothes;
-	}
-
-	public Medicines getMedicines() {
-		return medicines;
-	}
-
-	public void setMedicines(Medicines medicines) {
-		this.medicines = medicines;
-	}
-
-	public Others getOthers() {
-		return others;
-	}
-
-	public void setOthers(Others others) {
-		this.others = others;
-	}
 	public Product getRight() {
 		return right;
 	}
@@ -142,8 +98,8 @@ public abstract class Product implements Serializable {
 
 	@Override
 	public String toString() {
-		return "[ id=" + id + ", name=" + name + ", description=" + description
-				+ ", brand=" + brand + ", price=" + price + ", cant=" + cant + "]";
+		return "id: " + id + ", name: " + name + ", description: " + description
+				+ ", brand: " + brand + ", price: " + price + ", cant: " + cant;
 	}
 
 

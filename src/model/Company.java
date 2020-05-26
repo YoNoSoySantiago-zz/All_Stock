@@ -15,7 +15,9 @@ public class Company implements Serializable {
 	
 	private Company nextCompany;
 	private Company prevCompany;
-	private Product products;
+	
+	private Product root;
+	
 	private int cantProductsPrev;
 	private int cantProducts;
 	
@@ -26,7 +28,8 @@ public class Company implements Serializable {
 		this.locate = locate;
 		this.phone = phone;
 		this.categories = categories;
-		products = null;
+		root = null;
+		
 		setCantProducts(0);
 		setCantProductsPrev(0);
 	}
@@ -83,14 +86,6 @@ public class Company implements Serializable {
 		this.prevCompany = prevCompany;
 	}
 
-	public Product getProducts() {
-		return products;
-	}
-
-	public void setProducts(Product products) {
-		this.products = products;
-	}
-
 	public int getCantProducts() {
 		return cantProducts;
 	}
@@ -105,6 +100,18 @@ public class Company implements Serializable {
 
 	public void setCantProductsPrev(int cantProductsPrev) {
 		this.cantProductsPrev = cantProductsPrev;
+	}
+
+	public void setCategories(ArrayList<String> categories) {
+		this.categories = categories;
+	}
+
+	public Product getRoot() {
+		return root;
+	}
+
+	public void setRoot(Product root) {
+		this.root = root;
 	}
 
 

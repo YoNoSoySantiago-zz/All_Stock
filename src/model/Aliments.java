@@ -29,10 +29,5 @@ public class Aliments extends Product{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	@Override
-	public String toString() {
-		return "Aliments"+super.toString()+" [weight=" + weight + ", type=" + type + "]";
-	}
 
 }

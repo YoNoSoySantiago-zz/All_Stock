@@ -55,7 +55,7 @@ public abstract class User implements Comparable<User>,Permissions, Serializable
 	
 	@Override
 	public String toString() {
-		return "USUARIO REGISTRADO [ID=" + id + ", Nombre=" + name + ", Tipo de Usuario=" + idType + ", Contraseña=" + password + "]";
+		return "USUARIO REGISTRADO ID: " + id + ", Nombre: " + name + ", Tipo de Usuario: " + idType + ", Contraseña: " + password ;
 	}
 
 

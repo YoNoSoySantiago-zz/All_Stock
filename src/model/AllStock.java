@@ -165,10 +165,10 @@ public class AllStock implements Serializable {
 			String id = generateIdProducts();
 			Product nuevo = new Aliments(id, name, description, brand, price, cant, weight, type);
 			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-			if(actualCompany.getProducts()==null)
-				actualCompany.setProducts(nuevo);
+			if(actualCompany.getRoot()==null)
+				actualCompany.setRoot(nuevo);
 			else
-				actualCompany.getProducts().add(nuevo);
+				actualCompany.getRoot().add(nuevo);
 		} else {
 			throw new AlreadyProductExistException();
 		}
@@ -179,12 +179,12 @@ public class AllStock implements Serializable {
 		
 		if (searchProductByName(name) == null) {
 			String id = generateIdProducts();
-			Product nuevo = new Clothes(id, name, description, brand, price, cant, sizes, colors);
+			Clothes nuevo = new Clothes(id, name, description, brand, price, cant, sizes, colors);
 			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-			if(actualCompany.getProducts()==null)
-				actualCompany.setProducts(nuevo);
+			if(actualCompany.getRoot()==null)
+				actualCompany.setRoot(nuevo);
 			else
-				actualCompany.getProducts().add(nuevo);
+				actualCompany.getRoot().add(nuevo);
 		} else {
 			throw new AlreadyProductExistException();
 		}
@@ -194,12 +194,12 @@ public class AllStock implements Serializable {
 		
 		if (searchProductByName(name) == null) {
 			String id = generateIdProducts();
-			Product nuevo = new Cleaning(id, name, description, brand, price, cant);
+			Cleaning nuevo = new Cleaning(id, name, description, brand, price, cant);
 			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-			if(actualCompany.getProducts()==null)
-				actualCompany.setProducts(nuevo);
+			if(actualCompany.getRoot()==null)
+				actualCompany.setRoot(nuevo);
 			else
-				actualCompany.getProducts().add(nuevo);
+				actualCompany.getRoot().add(nuevo);
 		} else {
 			throw new AlreadyProductExistException();
 		}
@@ -208,12 +208,12 @@ public class AllStock implements Serializable {
 	public void addProduct(String name, String description, String brand, double price, int cant, String type) throws AlreadyProductExistException {
 		if (searchProductByName(name) == null) {
 			String id = generateIdProducts();
-			Product nuevo = new Medicines(id, name, description, brand, price, cant, type);
+			Medicines nuevo = new Medicines(id, name, description, brand, price, cant, type);
 			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-			if(actualCompany.getProducts()==null)
-				actualCompany.setProducts(nuevo);
+			if(actualCompany.getRoot()==null)
+				actualCompany.setRoot(nuevo);
 			else
-				actualCompany.getProducts().add(nuevo);
+				actualCompany.getRoot().add(nuevo);
 		} else {
 			throw new AlreadyProductExistException();
 		}
@@ -224,12 +224,12 @@ public class AllStock implements Serializable {
 		
 		if (searchProductByName(name) == null) {
 			String id = generateIdProducts();
-			Product nuevo = new Others(id, name, description, brand, price, cant, characteristics);
+			Others nuevo = new Others(id, name, description, brand, price, cant, characteristics);
 			actualCompany.setCantProducts(actualCompany.getCantProducts()+1);
-			if(actualCompany.getProducts()==null)
-				actualCompany.setProducts(nuevo);
+			if(actualCompany.getRoot()==null)
+				actualCompany.setRoot(nuevo);
 			else
-				actualCompany.getProducts().add(nuevo);
+				actualCompany.getRoot().add(nuevo);
 		} else {
 			throw new AlreadyProductExistException();
 		}
@@ -257,8 +257,8 @@ public class AllStock implements Serializable {
 	// BUSCAR UN PRODUCTO POR SU NOMBRE
 	public Product searchProductByName(String name) {
 		Product result = null;
-		if(actualCompany.getProducts()!=null) {
-			Product current = actualCompany.getProducts();
+		if(actualCompany.getRoot()!=null) {
+			Product current = actualCompany.getRoot();
 			while(current!=null&&result==null) {
 				if(current.getName().equals(name)) {
 					result = current;
@@ -277,8 +277,8 @@ public class AllStock implements Serializable {
 	// BUSCAR UN PRODUCTO POR SU ID
 	public Product searchProductById(String id) {
 		Product searched = null;
-		if(actualCompany.getProducts()!=null) {
-			searched =  searchProductByIdR(id,actualCompany.getProducts());
+		if(actualCompany.getRoot()!=null) {
+			searched =  searchProductByIdR(id,actualCompany.getRoot());
 		}
 		return searched;		
 	}
@@ -369,7 +369,7 @@ public class AllStock implements Serializable {
 	
 	// BORRA TODOS LOS DATOS ACTUALES PERO GUARDA UNA COPIA EN EL ORDENADOR
 	public void reset() {
-		
+
 	}
 
 	// SI EXISTE BORRAR UN PRODUCTO, SOLO PARA EMPLEADOS Y ADMIN
@@ -413,11 +413,12 @@ public class AllStock implements Serializable {
 		return result;
 	
 	}
+	
 	private Product[] generateProductsArray() {
 		Product[] result = new Product[actualCompany.getCantProducts()];
 		counter = 0;
-		if(actualCompany.getProducts()!=null) {
-			result = generateProductsArrayR(result,actualCompany.getProducts());
+		if(actualCompany.getRoot()!=null) {
+			result = generateProductsArrayR(result,actualCompany.getRoot());
 		}
 		return result;
 	}
@@ -426,9 +427,11 @@ public class AllStock implements Serializable {
 	private Product[] generateProductsArrayR(Product[] result,Product actual) {
 		
 		result[counter] = actual;
+		counter++;
 		if(actual.getLeft()!=null) {
 			result = generateProductsArrayR(result,actual.getLeft());
 		}
+		
 		if(actual.getRight()!=null){
 			result = generateProductsArrayR(result,actual.getRight());
 		}
@@ -506,22 +509,25 @@ public class AllStock implements Serializable {
 		Product[] products = generateProductsArray();
 		ArrayList<Product> result = new ArrayList<Product>();
 		System.out.println(products.length);
-		for (int i = 1; i < products.length; i++) {
 		
-			for (int j = i; j >0 && products[j-1].getName().compareToIgnoreCase(products[j].getName())>=0; j--) {
-				if(products[j-1].getName().compareToIgnoreCase(products[j].getName())==0) {
-					if(Integer.parseInt(products[j-1].getId())>Integer.parseInt(products[j].getId())) {
-						Product temp = products[j];
-						products[i] = products[j-1];
-						products[j-1] = temp;
-					}
-				}else {
-					Product temp = products[j];
-					products[i] = products[j-1];
-					products[j-1] = temp;
-				}
+		for (int i = 1; i < products.length; i++) {
+			
+			Product temp = products[i];
+			
+			int j = i-1;
+			
+			while((j>-1) && products[j].getName().compareToIgnoreCase(temp.getName())>=0) {
+				products[j+1] = products[j];
+				j--;
 			}
+			products[j+1] = temp;
+
 		}
+		
+		for(Product p : products) {
+			result.add(p);
+		}
+		
 		return result;
 	}
 	
