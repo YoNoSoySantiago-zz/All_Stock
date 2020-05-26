@@ -263,7 +263,7 @@ public class AllstockGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
 		animation.start();
-	} //Ya lo estoy poniendo
+	}
 
 	public void loadMenuOptions(ActionEvent event) {
 		try {
