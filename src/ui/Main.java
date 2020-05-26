@@ -14,8 +14,10 @@ public class Main extends Application {
 	private AllStock allStock;
 	
 	public Main() {
+		
+		
+		
 		allStock = new AllStock();
-	
 	}
 
 	public static void main(String[] args) {

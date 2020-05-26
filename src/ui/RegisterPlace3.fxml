@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <AnchorPane styleClass="BorderPane" BorderPane.alignment="CENTER">
          <children>
@@ -21,7 +21,7 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="314.0" layoutY="386.0" mnemonicParsing="false" onAction="#LoadRegister" prefHeight="33.0" prefWidth="96.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="300.0">
+            <Button alignment="CENTER" layoutX="298.0" layoutY="386.0" mnemonicParsing="false" onAction="#LoadRegister" prefHeight="33.0" prefWidth="111.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="298.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>
@@ -29,7 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btFinishCreateCompany" alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#registerCompany" prefHeight="30.0" prefWidth="85.0" styleClass="Button" text="Finish" AnchorPane.rightAnchor="300.0">
+            <Button fx:id="btFinishCreateCompany" alignment="CENTER" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" onAction="#registerCompany" prefHeight="30.0" prefWidth="111.0" styleClass="Button" text="Finish" AnchorPane.rightAnchor="274.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Font name="Cooper Black" size="12.0" />
                </font>
             </CheckBox>
-            <CheckBox fx:id="chBoxLimpieza" layoutX="350.0" layoutY="202.0" mnemonicParsing="false" prefHeight="30.0" text="Limpieza" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="215.0" />
+            <CheckBox fx:id="chBoxLimpieza" layoutX="350.0" layoutY="202.0" mnemonicParsing="false" prefHeight="30.0" styleClass="General" text="Limpieza" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="215.0" />
             <CheckBox fx:id="chBoxMedicines" layoutX="350.0" layoutY="242.0" mnemonicParsing="false" prefHeight="30.0" text="Medicines" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="265.0">
                <font>
                   <Font name="Cooper Black" size="12.0" />
