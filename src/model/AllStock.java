@@ -374,7 +374,7 @@ public class AllStock implements Serializable {
 	}
 
 	// SI EXISTE BORRAR UN PRODUCTO, SOLO PARA EMPLEADOS Y ADMIN
-	public void delateProduc(String idName) {
+	public boolean delateProduc(String idName) {
 		
 	}
 
@@ -587,11 +587,6 @@ public class AllStock implements Serializable {
 		bw.write(result);
 		bw.close();
 		Desktop.getDesktop().open(file);
-	}
-
-	// Genera y retorna los datos necesarios para las graficas de la GUI
-	public void generateGraphics() {
-		
 	}
 
 }

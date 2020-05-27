@@ -243,14 +243,27 @@ public class AllstockGUI {
 	private TableColumn<Product,Double> priceCol;
 	@FXML
 	private TableColumn<Product,Integer> cantCol;
+	
     @FXML
     private Label totalLabel;	
 
 	@FXML
 	private TextField txtSearchTable;
-
+	
 	@FXML
-	private TextField txtTotal;
+	private Label tablaIdLabel;
+	
+	@FXML
+	private Label tablaNameLabel;
+	
+	@FXML
+	private Label tablaCategoryLabel;
+	
+	@FXML
+	private Label tablaCantLabel;
+	
+	@FXML
+	private Label tablaPriceLabel;
 
 	// menu de registro
 
@@ -439,7 +452,6 @@ public class AllstockGUI {
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(allStock.productInsertionSortByName());
 			tableInventary.setItems(observableList);
-			System.out.println(allStock.productInsertionSortByName()+ "Entro" );
 			
 			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
@@ -549,11 +561,6 @@ public class AllstockGUI {
 		
 		
 	}
-	
-	
- 
-	
-	
 	
 	@FXML
 	void adminSelect(ActionEvent event) {
@@ -959,8 +966,36 @@ public class AllstockGUI {
 	}
 	
 	@FXML
+	public void deleteProduct(ActionEvent event) {
+		
+	}
+	
+	@FXML
 	public void deleteCompany(ActionEvent event) {
 		
+		if(allStock.delateProduc(tablaIdLabel.getText())){
+			
+		}else {
+			
+		}
+		
+	}
+	
+	@FXML
+	public void searchProduct(ActionEvent event) {
+		String name = txtSearchTable.getText();
+		if(name.isEmpty()) {
+			
+		}else {
+			Product search = allStock.searchProductById(name);
+			if(search == null) {
+				search = allStock.searchProductByName(name);
+			}
+			
+			if(search!= null) {
+				
+			}
+		}
 	}
 	
 	@FXML
