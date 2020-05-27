@@ -36,9 +36,6 @@ public class AllStock implements Serializable {
 		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);
 		counter = 0;
 		companies = null;
-		ArrayList<String> arr =  new ArrayList<String>();
-		arr.add("Aliments");
-		companies = new Company("CHOCOLIXIE", "121212", "CALI", "3558788", arr);
 		actualCompany = null;
 	}
 
@@ -83,24 +80,25 @@ public class AllStock implements Serializable {
 		if (name.isEmpty() || nit.isEmpty() || phone.isEmpty() || locate.isEmpty() || categories.isEmpty()) {
 			throw new ValueIsEmptyException();
 		}
-		
+		System.out.println(searchCompany(name, nit));
 		if(searchCompany(name, nit)!=null) {
 			throw new CompanyExistException();
 		}
 		
 		Company nuevo = new Company(name, nit, locate, phone, categories);
 		
-		if (actualCompany == null) {
-			actualCompany = nuevo;
+		if (companies == null) {
+			companies = nuevo;
+			
 		}else {
-			Company aux = actualCompany;
+			Company aux = companies;
 			while (aux.getNextCompany() != null) {
 				aux = aux.getNextCompany();
 			}
 			nuevo.setPrevCompany(aux);
 			aux.setNextCompany(nuevo);
 		}
-
+		actualCompany = nuevo;
 	}
 	
 	//eliminar compania recursiva
@@ -130,7 +128,7 @@ public class AllStock implements Serializable {
 	public Company searchCompany(String name, String nit) {
 		
 		Company searched = null;
-		
+		System.out.println(actualCompany);
 		if (actualCompany != null) {
 			searched = searchCompanyR(name,nit,companies);
 		}
@@ -141,6 +139,7 @@ public class AllStock implements Serializable {
 	
 	private Company searchCompanyR(String name, String nit, Company actual) {
 		//Si lo encuentra retorna la company actual
+		System.out.println(actual);
 		if (actual.getName().equals(name) || actual.getNit().equals(nit)) {
 			return actual;
 		}
@@ -152,10 +151,6 @@ public class AllStock implements Serializable {
 		return null;
 		
 	}
-		
-		
-	
-	
 
 	// AGREGAR PRODUCT LO MISMO DE ARRIBA
 	public void addProduct(String name, String description, String brand, double price, int cant, double weight,
@@ -370,12 +365,70 @@ public class AllStock implements Serializable {
 	
 	// BORRA TODOS LOS DATOS ACTUALES PERO GUARDA UNA COPIA EN EL ORDENADOR
 	public void reset() {
-
+		users= null;
+		//Login Default
+		users = new Admin("1234", "admin", "CC", "admin", User.ADMINISTRADOR);
+		counter = 0;
+		companies = null;
+		actualCompany = null;
+		File file = new File("data/reports/increases-decreases.txt");
+		file.delete();
+		//Y LIMPIAR LOS ARCHIVOS
 	}
 
 	// SI EXISTE BORRAR UN PRODUCTO, SOLO PARA EMPLEADOS Y ADMIN
-	public boolean delateProduc(String idName) {
+	public boolean delateProducR(String idName) throws StackOverflowError {
+		boolean result = false;
+		if(actualCompany.getRoot()==null) {
+			return false;
+		}else {
+			Product delate = deleteProductR(idName,actualCompany.getRoot());
+			if(delate!=null) {
+				result = true;
+				Product actual = delate;
+				if(actual.getRight()!=null) {
+					actual = actual.getRight();
+				}else if(actual.getLeft()!=null) {
+					actual = actual.getLeft();
+				}else {
+					actual = null;
+					delate = null;
+				}
+				if(delate!=null) {
+					actual = deleteProductR(actual,delate);
+					actual.setLeft(delate.getLeft());
+					actual.setRight(delate.getRight());
+					delate = null;
+				}
+				
+			}
+		}
+		return result;
+	}
+	
+	private Product deleteProductR(String idName, Product actual) throws StackOverflowError {
+		if(actual==null) {
+			return actual;
+		}
+		if(idName.compareTo(actual.getName())<0) {
+			actual = actual.getLeft();
 		
+		}else if(idName.compareTo(actual.getName())>0){
+			actual = actual.getRight();
+		}else {
+			return actual;
+		}
+		return deleteProductR(idName,actual);
+	}
+	
+	private Product deleteProductR(Product actual, Product prev) throws StackOverflowError {
+		if(actual.getRight()==null) {
+			prev.setRight(actual.getLeft());
+			return actual;
+		}
+		prev = actual;
+		actual = actual.getRight();
+		return deleteProductR(actual,prev);
 	}
 
 	// LOGIN

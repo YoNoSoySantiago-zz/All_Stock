@@ -54,6 +54,7 @@ import model.Employee;
 import model.Product;
 import model.User;
 import threads.AnimationThread;
+import threads.Clock;
 import threads.ValuesEmptyThread;
 
 public class AllstockGUI {
@@ -71,6 +72,7 @@ public class AllstockGUI {
 	private boolean loginIsRunning;
 	private boolean registerIsRunning;
 	private boolean productIsRunning;
+	private boolean menuIsRunning;
 	private int upBox;
 	private User userActual;
 	
@@ -78,6 +80,7 @@ public class AllstockGUI {
 	
 	public AllstockGUI(Stage win,AllStock allStock) {
 		this.allStock = allStock;
+		menuIsRunning = false;
 		window = win;
 		setRegisterIsRunnning(false);
 		loginIsRunning= true;
@@ -192,6 +195,7 @@ public class AllstockGUI {
 	@FXML
 	private TextField txtTipo;
 	
+	
 	// registro empresa
 	
     @FXML
@@ -264,8 +268,16 @@ public class AllstockGUI {
 	
 	@FXML
 	private Label tablaPriceLabel;
+	
+	@FXML
+	private Button deleteProductBtn;
 
 	// menu de registro
+    @FXML
+    private Label labelNameCompany;
+
+    @FXML
+    private Label labelHora;
 
 	@FXML
 	private Button btnReports;
@@ -288,6 +300,23 @@ public class AllstockGUI {
 
     @FXML
     private Button btDeleteUser;
+    
+    
+    
+    
+    
+    
+    
+    
+    // ventana donde borro el usuario
+    @FXML
+    private TextField txtIdDelete;
+
+    @FXML
+    private Button btAtrasDeleteUser;
+    @FXML
+    private Button btnBorrarUser;
+
 
     
 
@@ -298,7 +327,8 @@ public class AllstockGUI {
 			public void handle(WindowEvent event) {
 				loginIsRunning = false;
 				registerIsRunning = false;
-				setProductIsRunning(false);
+				menuIsRunning=false;
+				productIsRunning=false;
 				System.out.println("Closing the window!");
 				try {
 					ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data/allStock.sds"));
@@ -368,6 +398,8 @@ public class AllstockGUI {
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
 		animation.start();
+		empty = new ValuesEmptyThread(this);
+		empty.start();
 	}
 
 	public void loadMenuOptions(ActionEvent event) {
@@ -379,6 +411,9 @@ public class AllstockGUI {
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
 			setProductIsRunning(false);
+			menuIsRunning=true;
+			Clock clock = new Clock(this);
+			clock.start();
 			if(userActual instanceof Admin) {
 				initAdmin();
 			}else if(userActual instanceof Employee) {
@@ -431,6 +466,7 @@ public class AllstockGUI {
 			barGrafic();
 			lineChart();
 			barGraficTwo();
+			menuIsRunning=false;
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -445,7 +481,7 @@ public class AllstockGUI {
 			pane = fL.load();
 			mainPane.getChildren().clear();
 			mainPane.setCenter(pane);
-			
+			menuIsRunning=false;
 			//tableInventary = new TableView<Product>();
 			
 			
@@ -455,7 +491,7 @@ public class AllstockGUI {
 			
 			idCol.setCellValueFactory(new PropertyValueFactory<Product, String>("id"));
 			nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-			category.setCellValueFactory(new PropertyValueFactory<Product, String>("type"));
+			category.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
 			cantCol.setCellValueFactory(new PropertyValueFactory<Product, Integer>("cant"));
 			priceCol.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 	
@@ -477,6 +513,7 @@ public class AllstockGUI {
 			mainPane.setCenter(pane);
 			animation.start();
 			empty.start();
+			menuIsRunning=false;
 		}catch(IOException e) {
 			System.out.println(e.getStackTrace());
 		}
@@ -598,6 +635,7 @@ public class AllstockGUI {
 		cbCategory.getItems().addAll("Alimentos","Limpieza","Ropa","Medicina","Otra");
 		empty = new ValuesEmptyThread(this);
 		empty.start();
+		menuIsRunning=false;
 	}
 
 	@FXML
@@ -608,6 +646,7 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		menuIsRunning=false;
 	}
 
 	// Product Register
@@ -755,6 +794,7 @@ public class AllstockGUI {
 		pane = fL.load();
 		mainPane.getChildren().clear();
 		mainPane.setCenter(pane);
+		menuIsRunning=false;
 	}
 
 	// manejo de tipos de usuarios en la app.
@@ -805,20 +845,20 @@ public class AllstockGUI {
  
         XYChart.Series<String, Number> series = new Series<String, Number>();
         series.setName("Entrada de productos");
-        series.getData().add(new Data<String, Number>("Bolsa de leche", 50));
-        series.getData().add(new Data<String, Number>("Pan", 70));
-        series.getData().add(new Data<String, Number>("Jamon", 30));
-        series.getData().add(new Data<String, Number>("Pollo", 30));
-        series.getData().add(new Data<String, Number>("Carne", 50));
+        series.getData().add(new Data<String, Number>("Producto1", 50));
+        series.getData().add(new Data<String, Number>("Producto2", 70));
+        series.getData().add(new Data<String, Number>("Producto3", 30));
+        series.getData().add(new Data<String, Number>("Producto4", 30));
+        series.getData().add(new Data<String, Number>("Producto5", 50));
 
         
         XYChart.Series<String, Number> series2 = new Series<String, Number>();
         series2.setName("Salida de productos");
-        series2.getData().add(new Data<String, Number>("Bolsa de leche", 37));
-        series2.getData().add(new Data<String, Number>("Pan", 45));
-        series2.getData().add(new Data<String, Number>("Jamon", 20));
-        series2.getData().add(new Data<String, Number>("Pollo", 8));
-        series2.getData().add(new Data<String, Number>("Carne", 20));
+        series2.getData().add(new Data<String, Number>("Producto1", 37));
+        series2.getData().add(new Data<String, Number>("Producto2", 45));
+        series2.getData().add(new Data<String, Number>("Producto3", 20));
+        series2.getData().add(new Data<String, Number>("Producto4", 8));
+        series2.getData().add(new Data<String, Number>("Producto5", 20));
         
         
         bc.getData().addAll(series,series2);
@@ -960,24 +1000,52 @@ public class AllstockGUI {
 	}
 	//Settings
 	
+
+    @FXML
+    void deleteUser(ActionEvent event) {
+    	String id= txtIdDelete.getText();
+    	if(!id.isEmpty()) {
+    		allStock.delateUserR(id);
+    	}else {
+    		Alert alert = new Alert(AlertType.WARNING);
+    		alert.setTitle("Campos vacios");
+    		alert.setHeaderText("El usuario no fue eliminado");
+    		alert.setContentText("Debe llenar el campo vacio");
+    	}
+    }
 	@FXML
-	public void deleteUser(ActionEvent event) {
-		
-	}
+    void loadDeleteUser(ActionEvent event) throws IOException {
+		FXMLLoader fL = new FXMLLoader(getClass().getResource("DeleteUserFx.fxml"));
+		fL.setController(this);
+		Parent pane;
+		pane = fL.load();
+		mainPane.getChildren().clear();
+		mainPane.setCenter(pane);
+		menuIsRunning=false;
+    }
+
 	
 	@FXML
 	public void deleteProduct(ActionEvent event) {
-		
+		if(allStock.delateProducR(tablaIdLabel.getText())){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Eliminado correctamente");
+			alert.setHeaderText("El producto fue eliminado correctamente");
+			deleteProductBtn.setDisable(false);
+		}else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error eliminado producto");
+			alert.setHeaderText("El producto no pudo ser eliminado correctamente");
+			tablaCantLabel.setText("------");
+			tablaNameLabel.setText("---------");
+			tablaIdLabel.setText("----");
+			tablaCategoryLabel.setText("---------");
+			tablaPriceLabel.setText("------");
+		}
 	}
 	
 	@FXML
 	public void deleteCompany(ActionEvent event) {
-		
-		if(allStock.delateProduc(tablaIdLabel.getText())){
-			
-		}else {
-			
-		}
 		
 	}
 	
@@ -985,7 +1053,10 @@ public class AllstockGUI {
 	public void searchProduct(ActionEvent event) {
 		String name = txtSearchTable.getText();
 		if(name.isEmpty()) {
-			
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Espacio vacío");
+			alert.setHeaderText("Debe llenar el espacio en blanco");
+			alert.setContentText("Comprueba que has ingresado correctamente el nombre o el id");
 		}else {
 			Product search = allStock.searchProductById(name);
 			if(search == null) {
@@ -993,14 +1064,25 @@ public class AllstockGUI {
 			}
 			
 			if(search!= null) {
-				
+				tablaCantLabel.setText(search.getCant()+"");
+				tablaNameLabel.setText(search.getName());
+				tablaIdLabel.setText(search.getId());
+				tablaCategoryLabel.setText(search.getCategory());
+				tablaPriceLabel.setText(search.getPrice()+"");
+				txtSearchTable.clear();
+				deleteProductBtn.setDisable(false);
+			}else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Producto no encontrado");
+				alert.setHeaderText("El producto no fue encontrado");
+				alert.setContentText("Comprueba que has ingresado correctamente el nombre o el id");
 			}
 		}
 	}
 	
 	@FXML
 	public void resetSystem(ActionEvent event) {
-		allStock = new AllStock();
+		allStock.reset();
 		btnLogOut(event);
 	}
 
@@ -1052,8 +1134,42 @@ public class AllstockGUI {
 	public boolean isProductIsRunning() {
 		return productIsRunning;
 	}
-
+	
 	public void setProductIsRunning(boolean productIsRunning) {
 		this.productIsRunning = productIsRunning;
 	}
+	
+	public void updateTime(int h,int m,int s) {
+		String hora = h<10?"0"+h:h+"";
+		String min = m<10?"0"+m:m+"";
+		String seg = s<10?"0"+s:s+"";
+		String total = hora+":"+min+":"+seg;
+		labelHora.setText(total);
+		
+		String name ="Compañia: "+allStock.getActualCompany().getName();
+		name+="\n"+"Usuario: "+userActual.getName();
+		labelNameCompany.setText(name);
+		//labelHora
+		//LabelNameCompany
+	}
+
+	public boolean isMenuIsRunning() {
+		return menuIsRunning;
+	}
+
+	public void setMenuIsRunning(boolean menuIsRunning) {
+		this.menuIsRunning = menuIsRunning;
+	}
+	
+	
+	
+	
+	
+	
+
+
+    @FXML
+    void loadbacKDeleteUser(ActionEvent event) throws IOException {
+    	btnSettings(event);
+    }
 }

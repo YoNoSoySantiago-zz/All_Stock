@@ -1,10 +1,2 @@
 
-id: 0000, name: qewrty, description: ewretrtf, brand: qewretry, price: 132.0, cant: 13
-id: 0001, name: asdf, description: afsgdh, brand: afgsdhf, price: 140.0, cant: 1
-id: 0002, name: adsfbnf, description: dszdfxff, brand: dsfdgdf, price: 13.0, cant: 4
-Othersid: 0003, name: <zghrxd, description: <zdfxcg, brand: <szfdxgcg, price: 3.0, cant: 12 [characteristics=[]]
-Clothesid: 0004, name: dgfnhgfhg, description: szdfxghcj, brand: dxfgchv, price: 400.0, cant: 15 [sizes=[], colors=[]]
-Clothesid: 0005, name: camisa, description: cuadras verdes				, brand: polo, price: 45000.0, cant: 5 [sizes=[], colors=[]]
-Clothesid: 0006, name: camiseta, description: dsd, brand: adi, price: 32.0, cant: 1212 [sizes=[], colors=[]]
-Clothesid: 0007, name: ckjak, description: ssfrgrgr, brand: adi, price: 23243.0, cant: 3 [sizes=[], colors=[]]
-id: 0008, name: jamon, description: jamon 400 grs, brand: rica, price: 20023.0, cant: 500
+Clothesid: 0000, name: dsd, description: sdsd, brand: sds, price: 2332.0, cant: 232 [sizes=[], colors=[]]

@@ -10,13 +10,14 @@ public abstract class Product implements Serializable {
 	private String name;
 	private String description;
 	private String brand;
+	private String category;
 	private double price;
 	private int cant;
 	
 	private Product right;
 	private Product left;
 	
-	public Product(String id, String name, String description, String brand, double price, int cant) {
+	public Product(String id, String name, String description, String brand, double price, int cant, String category) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,6 +25,7 @@ public abstract class Product implements Serializable {
 		this.brand = brand;
 		this.price = price;
 		this.cant = cant;
+		this.category = category;
 	}
 	
 	public void add(Product product) {
@@ -100,6 +102,14 @@ public abstract class Product implements Serializable {
 	public String toString() {
 		return "id: " + id + ", name: " + name + ", description: " + description
 				+ ", brand: " + brand + ", price: " + price + ", cant: " + cant;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 

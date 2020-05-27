@@ -21,7 +21,7 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="298.0" layoutY="386.0" mnemonicParsing="false" onAction="#LoadRegister" prefHeight="33.0" prefWidth="111.0" styleClass="Button" text="Cancel" AnchorPane.leftAnchor="298.0">
+            <Button alignment="CENTER" layoutX="298.0" layoutY="386.0" mnemonicParsing="false" onAction="#LoadRegister" prefHeight="33.0" prefWidth="111.0" styleClass="Button" text="Back" AnchorPane.leftAnchor="298.0">
                <font>
                   <Font name="Cooper Black" size="18.0" />
                </font>

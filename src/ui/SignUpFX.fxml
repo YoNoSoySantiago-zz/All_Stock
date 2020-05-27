@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="General" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="57.0" layoutY="53.0" text="Crear una cuenta">
+      <Label layoutX="9.0" layoutY="53.0" text="Crear una cuenta">
          <font>
             <Font size="21.0" />
          </font>
@@ -24,7 +24,7 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="txtSignID" layoutX="35.0" layoutY="186.0" promptText="ID" />
+      <TextField fx:id="txtSignID" layoutX="35.0" layoutY="200.0" promptText="ID" />
       <Button fx:id="btRegister" alignment="CENTER" layoutX="283.0" layoutY="318.0" mnemonicParsing="false" onAction="#RegisterUser" prefHeight="58.0" prefWidth="172.0" styleClass="Button" text="REGISTRARSE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -62,18 +62,17 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></CheckBox>
-      <Separator layoutX="178.0" layoutY="34.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="48.0" />
-      <PasswordField fx:id="passFieldPassword1" layoutX="35.0" layoutY="242.0" promptText="Contraseña" />
-      <PasswordField fx:id="passFieldPassword2" layoutX="35.0" layoutY="280.0" promptText="Confirmar Contraseña" />
+      <Separator layoutX="187.0" layoutY="35.0" orientation="VERTICAL" prefHeight="366.0" prefWidth="48.0" />
+      <PasswordField fx:id="passFieldPassword1" layoutX="35.0" layoutY="242.0" promptText="Contraseï¿½a" />
+      <PasswordField fx:id="passFieldPassword2" layoutX="35.0" layoutY="280.0" promptText="Confirmar Contraseï¿½a" />
       <Button layoutX="14.0" layoutY="333.0" mnemonicParsing="false" onAction="#btnLogOut" prefHeight="47.0" prefWidth="47.0" styleClass="atras">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ComboBox fx:id="idTypeComboBox" layoutX="32.0" layoutY="149.0" prefHeight="16.0" prefWidth="135.0" promptText="TIPO ID">
+      <ComboBox fx:id="idTypeComboBox" layoutX="32.0" layoutY="155.0" prefHeight="16.0" prefWidth="135.0" promptText="TIPO ID">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
 
    </children>
 </Pane>
-

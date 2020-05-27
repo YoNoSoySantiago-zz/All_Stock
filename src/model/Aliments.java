@@ -8,10 +8,9 @@ public class Aliments extends Product{
 	private String type;
 	
 	public Aliments(String id, String name, String description, String brand, double price, int cant, double weight,String type) {
-		super(id, name, description, brand, price, cant);
+		super(id, name, description, brand, price, cant,"Aliments");
 		this.weight=weight;
 		this.type = type;
-		
 	}
 	
 	public double getWeight() {

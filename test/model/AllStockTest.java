@@ -24,8 +24,8 @@ class AllStockTest {
 // CREACION DE EMPRESAS
 	public void setup1() throws CompanyExistException, ValueIsEmptyException {
 
-
-
+control= new AllStock();
+		categories = new ArrayList<String>();
 		control.addCompanyList("Chocolixie", "0878", "Cali", "3224548", categories);
 		control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", categories);
 		control.addCompanyList("DROGERIA", "1234", "CALI", "45454", categories);
@@ -56,13 +56,21 @@ class AllStockTest {
 	}
 // Agrega una empresa si la lista esta vacia.
 	@Test
-	public void TestaddCompanyList() throws ValueIsEmptyException, CompanyExistException {
-		setup1();
-
-		assertTrue(control.addCompanyList("Tienda paquita", "4524", "Cali", "3365448", categories));
+	public void TestaddCompanyList() throws ValueIsEmptyException{
+		boolean entro = false;
+		try {
+			setup1();
+			assertTrue(control.searchProductById("123")!=null);
+			assertTrue(control.searchProductById("12454")!=null);
+			assertTrue(control.searchProductById("4548")!=null);
+			setup1();
+		}catch(CompanyExistException e) {
+			entro = true;
+		}
+		assertTrue(entro);
 	}
     @Test
-    public void testAddCompanyList1() throws ValueIsEmptyException, CompanyExistException {
+    public void testAddCompanyList1() throws CompanyExistException {
         System.out.println("addCompanyList");
         String name = "";
         String nit = "";
@@ -70,9 +78,17 @@ class AllStockTest {
         String phone = "";
         ArrayList<String> categories = null;
         AllStock instance = new AllStock();
-        instance.addCompanyList(name, nit, locate, phone, categories);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean empty =false;
+        try {
+        	try{
+            	instance.addCompanyList(name, nit, locate, phone, categories);
+            }catch( ValueIsEmptyException e) {
+            	empty = true;
+            }	
+        }catch( IllegalStateException i) {
+        	empty = true;
+        }
+        assertTrue(empty);
     }
 
 	// Eliminar Empresa  del setup1 

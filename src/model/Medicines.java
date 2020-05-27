@@ -6,7 +6,7 @@ public class Medicines extends Product {
 	
 	private String type;
 	public Medicines(String id, String name, String description, String brand, double price, int cant,String type) {
-		super(id, name, description, brand, price, cant);
+		super(id, name, description, brand, price, cant,"Medicines");
 		this.type = type;
 	}
 	public String getType() {

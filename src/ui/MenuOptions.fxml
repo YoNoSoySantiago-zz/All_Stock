@@ -6,12 +6,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="General" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox alignment="CENTER" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
+            <Pane prefHeight="47.0" prefWidth="900.0">
+               <children>
+                  <Label layoutX="358.0" layoutY="17.0" prefHeight="14.0" prefWidth="185.0" text="MY INVENTARY ALL STOCK" />
+                  <Label fx:id="labelNameCompany" layoutX="768.0" layoutY="17.0" text="NAME COMPANY" />
+                  <Label fx:id="labelHora" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="206.0" text="R:" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS" />
+               </children>
+            </Pane>
             <HBox alignment="CENTER" spacing="400.0">
                <children>
                   <VBox alignment="CENTER" spacing="10.0">

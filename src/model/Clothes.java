@@ -10,7 +10,7 @@ public class Clothes extends Product {
 	private String[] colors;
 	
 	public Clothes(String id, String name, String description, String brand, double price, int cant,double[] sizes,String[] colors) {
-		super(id, name, description, brand, price, cant);
+		super(id, name, description, brand, price, cant,"Clothes");
 		this.sizes = sizes;
 		this.colors=colors;
 	}

@@ -8,7 +8,7 @@ public class Others extends Product {
 	
 	private String[][] characteristics;
 	public Others(String id, String name, String description, String brand, double price, int cant,String[][]characteristics) {
-		super(id, name, description, brand, price, cant);
+		super(id, name, description, brand, price, cant,"Others");
 		this.setCharacteristics(characteristics);
 	}
 	public String[][] getCharacteristics() {
