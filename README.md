@@ -23,6 +23,8 @@ https://github.com/YoNoSoySantiago/All_Stock/blob/master/data/AllStockDiagram.pn
 
 # Link Video
 https://youtu.be/p58m7VzQLlw
+#### Observar con mayor detenimiento la funcionalidad de nuestra app
+https://youtu.be/ToWNYKWEGKM
 
 
 # Visualizacion 
