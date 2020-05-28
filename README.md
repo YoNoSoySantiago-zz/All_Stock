@@ -22,7 +22,7 @@ https://github.com/YoNoSoySantiago/All_Stock/blob/master/data/Dise%C3%B1o%20de%2
 https://github.com/YoNoSoySantiago/All_Stock/blob/master/data/AllStockDiagram.png
 
 # Link Video
-
+https://youtu.be/p58m7VzQLlw
 
 
 # Visualizacion 
